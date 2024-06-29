@@ -1,1 +1,1 @@
-rootProjectName = "Db-Scout"
+rootProject.name = "Db-Scout"
