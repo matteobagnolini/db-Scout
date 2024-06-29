@@ -75,8 +75,8 @@ public class Servizio {
     public Optional<String> getResoconto() {
         return this.resoconto;
     }
-    public void setResoconto(String Resoconto) {
-        this.resoconto = Resoconto;
+    public void setResoconto(String resoconto) {
+        this.resoconto = Optional.of(resoconto);
     }
 
     // Metodo equals 
@@ -98,10 +98,5 @@ public class Servizio {
                 resoconto.equals(servizio.resoconto);
     }
 
-    // Metodo hashCode sovrascritto per coerenza con equals
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome, dataInizio, dataFine, periodo, descrizione, tipologia, capoReferente, branca, Luogo, nomeEnteEsterno, cognomeEsterno, resoconto);
-    }
-    }
+}
 

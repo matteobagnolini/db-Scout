@@ -1,6 +1,6 @@
 package dbscout;
 
-import dbscout.Data.DAOUtils;
+import dbscout.data.DAOUtils;
 
 public class App {
     public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class App {
         // view.setController()
         // controller.loginView()
     
-        var connection = DAOUtils.localMySQLConnection("tessiland", "root", "");
+        var connection = DAOUtils.localMySQLConnection("dbscout", "root", "");
 
     }
 }
