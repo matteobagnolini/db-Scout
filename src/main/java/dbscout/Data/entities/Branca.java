@@ -2,7 +2,7 @@ package dbscout.data.entities;
 
 import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Objects;
 public class Branca {
     
     private final String nome;
@@ -44,4 +44,19 @@ public class Branca {
         return membri;
     }
 
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Branca branca = (Branca) o;
+        return this.nome == branca.nome && Objects.equals(this.attivita, branca.attivita) 
+        && Objects.equals(this.capi, branca.capi) && Objects.equals(this.membri, branca.membri);
+    }
+
+    public int hashCode() {
+        return Objects.hash(nome, membri, attivita, capi);
+    }
 }
