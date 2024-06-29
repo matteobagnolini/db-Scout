@@ -11,6 +11,10 @@ public class View {
     }
 
     public void loginPage() {
+
+    }
+
+    public void lupettoPage() {
         
     }
 

@@ -14,4 +14,8 @@ public class Controller {
         this.view.loginPage();
     } 
 
+    public void requestLupettoPage() {
+        this.view.lupettoPage();
+    }
+
 }
