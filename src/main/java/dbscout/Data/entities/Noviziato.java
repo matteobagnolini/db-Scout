@@ -1,4 +1,4 @@
-package dbscout.Data;
+package dbscout.data.entities;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package dbscout.Data;
+package dbscout.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package dbscout.Data;
+package dbscout.data.entities;
 
 public class Lupetto extends Associato {
     

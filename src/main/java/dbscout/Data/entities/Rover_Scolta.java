@@ -1,4 +1,4 @@
-package dbscout.Data;
+package dbscout.data.entities;
 
 public class Rover_Scolta extends Associato {
 
