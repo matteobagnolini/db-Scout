@@ -8,6 +8,7 @@ public class Branca {
     private final String nome;
     private List<Associato> membri;
     private List<Capo> capi;
+    private List<Attivita> attivita;
 
     public Branca(final String nome) {
         this.nome = nome;
@@ -21,6 +22,14 @@ public class Branca {
 
     public void addCapo(final Capo capo) {
         capi.add(capo);
+    }
+
+    public void addAttivita(final Attivita att) {
+        if (att.branca().equals(this)) {
+            attivita.add(att);
+        } else {
+            throw new IllegalArgumentException("Errore, attività non è della branca specificata.");
+        }
     }
 
     public String getNome() {
