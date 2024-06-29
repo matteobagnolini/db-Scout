@@ -9,7 +9,7 @@ public class Associato {
     private String cf;
     private int eta;
     private char sesso;
-    private Branca branca;
+    protected Branca branca;
 
     public Associato(int codAssociato, String tel, String mail, String nome, 
                      String cognome, String cf, int eta, char sesso) {
