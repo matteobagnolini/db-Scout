@@ -15,7 +15,7 @@ public class ControllerTest {
     private Label LabelBrutta;
 
     @FXML
-    private Text ShowSquadriglia;
+    private TextArea ShowSquadriglia;
     
     @FXML
     void showShadriglia(ActionEvent e) {
