@@ -1,7 +1,6 @@
 package dbscout.data.entities;
 
 import java.sql.Connection;
-import java.util.List;
 import java.util.Set;
 
 import dbscout.data.DAOException;
@@ -13,17 +12,11 @@ import java.util.HashSet;
 public class Squadriglia {
 
     private final String nome;
-    private final List<Repartaro> membri;
     private ServizioSq servizio;
 
-    public Squadriglia(final String nome, final List<Repartaro> membri, final ServizioSq servizio) {
+    public Squadriglia(final String nome, final ServizioSq servizio) {
         this.nome = nome;
-        this.membri = membri;
         this.servizio = servizio;
-    }
-
-    public List<Repartaro> getMembri() {
-        return membri;
     }
 
     public String getNome() {
@@ -51,8 +44,6 @@ public class Squadriglia {
                     var cognome = resultSet.getString("A.cognome");
                     var eta = resultSet.getInt("A.età");
                     var sesso = resultSet.getString("A.sesso").charAt(0);
-
-                    var nomeSq = resultSet.getString("nomeSQ");
                     
                     // here create a new associato;
                     membri.add(new Repartaro(codAssociato, null, null, nome, cognome, "abc", eta, sesso));
@@ -61,9 +52,8 @@ public class Squadriglia {
                 throw new DAOException(e.getMessage());
             }
             return membri;
-            }
         }
-
     }
 
 }
+
