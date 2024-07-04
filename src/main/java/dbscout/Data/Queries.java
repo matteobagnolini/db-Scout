@@ -2,7 +2,7 @@ package dbscout.data;
 
 public class Queries {
     //Visualizzare tutti i membri di ogni rispettiva branca
-    public static final string ALL_MEMBRI_BRANCA = 
+    public static final String ALL_MEMBRI_BRANCA = 
     """
     select A.Nome, A.Cognome, A.Età, A.Sesso, A.NomeBranca
     from associato A
@@ -11,7 +11,7 @@ public class Queries {
 
 
     //query singola, visualizzare i membri di una rispettiva branca 
-    public static final string MEMBRI_BRANCA =
+    public static final String MEMBRI_BRANCA =
     """
     select A.Nome, A.Cognome, A.Età, A.Sesso, A.NomeBranca
     from associato A
@@ -22,7 +22,7 @@ public class Queries {
 
 
     //Visualizzare i capi di ogni rispettiva branca
-    public static final string  ALL_CAPI_BRANCA=
+    public static final String  ALL_CAPI_BRANCA=
     """
     select A.Nome, A.Cognome, A.Età, A.Sesso, A.Recapito_tel, A.Mail, C.NomeBranca
     from associato A, capo C
@@ -32,7 +32,7 @@ public class Queries {
 
 
     //Visualizzare le attività di ogni rispettiva branca con numero di presenze
-    public static final string ALL_ATTIVITA =
+    public static final String ALL_ATTIVITA =
     """
     select Att.*, count(P.Associato) AS `Numero presenze`
     from attivita Att, partecipazione P
@@ -43,7 +43,7 @@ public class Queries {
 
 
     //Query singola, Branca specifica 
-    public static final string  ATTIVITA =
+    public static final String  ATTIVITA =
     """
     select Att.*, count(P.Associato) AS `Numero presenze`
     from attivita Att, partecipazione P
@@ -54,7 +54,7 @@ public class Queries {
 
 
     //Visualizzare le recensioni per ogni uscita
-    public static final string ALL_RECENSIONI =
+    public static final String ALL_RECENSIONI =
     """
     select A.Nome, A.Cognome, P.NomeBranca, P.`Data`, P.Descrizione, P.Numero_Stelle
     from partecipazione P, associato A
@@ -65,7 +65,7 @@ public class Queries {
 
 		
     //query singola per una data uscita -> BrancaRichiesta, Data Richiesta
-    public static final string RECENSIONI =
+    public static final String RECENSIONI =
     """
     select A.Nome, A.Cognome, P.NomeBranca, P.`Data`, P.Descrizione, P.Numero_Stelle
     from partecipazione P, associato A
@@ -75,7 +75,7 @@ public class Queries {
     """;
 
     //Visualizzare il saldo una data branca
-    public static final string SALDO_BRANCA =
+    public static final String SALDO_BRANCA =
     """
     select NomeBranca, FondoCassa
     from branca
@@ -83,7 +83,7 @@ public class Queries {
     """;
 
     //Visualizzare i soldi spesi totali da ogni branca
-    public static final string SPESE_BRANCA =
+    public static final String SPESE_BRANCA =
     """
     select sum(Quota) AS `Spesa totale`, NomeBranca
     from attivita
@@ -93,7 +93,7 @@ public class Queries {
     """;
 
     //Visualizzare squadriglie e sestiglie (reparto e lupetti)
-    public static final string ALL_SESTIGLIE =
+    public static final String ALL_SESTIGLIE =
     """
     select distinct A.CodAssociato, A.Nome, A.Cognome, A.Età, A.Sesso, S.Nome As NomeSestiglia
     from associato A, sestiglia S, sestiglia_membro Membro
@@ -106,7 +106,7 @@ public class Queries {
 
         
     //query singola 
-    public static final string SESTIGLIA =
+    public static final String SESTIGLIA =
     """
     select distinct A.CodAssociato, A.Nome, A.Cognome, A.Età, A.Sesso, S.Nome As NomeSestiglia
     from associato A, sestiglia S, sestiglia_membro Membro
@@ -116,7 +116,7 @@ public class Queries {
          A.Età desc
     """;
 
-    public static final string ALL_SQUADRIGLIE =
+    public static final String ALL_SQUADRIGLIE =
     """
     select distinct A.CodAssociato, A.Nome, A.Cognome, A.Età, A.Sesso, S.Nome AS NomeSQ
     from associato A, squadriglia S, squadriglia_membro Membro
@@ -128,7 +128,7 @@ public class Queries {
     """;
     
     //query singola
-    public static final string SQUADRIGLIA =
+    public static final String SQUADRIGLIA =
     """
     select distinct A.CodAssociato, A.Nome, A.Cognome, A.Età, A.Sesso, S.Nome AS NomeSQ
     from associato A, squadriglia S, squadriglia_membro Membro
@@ -142,7 +142,7 @@ public class Queries {
 
 
     //Visualizzare tutti i capi e vice squadriglia
-    public static final string ALTA_SQ =
+    public static final String ALTA_SQ =
     """
     select S.Nome AS SQ, A.Nome AS CapoSq_Nome, A.Cognome AS CapoSq_Cognome, A2.Nome AS ViceSq_Nome, A2.Cognome AS ViceSq_Cognome
     from squadriglia S, Associato A, Associato A2
@@ -153,7 +153,7 @@ public class Queries {
 
         
     //Visualizzare le 3 migliori uscite per ogni branca in base alle recensioni
-    public static final string ALL_BEST_3_USCITE =
+    public static final String ALL_BEST_3_USCITE =
     """
      WITH MiglioriUscite AS (
     SELECT RankUscite.*, 
@@ -172,7 +172,7 @@ public class Queries {
 
 
     //Per una Data Branca 
-    public static final string BEST_3_USCITE_BRANCA =
+    public static final String BEST_3_USCITE_BRANCA =
     """
         select Att.*, round(avg(P.Numero_Stelle), 1)  AS Numero_Stelle
 		from attivita Att, partecipazione P
@@ -185,7 +185,7 @@ public class Queries {
   
 
     //Visualizzare tutti i tipi di servizio (clan) con rispettivi associati che lo svolgono e capi di riferimento
-    public static final string ALL_SERVIZI_CLAN = 
+    public static final String ALL_SERVIZI_CLAN = 
     """
     select S.Nome AS Nome_Servizio, S.Tipologia As Tipologia_servizio, Clan.Nome AS Nome, Clan.Cognome AS Cognome, Capo.Nome AS Nome_Capo_Rif, Capo.Cognome AS Cognome_Capo_Rif
     from servizio S, Associato Clan, Associato Capo
@@ -193,7 +193,7 @@ public class Queries {
     order by day(S.DataInizio)
     """;
     //query singola
-    public static final string SERVIZIO_CLAN = 
+    public static final String SERVIZIO_CLAN = 
     """
     select S.Nome AS Nome_Servizio, S.Tipologia As Tipologia_servizio, Clan.Nome AS Nome, Clan.Cognome AS Cognome, Capo.Nome AS Nome_Capo_Rif, Capo.Cognome AS Cognome_Capo_Rif
     from servizio S, Associato Clan, Associato Capo
@@ -202,7 +202,7 @@ public class Queries {
 
 
     //Visualizzare servizio settimanale (reparto)
-    public static final string ALL_SERVIZI_SETTIMANALI =
+    public static final String ALL_SERVIZI_SETTIMANALI =
     """
     select *
     from svolgimento_servizio
@@ -211,7 +211,7 @@ public class Queries {
 		date(`Data`) desc
     """;
     //query singola
-    public static final string SERVIZIO_SETTIMANALE =
+    public static final String SERVIZIO_SETTIMANALE =
     """
     select *
     from svolgimento_servizio
@@ -220,44 +220,44 @@ public class Queries {
     """;
 
     //Aggiungere un nuovo associato + branca
-    public static final string ADD_BRANCA =
+    public static final String ADD_BRANCA =
     """
     insert into branca(NomeBranca, Numero_membri, FondoCassa)
     values(?, 0, ?) 
     """;
 
-    public static final string ADD_ASSOCIATO =
+    public static final String ADD_ASSOCIATO =
     """
     insert into associato(CodAssociato,NomeBranca,Recapito_tel,Mail,Nome,Cognome,Codice_fiscale,Età,Sesso)
     values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """;
-    public static final string UPDATE_BRANCA_MEMBRI =
+    public static final String UPDATE_BRANCA_MEMBRI =
     """
     update Branca
     Set Numero_Membri = Numero_Membri + 1 
     where Branca.NomeBranca = ?
     """;
-    public static final string ADD_CAPO =
+    public static final String ADD_CAPO =
     """
     insert into capo(Associato,NomeBranca)
     values(?, ?)
     """;
-    public static final string ADD_LUPETTO =
+    public static final String ADD_LUPETTO =
     """
     insert into lupetto(Associato)
     values(?)
     """;
-    public static final string ADD_REPARTARO =
+    public static final String ADD_REPARTARO =
     """
     insert into repartaro(Associato)
     values(?)
     """;
-    public static final string ADD_NOVIZIO =
+    public static final String ADD_NOVIZIO =
     """
     insert into novizio(Associato)
     values(?)
     """;
-    public static final string ADD_ROVER_SCOLTA =
+    public static final String ADD_ROVER_SCOLTA =
     """
     insert into rover_scolta(Associato)
     values(?)
@@ -265,7 +265,7 @@ public class Queries {
 
 //Aggiungere una nuova attività o uscita
 //attività
-public static final string ADD_ATTIVITA =
+public static final String ADD_ATTIVITA =
     """
     insert into attività(NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota)
     value(?, ?, ?, ?, ?)
@@ -273,12 +273,12 @@ public static final string ADD_ATTIVITA =
 
 
 //uscita 
-public static final string ADD_USCITA =
+public static final String ADD_USCITA =
     """
     insert into attività(NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota)
     value(?, ?, ?, ?, ?, ?, ?, ?, ?)
     """;
-public static final string UPDATE_BRANCA_SPESE =
+public static final String UPDATE_BRANCA_SPESE =
     """
     update Branca
     Set FondoCassa = FondoCassa - ?
@@ -287,13 +287,13 @@ public static final string UPDATE_BRANCA_SPESE =
 
 
 //Aggiungere un nuovo autofinanziamento
-public static final string ADD_AUTOFINANZIAMENTO =
+public static final String ADD_AUTOFINANZIAMENTO =
 """
 insert into auto_finanziamento(NomeBranca,Data,Luogo,Guadagno,Tipo)
 value(?, ?, ?, ?, ?) 
 """;
 
-public static final string UPDATE_BRANCA_FONDOCASSA =
+public static final String UPDATE_BRANCA_FONDOCASSA =
 """
 update Branca
 Set FondoCassa = FondoCassa + ?
@@ -302,7 +302,7 @@ where Branca.NomeBranca = ?
 
 
 //Aggiungere una nuova recensione per una uscita controllando che il socio sia stato presente
-public static final string ADD_RECENSIONE =
+public static final String ADD_RECENSIONE =
 """
 update partecipazione
 set Descrizione = ? and Numero_Stelle = ?
@@ -311,14 +311,14 @@ where Associato = ? and NomeBranca = ? and `Data` = ?
 
 //Aggiungere un servizio
 //Associativo: aggiungere un controllo della branca in cui svolge il servizio 
-public static final string ADD_SERVIZIO_ASSOCIATIVO = 
+public static final String ADD_SERVIZIO_ASSOCIATIVO = 
 """
 insert into servizio(Nome,DataInizio, Associato_Clan,DataFine,Giorno,Ora,Descrizione,Branca,Tipologia,Resoconto,Capo_Referente)
 values (?,?,?,?,?,?,?,?,?,?)
 """;
 
 //ExtraAssociativo
-public static final string ADD_SERVIZIO_EXTRA_ASSOCIATIVO =
+public static final String ADD_SERVIZIO_EXTRA_ASSOCIATIVO =
 """
  insert into servizio(Nome,DataInizio, Associato_Clan,DataFine,Giorno,Ora,Descrizione, Luogo, Tipologia, NomeEnte, Cognome,Resoconto,Capo_Referente)
 values (?,?,?,?,?,?,?,?,?,?,?,?,?)
@@ -327,13 +327,13 @@ values (?,?,?,?,?,?,?,?,?,?,?,?,?)
 //Aggiungere ed eliminare membri da squadriglie e sestiglie
 //CodAssociato da Inserire/Eliminare
 //membro squadriglia
-public static final string DELETE_MEMBRO_SQ =
+public static final String DELETE_MEMBRO_SQ =
 """
 Delete From squadriglia_membro
 where CodAssociato = ?;
 """;
 //controlla che il membro sia delle stesso sesso della sq
-public static final string ADD_MEBRO_SQ =
+public static final String ADD_MEBRO_SQ =
 """
 insert into squadriglia_membro(Nome_Squadriglia, CodMembro)
 values (?, ?);
@@ -341,13 +341,13 @@ values (?, ?);
 
 
 //membro sestiglia
-public static final string DELETE_MEMBRO_SES =
+public static final String DELETE_MEMBRO_SES =
 """
 Delete From sestiglia_membro
 where CodAssociato = ? 
 """;
 
-public static final string ADD_MEBRO_SES =
+public static final String ADD_MEBRO_SES =
 """
 insert into sestiglia_membro(Nome_Squadriglia, CodMembro)
 values (?, ?); 
@@ -356,7 +356,7 @@ values (?, ?);
 //Aggiungere ed eliminare capi e vice squadriglie e sestiglie
 //per Capi e Vice squadriglia si deve per forza aggiornare la tabella in quanto dobbiamo avere sempre questi due dati, che quindi verrano sostituiti
 //update squadriglia
-public static final string UPDATE_CAPO_SQ =
+public static final String UPDATE_CAPO_SQ =
 """
     update squadriglia
 	set Capo_Sq = ?
@@ -364,7 +364,7 @@ public static final string UPDATE_CAPO_SQ =
 """;
 
 
-    public static final string UPDATE_VICE_SQ =
+    public static final String UPDATE_VICE_SQ =
     """
     update squadriglia    
 	set Vice_Sq = ?
@@ -372,7 +372,7 @@ public static final string UPDATE_CAPO_SQ =
     """;
 
     //Stessa cosa per le sestiglie
-    public static final string UPDATE_CAPO_SES  =
+    public static final String UPDATE_CAPO_SES  =
     """
     update sestiglia
 	set Capo_Ses = ?
@@ -380,7 +380,7 @@ public static final string UPDATE_CAPO_SQ =
     """;
 
 
-    public static final string UPDATE_VICE_SES =
+    public static final String UPDATE_VICE_SES =
     """
     update sestiglia
 	set Vice_Ses = ?
@@ -390,20 +390,20 @@ public static final string UPDATE_CAPO_SQ =
 
 
 //Creare una sestiglia e squadriglia
-public static final string ADD_SQUADRIGLIA =
+public static final String ADD_SQUADRIGLIA =
 """
 insert into squadriglia(Nome, Capo_Sq, Vice_Sq, Motto, Sesso)
 values (?, ?, ?, ?);
 """;
 
-    public static final string ADD_SESTIGLIA =
+    public static final String ADD_SESTIGLIA =
     """
     insert into sestiglia(Nome,Capo_Ses,Vice_Ses,Motto)
 	values(?, ?, ?, ?); 
     """;
 
 //Assegnare un capo branca ad una branca Successivamente
-public static final string UPDATE_RUOLO_CAPO =
+public static final String UPDATE_RUOLO_CAPO =
 """
 update Capo
 	set NomeBranca = ?
@@ -412,7 +412,7 @@ update Capo
 
 //Assegnare un capo branca ad un servizio
             
-public static final string UPDATE_REFERENZA_SERVIZIO =
+public static final String UPDATE_REFERENZA_SERVIZIO =
 """
 update Servizio
 	set Capo_Referente = ?
@@ -423,7 +423,7 @@ update Servizio
 """;    
 
 //Inserire un esterno per servizio extra-associativo
-public static final string ADD_ESTERNO =
+public static final String ADD_ESTERNO =
 """
 INSERT INTO ESTERNO (Ente, Nome, Cognome, Recapito_Tel, Sesso) 
 VALUES (?,?,?,?,?)
