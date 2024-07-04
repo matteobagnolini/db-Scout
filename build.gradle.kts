@@ -48,7 +48,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("dbscout.App")
+    mainClass.set("dbscout.Main")
 }
 
 tasks.test {
