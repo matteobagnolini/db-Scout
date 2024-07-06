@@ -27,9 +27,7 @@ public class Login {
     private void checkUser(String id) {
 
         if (controller.checkUserExists(id)) {
-            switch (controller.getAssociato(id).getBranca()) {
-                case "Lupetti" -> {}
-            }
+            controller.changeScene(controller.getAssociato(id).getBranca() + ".fxml");
         } else {
             errorID.setText("User ID sbagliato!");
         }
