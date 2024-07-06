@@ -1,32 +1,39 @@
 package dbscout;
 
+import dbscout.controller.Controller;
+import dbscout.controller.Login;
+import java.sql.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import dbscout.data.DAOUtils;
 
 public class App extends Application{
-    /*public static void Main(String[] args) {
-        // new Controller
-        // start new connection with database
-        // new Model
-        // new View
-        // view.setController()
-        // controller.loginView()
     
-        var connection = DAOUtils.localMySQLConnection("dbscout", "root", "");
-
-    }*/
+    private Controller controller;
+    private Connection connection;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("Sto in start");
-        Parent root = FXMLLoader.load(getClass().getResource("/TestPage.fxml"));
-        primaryStage.setTitle("PROVA");
+
+        initiate(primaryStage);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+        Parent root = loader.load();
+        Login loginController = loader.getController();
+        primaryStage.setTitle("DBSCOUT");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+        loginController.setController(controller);
+
     }
+
+    private void initiate(Stage stage) {
+        //connection = DAOUtils.localMySQLConnection("dbscout", "root", "");
+        controller = new Controller(stage, connection);
+    }
+
 }
 

@@ -9,7 +9,7 @@ public class Associato {
     private String cf;
     private int eta;
     private char sesso;
-    protected Branca branca;
+    protected String branca;
 
     public Associato(int codAssociato, String tel, String mail, String nome, 
                      String cognome, String cf, int eta, char sesso) {
@@ -87,11 +87,11 @@ public class Associato {
         this.sesso = sesso;
     }
 
-    public Branca getBranca() {
+    public String getBranca() {
         return branca;
     }
 
-    public void setBranca(Branca branca) {
+    public void setBranca(String branca) {
         this.branca = branca;
     }
 

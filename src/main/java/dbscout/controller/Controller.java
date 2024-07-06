@@ -1,21 +1,28 @@
 package dbscout.controller;
 
-import dbscout.view.View;
+import dbscout.data.entities.Associato;
+
+import java.sql.Connection;
+import javafx.stage.Stage;
 
 public class Controller {
 
-    private final View view;
+    Stage stage;
+    Connection connection;
 
-    public Controller(final View view) {
-        this.view = view;
+    public Controller(Stage stage, Connection connection) {
+        this.stage = stage;
+        this.connection = connection;
     }
 
-    public void requestLoginPage() {
-        this.view.loginPage();
-    } 
+    public boolean checkUserExists(String userId) {
+        //TODO: 
+        return false;
+    }
 
-    public void requestLupettoPage() {
-        this.view.lupettoPage();
+    public Associato getAssociato(String id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAssociato'");
     }
 
 }
