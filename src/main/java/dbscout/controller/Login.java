@@ -1,5 +1,6 @@
 package dbscout.controller;
 
+import dbscout.data.entities.Associato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,13 +22,15 @@ public class Login {
 
     @FXML
     void logIn(ActionEvent event) {
-        checkUser(userId.getText());
+        checkUser(Integer.parseInt(userId.getText()));
     }
 
-    private void checkUser(String id) {
+    private void checkUser(int id) {
 
-        if (controller.checkUserExists(id)) {
-            controller.changeScene(controller.getAssociato(id).getBranca() + ".fxml");
+        if (Associato.DAO.checkAssociatoExists(controller.getConnection(), id)) {
+            final Associato loggedAssociato = Associato.DAO.getAssociatoFromId(controller.connection, id);
+            controller.setAssociato(loggedAssociato);
+            controller.changeScene(loggedAssociato.getBranca() + ".fxml");
         } else {
             errorID.setText("User ID sbagliato!");
         }

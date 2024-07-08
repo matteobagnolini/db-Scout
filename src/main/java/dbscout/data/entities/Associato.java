@@ -1,5 +1,7 @@
 package dbscout.data.entities;
 
+import java.sql.Connection;
+
 public class Associato {
     private int codAssociato;
     private String tel;
@@ -93,6 +95,24 @@ public class Associato {
 
     public void setBranca(String branca) {
         this.branca = branca;
+    }
+
+    public final class DAO {
+
+        public static Associato getAssociatoFromId(Connection connection, int id) {
+            // TODO: implements query to get an associato from database
+            return null;
+        }
+
+        public static boolean checkAssociatoExists(Connection connection, int id) {
+            // TODO: implements query to check if it exists or not
+            return false;
+        }
+
+        public static String getBrancaFromAssociato(Connection connection, int id) {
+            //TODO: add query to get branca from user id
+            return null;
+        }
     }
 
 }

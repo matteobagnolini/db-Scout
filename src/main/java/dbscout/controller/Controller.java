@@ -12,6 +12,7 @@ public class Controller {
 
     Stage stage;
     Connection connection;
+    Associato loggedAssociato;
 
     public Controller(Stage stage, Connection connection) {
         this.stage = stage;
@@ -28,14 +29,12 @@ public class Controller {
         }
     }
 
-    public boolean checkUserExists(String userId) {
-        //TODO: 
-        return false;
+    public void setAssociato(Associato ass) {
+        this.loggedAssociato = ass;
     }
 
-    public Associato getAssociato(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAssociato'");
+    public Connection getConnection() {
+        return connection;
     }
 
 }
