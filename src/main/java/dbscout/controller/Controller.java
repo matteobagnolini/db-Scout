@@ -3,6 +3,10 @@ package dbscout.controller;
 import dbscout.data.entities.Associato;
 
 import java.sql.Connection;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -24,5 +28,14 @@ public class Controller {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAssociato'");
     }
+    //per la classe lupett, ricordarsi di legare il controllere all' fxml
+        @FXML
+    private TextArea capiBranca;
+
+    @FXML
+    private TextArea membriSestiglia;
+
+    @FXML
+    private Label nomeAssociato;
 
 }

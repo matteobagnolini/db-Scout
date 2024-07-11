@@ -429,4 +429,21 @@ INSERT INTO ESTERNO (Ente, Nome, Cognome, Recapito_Tel, Sesso)
 VALUES (?,?,?,?,?)
 """;
 
+//Ottenere un'associato da un'id
+public static final String FIND_ASSOCIATO = 
+"""
+select *
+from associato A
+where CodAssociato = ?
+""";
+
+//Ottenere la branca di un'associato
+public static final String BRANCA_ASSOCIATO = 
+"""
+select B.*
+from associato A, branca B
+where CodAssociato = ? and B.NomeBranca = A.NomeBranca
+""";
 }
+
+

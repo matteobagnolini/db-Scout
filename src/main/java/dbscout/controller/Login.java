@@ -16,8 +16,11 @@ public class Login {
     @FXML
     private TextField userId;
 
-        @FXML
+    @FXML
     private Label errorID;
+
+    @FXML
+    private Label cod_errore;
 
     @FXML
     void logIn(ActionEvent event) {
@@ -29,9 +32,13 @@ public class Login {
         if (controller.checkUserExists(id)) {
             switch (controller.getAssociato(id).getBranca()) {
                 case "Lupetti" -> {}
+                case "Reparto" -> {}
+                case "Noviziato" -> {}
+                case "Clan" -> {}
+                case "CoCa" -> {}
             }
         } else {
-            errorID.setText("User ID sbagliato!");
+            cod_errore.setVisible(true);
         }
     }
 

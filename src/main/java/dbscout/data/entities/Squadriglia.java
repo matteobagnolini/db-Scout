@@ -44,6 +44,7 @@ public class Squadriglia {
                     var cognome = resultSet.getString("A.cognome");
                     var eta = resultSet.getInt("A.età");
                     var sesso = resultSet.getString("A.sesso").charAt(0);
+
                     
                     // here create a new associato;
                     membri.add(new Repartaro(codAssociato, null, null, nome, cognome, "abc", eta, sesso));
