@@ -2,14 +2,11 @@ package dbscout.data.entities;
 
 import java.sql.Connection;
 
-<<<<<<< HEAD
-=======
 
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
 import dbscout.data.Queries;
 
->>>>>>> dev1
 public class Associato {
     private int codAssociato;
     private String tel;
@@ -109,9 +106,6 @@ public class Associato {
 
         public static Associato getAssociatoFromId(Connection connection, int id) {
             // TODO: implements query to get an associato from database
-<<<<<<< HEAD
-            return null;
-=======
             if(!checkAssociatoExists(connection, id)){
                 return null;
             }
@@ -131,15 +125,10 @@ public class Associato {
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
             }
-            
->>>>>>> dev1
-        }
 
+        }
         public static boolean checkAssociatoExists(Connection connection, int id) {
             // TODO: implements query to check if it exists or not
-<<<<<<< HEAD
-            return false;
-=======
             // bho bro uso la query sopra e se nello statemente non c'è nulla falso
             boolean Is_Present = false;
             try (
@@ -156,14 +145,10 @@ public class Associato {
             }
             return Is_Present;
  
->>>>>>> dev1
         }
 
         public static String getBrancaFromAssociato(Connection connection, int id) {
             //TODO: add query to get branca from user id
-<<<<<<< HEAD
-            return null;
-=======
             if(!checkAssociatoExists(connection, id)){
                 return null;
             }
@@ -177,7 +162,6 @@ public class Associato {
                 throw new DAOException(e.getMessage());
             }
             
->>>>>>> dev1
         }
     }
 
