@@ -6,6 +6,7 @@ import java.util.List;
 
 import dbscout.data.entities.Associato;
 import dbscout.data.entities.Attivita;
+import dbscout.data.entities.ServizioSq;
 import dbscout.data.entities.Sestiglia;
 import dbscout.data.entities.Squadriglia;
 import java.util.Optional;
@@ -23,6 +24,8 @@ public class Model {
     private List<Associato> capiBranca;
 
     private Optional<Squadriglia> squadriglia;
+    private List<ServizioSq> serviziSq;
+
     private Optional<Sestiglia> sestiglia;
 
     public Model(Connection connection) {
@@ -34,22 +37,23 @@ public class Model {
         switch (Associato.DAO.getBrancaFromAssociato(connection, ass.getCodAssociato())) {
             // qua si fanno le varie inizializzazioni in base al tipo di branca (es per lupetti carichiamo la squadriglia)
             case "Lupetti" -> {
-                //set capibranca
-                //set sestiglia
-                // set attività
+                capiBranca = Associato.DAO.getCapiBranca(connection, ass);
+                sestiglia = Associato.DAO.getSestiglia(connection, ass.getCodAssociato());
+                attivita = Associato.DAO.getAttivita(connection, ass);
             }
             case "Reparto" -> {
-                //set squadriglia
-                // set capi
-                // set attività
-                // set servizi
+                squadriglia = Associato.DAO.getSquadriglia(connection, ass.getCodAssociato());
+                capiBranca = Associato.DAO.getCapiBranca(connection, ass);
+                attivita = Associato.DAO.getAttivita(connection, ass);
+                serviziSq = Associato.DAO.getServiziSq(connection, ass);
             }
             case "Noviziato" -> {
-                //set attivita
-                // set capi
+                attivita = Associato.DAO.getAttivita(connection, ass);
+                capiBranca = Associato.DAO.getCapiBranca(connection, ass);
             }
             case "Clan" -> {
-                // set capi
+                capiBranca = Associato.DAO.getCapiBranca(connection, ass);
+                attivita = Associato.DAO.getAttivita(connection, ass);
                 // set servizio + referente servizio
             }
             case "CoCa" -> {
