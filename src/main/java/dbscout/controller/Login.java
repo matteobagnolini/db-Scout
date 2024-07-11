@@ -17,8 +17,11 @@ public class Login {
     @FXML
     private TextField userId;
 
-        @FXML
+    @FXML
     private Label errorID;
+
+    @FXML
+    private Label cod_errore;
 
     @FXML
     void logIn(ActionEvent event) {
@@ -32,7 +35,7 @@ public class Login {
             controller.setAssociato(loggedAssociato);
             controller.changeScene(loggedAssociato.getBranca() + ".fxml");
         } else {
-            errorID.setText("User ID sbagliato!");
+            cod_errore.setVisible(true);
         }
     }
 

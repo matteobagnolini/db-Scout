@@ -19,6 +19,15 @@ public class Controller {
         this.connection = connection;
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public boolean checkUserExists(String userId) {
+        //TODO: 
+        return false;
+    }
+
     public void changeScene(String url) {
         try {    
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(url));
@@ -33,8 +42,9 @@ public class Controller {
         this.loggedAssociato = ass;
     }
 
-    public Connection getConnection() {
-        return connection;
+    public Associato getAssociato(String id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAssociato'");
     }
 
 }

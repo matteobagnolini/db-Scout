@@ -2,6 +2,14 @@ package dbscout.data.entities;
 
 import java.sql.Connection;
 
+<<<<<<< HEAD
+=======
+
+import dbscout.data.DAOException;
+import dbscout.data.DAOUtils;
+import dbscout.data.Queries;
+
+>>>>>>> dev1
 public class Associato {
     private int codAssociato;
     private String tel;
@@ -101,17 +109,75 @@ public class Associato {
 
         public static Associato getAssociatoFromId(Connection connection, int id) {
             // TODO: implements query to get an associato from database
+<<<<<<< HEAD
             return null;
+=======
+            if(!checkAssociatoExists(connection, id)){
+                return null;
+            }
+            try (
+                var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.FIND_ASSOCIATO, id);
+                var resultSet = statement.executeQuery();
+            ) {
+                var codAssociato = resultSet.getInt("A.codAssociato");
+                var nome = resultSet.getString("A.nome");
+                var cognome = resultSet.getString("A.cognome");
+                var eta = resultSet.getInt("A.età");
+                var sesso = resultSet.getString("A.sesso").charAt(0);
+                var tel = resultSet.getString("A.Recapito_tel");
+                var mail = resultSet.getString("A.Mail");
+                var CF = resultSet.getString("A.Codice_fiscale");
+                return new Associato(codAssociato, tel, mail, nome, cognome, CF, eta, sesso);
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            
+>>>>>>> dev1
         }
 
         public static boolean checkAssociatoExists(Connection connection, int id) {
             // TODO: implements query to check if it exists or not
+<<<<<<< HEAD
             return false;
+=======
+            // bho bro uso la query sopra e se nello statemente non c'è nulla falso
+            boolean Is_Present = false;
+            try (
+                var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.FIND_ASSOCIATO, id);
+                var resultSet = statement.executeQuery();
+            ) {
+                if(resultSet.first()){
+                    Is_Present = true;
+                }
+             
+                }
+             catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            return Is_Present;
+ 
+>>>>>>> dev1
         }
 
         public static String getBrancaFromAssociato(Connection connection, int id) {
             //TODO: add query to get branca from user id
+<<<<<<< HEAD
             return null;
+=======
+            if(!checkAssociatoExists(connection, id)){
+                return null;
+            }
+            try (
+                var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.BRANCA_ASSOCIATO, id);
+                var resultSet = statement.executeQuery();
+            ) {
+                return resultSet.getString("A.NomeBranca");
+                }
+             catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            
+>>>>>>> dev1
         }
     }
 
