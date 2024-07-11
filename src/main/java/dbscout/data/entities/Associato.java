@@ -2,7 +2,6 @@ package dbscout.data.entities;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.Optional;
 
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
@@ -168,7 +167,7 @@ public class Associato {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getCapiBranca'");
         }
-        public static Optional<Sestiglia> getSestiglia(Connection connection, int codAssociato) {
+        public static Sestiglia getSestiglia(Connection connection, int codAssociato) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getSestiglia'");
         }
@@ -176,13 +175,17 @@ public class Associato {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getAttivita'");
         }
-        public static Optional<Squadriglia> getSquadriglia(Connection connection, int codAssociato) {
+        public static Squadriglia getSquadriglia(Connection connection, int codAssociato) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getSquadriglia'");
         }
         public static List<ServizioSq> getServiziSq(Connection connection, Associato ass) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getServiziSq'");
+        }
+        public static Associato getResponsabileServizio(Connection connection, Associato ass) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getResponsabileServizio'");
         }
     }
 

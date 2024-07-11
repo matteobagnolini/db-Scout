@@ -1,5 +1,6 @@
 package dbscout.controller;
 
+import dbscout.Model.Model;
 import dbscout.data.entities.Associato;
 
 import java.sql.Connection;
@@ -10,13 +11,14 @@ import javafx.stage.Stage;
 
 public class Controller {
 
-    Stage stage;
-    Connection connection;
-    Associato loggedAssociato;
+    private Stage stage;
+    private Connection connection;
+    private Model model;
 
     public Controller(Stage stage, Connection connection) {
         this.stage = stage;
         this.connection = connection;
+        this.model = new Model(connection);
     }
 
     public Connection getConnection() {
@@ -34,11 +36,11 @@ public class Controller {
     }
 
     public void setAssociato(Associato ass) {
-        this.loggedAssociato = ass;
+        model.setAssociato(ass);
     }
 
     public Associato getAssociato(int id) {
-        return this.loggedAssociato;
+        return this.model.getAssociato();
     }
 
 }

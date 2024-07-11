@@ -9,7 +9,6 @@ import dbscout.data.entities.Attivita;
 import dbscout.data.entities.ServizioSq;
 import dbscout.data.entities.Sestiglia;
 import dbscout.data.entities.Squadriglia;
-import java.util.Optional;
 
 
 
@@ -20,13 +19,14 @@ public class Model {
     private Associato ass;
 
     private List<Attivita> attivita;
-
     private List<Associato> capiBranca;
 
-    private Optional<Squadriglia> squadriglia;
+    private Squadriglia squadriglia;
     private List<ServizioSq> serviziSq;
 
-    private Optional<Sestiglia> sestiglia;
+    private Sestiglia sestiglia;
+
+    private Associato responsabileServizioClan;
 
     public Model(Connection connection) {
         this.connection = connection;
@@ -54,7 +54,7 @@ public class Model {
             case "Clan" -> {
                 capiBranca = Associato.DAO.getCapiBranca(connection, ass);
                 attivita = Associato.DAO.getAttivita(connection, ass);
-                // set servizio + referente servizio
+                responsabileServizioClan = Associato.DAO.getResponsabileServizio(connection, ass);
             }
             case "CoCa" -> {
                 
@@ -64,6 +64,30 @@ public class Model {
 
     public Associato getAssociato() {
         return ass;
+    }
+
+    public List<Attivita> getAttivita() {
+        return attivita;
+    }
+
+    public List<Associato> getCapiBranca() {
+        return capiBranca;
+    }
+
+    public Squadriglia getSquadriglia() {
+        return squadriglia;
+    }
+
+    public List<ServizioSq> getServiziSq() {
+        return serviziSq;
+    }
+
+    public Sestiglia getSestiglia() {
+        return sestiglia;
+    }
+
+    public Associato getResponsabileServizio() {
+        return this.responsabileServizioClan;
     }
 
 }

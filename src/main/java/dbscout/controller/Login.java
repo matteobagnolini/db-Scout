@@ -31,7 +31,7 @@ public class Login {
     private void checkUser(int id) {
 
         if (Associato.DAO.checkAssociatoExists(controller.getConnection(), id)) {
-            final Associato loggedAssociato = Associato.DAO.getAssociatoFromId(controller.connection, id);
+            final Associato loggedAssociato = Associato.DAO.getAssociatoFromId(controller.getConnection(), id);
             controller.setAssociato(loggedAssociato);
             controller.changeScene(loggedAssociato.getBranca() + ".fxml");
         } else {
