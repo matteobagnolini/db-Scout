@@ -29,6 +29,15 @@ public class Queries {
     where A.CodAssociato = C.Associato
     order by C.NomeBranca asc
     """;
+    
+    //Visualizzare i capi di ogni rispettiva branca
+    public static final String  CAPI_BRANCA=
+    """
+    select A.Nome, A.Cognome, A.Età, A.Sesso, A.Recapito_tel, A.Mail, C.NomeBranca
+    from associato A, capo C
+    where A.CodAssociato = C.Associato and C.NomeBranca = ?
+    order by A.Età
+    """;
 
 
     //Visualizzare le attività di ogni rispettiva branca con numero di presenze
@@ -443,6 +452,29 @@ public static final String BRANCA_ASSOCIATO =
 select B.*
 from associato A, branca B
 where CodAssociato = ? and B.NomeBranca = A.NomeBranca
+""";
+
+
+//controllare se un associato è un repartaro
+public static final String CHECK_REPARTARO = 
+"""
+select A.*
+from associato A, repartaro R
+where R.Associato = A.CodAssociato and A.CodAssociato = ?
+""";
+//controllare se un associato è un repartaro
+public static final String CHECK_LUPETTO = 
+"""
+select A.*
+from associato A, lupetto L
+where L.Associato = A.CodAssociato and A.CodAssociato = ?
+""";
+//controllare se un associato è un repartaro
+public static final String CHECK_CLAN = 
+"""
+select A.*
+from associato A, rover_scolta C
+where C.Associato = A.CodAssociato and A.CodAssociato = ?
 """;
 }
 
