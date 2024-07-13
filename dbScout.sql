@@ -29,7 +29,7 @@ create table ASSOCIATO (
      Nome VARCHAR(20) not null,
      Cognome  VARCHAR(20) not null,
      Codice_fiscale VARCHAR(16) not null,
-     Età integer not null default 8,
+     Eta integer not null default 8,
      Sesso char(1) not null,
      constraint IDASSOCIATO primary key (CodAssociato),
      constraint IDASSOCIATO_1 unique (NomeBranca, CodAssociato));
@@ -171,7 +171,7 @@ values("Lupetti", 0, 100),
       ("Coca", 0, 100);
 
 -- Capi (10 record)
-INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Età, Sesso)
+INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
 (1, 'CoCa', '1234567890', 'capo1@mail.com', 'CapoNome1', 'CapoCognome1', 'RSSMRA80A01H501U', 30, 'M'),
 (2, 'CoCa', '1234567891', 'capo2@mail.com', 'CapoNome2', 'CapoCognome2', 'RSSMRA80A02H501U', 28, 'F'),
@@ -196,7 +196,7 @@ Values (1, "Lupetti"),
 (10, "Clan");
 
 -- Clan (30 record)
-INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Età, Sesso)
+INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
 (11, 'Clan', '2234567890', 'clan1@mail.com', 'ClanNome1', 'ClanCognome1', 'RSSMRA01B01H501U', 18, 'M'),
 (12, 'Clan', '2234567891', 'clan2@mail.com', 'ClanNome2', 'ClanCognome2', 'RSSMRA01B02H501U', 19, 'F'),
@@ -261,7 +261,7 @@ values (11),
 (40);
 
 -- Noviziato (10 record)
-INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Età, Sesso)
+INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
 (41, 'Noviziato', '3234567890', 'novizio1@mail.com', 'NovizioNome1', 'NovizioCognome1', 'RSSMRA02C01H501U', 16, 'M'),
 (42, 'Noviziato', '3234567891', 'novizio2@mail.com', 'NovizioNome2', 'NovizioCognome2', 'RSSMRA02C02H501U', 16, 'F'),
@@ -286,7 +286,7 @@ values (41),
 (50);
 
 -- Reparto (50 record)
-INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Età, Sesso)
+INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
 (51, 'Reparto', '4234567890', 'reparto1@mail.com', 'RepartoNome1', 'RepartoCognome1', 'RSSMRA03D01H501U', 12, 'M'),
 (52, 'Reparto', '4234567891', 'reparto2@mail.com', 'RepartoNome2', 'RepartoCognome2', 'RSSMRA03D02H501U', 13, 'F'),
@@ -391,7 +391,7 @@ VALUES
 (99),
 (100);
 -- Lupetti (50 record)
-INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Età, Sesso)
+INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
 (101, 'Lupetti', '5234567890', 'lupetto1@mail.com', 'LupettoNome1', 'LupettoCognome1', 'RSSMRA04E01H501U', 8, 'M'),
 (102, 'Lupetti', '5234567891', 'lupetto2@mail.com', 'LupettoNome2', 'LupettoCognome2', 'RSSMRA04E02H501U', 9, 'F'),

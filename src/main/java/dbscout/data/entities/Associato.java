@@ -116,15 +116,19 @@ public class Associato {
                 var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.FIND_ASSOCIATO, id);
                 var resultSet = statement.executeQuery();
             ) {
-                var codAssociato = resultSet.getInt("A.codAssociato");
-                var nome = resultSet.getString("A.nome");
-                var cognome = resultSet.getString("A.cognome");
-                var eta = resultSet.getInt("A.età");
-                var sesso = resultSet.getString("A.sesso").charAt(0);
+                resultSet.next();
+                var codAssociato = resultSet.getInt("A.CodAssociato");
+                var nome = resultSet.getString("A.Nome");
+                var cognome = resultSet.getString("A.Cognome");
+                var eta = resultSet.getInt("A.Eta");
+                var sesso = resultSet.getString("A.Sesso").charAt(0);
                 var tel = resultSet.getString("A.Recapito_tel");
                 var mail = resultSet.getString("A.Mail");
                 var CF = resultSet.getString("A.Codice_fiscale");
-                return new Associato(codAssociato, tel, mail, nome, cognome, CF, eta, sesso);
+                var branca = resultSet.getString("A.NomeBranca");
+                var ass = new Associato(codAssociato, tel, mail, nome, cognome, CF, eta, sesso);
+                ass.setBranca(branca);
+                return ass;
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
             }
@@ -137,7 +141,7 @@ public class Associato {
                 var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.FIND_ASSOCIATO, id);
                 var resultSet = statement.executeQuery();
             ) {
-                if(resultSet.first()){
+                if(resultSet.next()){
                     Is_Present = true;
                 }
              
@@ -157,6 +161,7 @@ public class Associato {
                 var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.BRANCA_ASSOCIATO, id);
                 var resultSet = statement.executeQuery();
             ) {
+                resultSet.next();
                 return resultSet.getString("A.NomeBranca");
                 }
              catch (Exception e) {
@@ -172,11 +177,11 @@ public class Associato {
         ) {
 
             while (resultSet.next()) {
-                var codAssociato = resultSet.getInt("A.codAssociato");
-                var nome = resultSet.getString("A.nome");
-                var cognome = resultSet.getString("A.cognome");
-                var eta = resultSet.getInt("A.età");
-                var sesso = resultSet.getString("A.sesso").charAt(0);
+                var codAssociato = resultSet.getInt("A.CodAssociato");
+                var nome = resultSet.getString("A.Nome");
+                var cognome = resultSet.getString("A.Cognome");
+                var eta = resultSet.getInt("A.Eta");
+                var sesso = resultSet.getString("A.Sesso").charAt(0);
                 var tel = resultSet.getString("A.Recapito_tel");
                 var mail = resultSet.getString("A.Mail");
                 var CF = resultSet.getString("A.Codice_fiscale");
@@ -272,9 +277,9 @@ public class Associato {
             return new Sestiglia(Sestiglia);
         }
         public static List<Attivita> getAttivita(Connection connection, Associato ass) {
-            List<Attivita> Attività = new ArrayList<>();
+            List<Attivita> Attivita = new ArrayList<>();
             if(!checkAssociatoExists(connection, ass.codAssociato))
-                return Attività;
+                return Attivita;
                 try (
                     var statement = DAOUtils.prepare(connection, Queries.ATTIVITA, ass.branca);
                     var resultSet = statement.executeQuery();
@@ -286,13 +291,13 @@ public class Associato {
                         Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
                         Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
                         Attivita att = new Attivita(ass.branca, dataOra, descrizione, dataFine, materiale, quota);
-                        Attività.add(att);
+                        Attivita.add(att);
                     }
                     }
                     catch (Exception e) {
                         throw new DAOException(e.getMessage());
                     }
-            return Attività;
+            return Attivita;
         }
         public static String findSquadriglia(Connection connection, int codAssociato){
             String NomeSq = "Nulla";

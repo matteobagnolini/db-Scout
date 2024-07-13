@@ -14,7 +14,7 @@ public final class DAOException extends RuntimeException {
     }
 
     public DAOException(Throwable cause) {
-        super(cause);
+        System.out.println("Errore nel caricamento del database");
     }
 
     public DAOException(String message, Throwable cause) {

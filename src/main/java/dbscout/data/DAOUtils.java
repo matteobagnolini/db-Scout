@@ -16,6 +16,7 @@ public final class DAOUtils {
             var connectionString = "jdbc:mysql://" + host + ":" + port + "/" + database;
             return DriverManager.getConnection(connectionString, username, password);
         } catch (Exception e) {
+            System.out.println("Connessione al database fallita.");
             throw new DAOException(e);
         }
     }

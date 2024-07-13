@@ -24,6 +24,10 @@ val supportedPlatforms = listOf("linux", "mac", "win")
 val javaFxVersion = 17
 
 dependencies {
+
+    implementation("mysql:mysql-connector-java:8.0.29")
+    testImplementation("org.assertj:assertj-core:3.25.3")
+
     // Suppressions for SpotBugs
     compileOnly("com.github.spotbugs:spotbugs-annotations:4.8.6")
 

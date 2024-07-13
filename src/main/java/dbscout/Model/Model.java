@@ -34,12 +34,12 @@ public class Model {
 
     public void setAssociato(Associato associato) {
         ass = associato;
-        switch (Associato.DAO.getBrancaFromAssociato(connection, ass.getCodAssociato())) {
+        switch (ass.getBranca()) {
             // qua si fanno le varie inizializzazioni in base al tipo di branca (es per lupetti carichiamo la squadriglia)
             case "Lupetti" -> {
-                capiBranca = Associato.DAO.getCapiBranca(connection, ass);
-                sestiglia = Associato.DAO.getSestiglia(connection, ass.getCodAssociato());
-                attivita = Associato.DAO.getAttivita(connection, ass);
+                // capiBranca = Associato.DAO.getCapiBranca(connection, ass);
+                // sestiglia = Associato.DAO.getSestiglia(connection, ass.getCodAssociato());
+                // attivita = Associato.DAO.getAttivita(connection, ass);
             }
             case "Reparto" -> {
                 squadriglia = Associato.DAO.getSquadriglia(connection, ass.getCodAssociato());

@@ -8,7 +8,7 @@ import java.util.List;
 import dbscout.data.entities.Associato;
 import dbscout.data.entities.Attivita;
 
-public class LupettiController {
+public class LupettiController implements FXController {
 
     private Controller controller;
 

@@ -2,6 +2,7 @@ package dbscout.controller;
 
 import dbscout.Model.Model;
 import dbscout.data.entities.Associato;
+import dbscout.controller.FXController;
 
 import java.sql.Connection;
 
@@ -35,10 +36,11 @@ public class Controller {
             Parent root = loader.load();
             stage.getScene().setRoot(root);
             FXController contr = loader.getController();
-            contr.setController(this);   
+            contr.setController(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("Scene changed");
     }
 
     public void setAssociato(Associato ass) {

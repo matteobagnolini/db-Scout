@@ -2,6 +2,8 @@ package dbscout;
 
 import dbscout.controller.Controller;
 import dbscout.controller.Login;
+import dbscout.data.DAOUtils;
+
 import java.sql.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +33,7 @@ public class App extends Application{
     }
 
     private void initiate(Stage stage) {
-        //connection = DAOUtils.localMySQLConnection("dbscout", "root", "");
+        connection = DAOUtils.localMySQLConnection("dbscout", "root", "");
         controller = new Controller(stage, connection);
     }
 
