@@ -2,7 +2,6 @@ package dbscout.controller;
 
 import dbscout.Model.Model;
 import dbscout.data.entities.Associato;
-import dbscout.controller.FXController;
 
 import java.sql.Connection;
 

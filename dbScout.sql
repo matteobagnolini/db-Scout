@@ -645,7 +645,7 @@ INSERT INTO PARTECIPAZIONE (Associato, NomeBranca, `Data`, Descrizione, Numero_S
 (26, 'Clan', '2023-11-10 08:00:00', 'Partecipazione all\'escursione in montagna', 4);
 
 /*
-INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Età, Sesso)
+INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
 (1, 'Lupetti', '1234567890', 'example1@mail.com', 'Mario', 'Rossi', 'RSSMRA80A01H501U', 10, 'M');
 

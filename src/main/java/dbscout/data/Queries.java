@@ -462,14 +462,14 @@ select A.*
 from associato A, repartaro R
 where R.Associato = A.CodAssociato and A.CodAssociato = ?
 """;
-//controllare se un associato è un repartaro
+//controllare se un associato è un lupetto
 public static final String CHECK_LUPETTO = 
 """
 select A.*
 from associato A, lupetto L
 where L.Associato = A.CodAssociato and A.CodAssociato = ?
 """;
-//controllare se un associato è un repartaro
+//controllare se un associato è in clan
 public static final String CHECK_CLAN = 
 """
 select A.*

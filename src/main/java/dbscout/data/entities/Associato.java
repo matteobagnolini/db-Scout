@@ -195,9 +195,6 @@ public class Associato {
         public static boolean checkRightBranca(Connection connection, int id, String NomeBranca) {
 
             // bho bro uso la query sopra e se nello statemente non c'è nulla falso
-            if(!checkAssociatoExists(connection, id)){
-                return false;
-            }
             Associato ass = getAssociatoFromId(connection, id);
             switch (NomeBranca) {
                 // qua si fanno le varie inizializzazioni in base al tipo di branca (es per lupetti carichiamo la squadriglia)
@@ -206,8 +203,10 @@ public class Associato {
                 var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.CHECK_LUPETTO, id);
                 var resultSet = statement.executeQuery();
             ) {
-                if(ass.branca == NomeBranca && resultSet.first()){
+                if(ass.branca == NomeBranca && resultSet.next()){
                     return true; 
+                } else {
+                    return false;
                 }
                 }
              catch (Exception e) {
@@ -247,10 +246,14 @@ public class Associato {
  
         }
         public static Sestiglia getSestiglia(Connection connection, int codAssociato) {
-            if(!checkAssociatoExists(connection, codAssociato) || !checkRightBranca(connection, codAssociato, "Lupetti"))
+            if(!checkAssociatoExists(connection, codAssociato) || !checkRightBranca(connection, codAssociato, "Lupetti")) {
+                System.out.println("PROBLEMI IN SESTIGLI");
                 return null;
+            }
             String NomeSestiglia = "Nulla";
             List<Lupetto> Sestiglia = new ArrayList<>();
+            System.out.println("NOOO PROBLEMI IN SESTIGLIA");
+
             Associato ass = getAssociatoFromId(connection, codAssociato);
                 try (
                 var statement = DAOUtils.prepare(connection, Queries.ALL_SESTIGLIE);
