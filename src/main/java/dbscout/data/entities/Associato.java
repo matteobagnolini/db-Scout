@@ -312,6 +312,10 @@ public class Associato {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getResponsabileServizio'");
         }
+        public static List<Associato> getMembriSest(Connection connection, Associato associato) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getMembriSest'");
+        }
     }
 
 }

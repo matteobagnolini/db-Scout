@@ -25,11 +25,17 @@ public class Controller {
         return connection;
     }
 
+    public Model getModel() {
+        return model;
+    }
+
     public void changeScene(String url) {
         try {    
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(url));
             Parent root = loader.load();
-            stage.getScene().setRoot(root);    
+            stage.getScene().setRoot(root);
+            FXController contr = loader.getController();
+            contr.setController(this);   
         } catch (Exception e) {
             e.printStackTrace();
         }
