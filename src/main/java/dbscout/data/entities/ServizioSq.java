@@ -1,4 +1,4 @@
 package dbscout.data.entities;
 
-public record ServizioSq(String nome, String descrizione) { }
+public record ServizioSq(String nome, String descrizione, String data) { }
 

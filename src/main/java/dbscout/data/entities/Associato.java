@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Optional;
+
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
 import dbscout.data.Queries;
 import java.util.HashSet;
+
 public class Associato {
     private int codAssociato;
     private String tel;
@@ -106,7 +109,6 @@ public class Associato {
     public final class DAO {
 
         public static Associato getAssociatoFromId(Connection connection, int id) {
-            // TODO: implements query to get an associato from database
             if(!checkAssociatoExists(connection, id)){
                 return null;
             }
@@ -129,7 +131,6 @@ public class Associato {
 
         }
         public static boolean checkAssociatoExists(Connection connection, int id) {
-            // TODO: implements query to check if it exists or not
             // bho bro uso la query sopra e se nello statemente non c'è nulla falso
             boolean Is_Present = false;
             try (
@@ -149,7 +150,6 @@ public class Associato {
         }
 
         public static String getBrancaFromAssociato(Connection connection, int id) {
-            //TODO: add query to get branca from user id
             if(!checkAssociatoExists(connection, id)){
                 return null;
             }
@@ -189,7 +189,7 @@ public class Associato {
         }
 
         public static boolean checkRightBranca(Connection connection, int id, String NomeBranca) {
-            // TODO: implements query to check if it exists or not
+
             // bho bro uso la query sopra e se nello statemente non c'è nulla falso
             if(!checkAssociatoExists(connection, id)){
                 return false;
@@ -272,45 +272,97 @@ public class Associato {
             return new Sestiglia(Sestiglia);
         }
         public static List<Attivita> getAttivita(Connection connection, Associato ass) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getAttivita'");
+            List<Attivita> Attività = new ArrayList<>();
+            if(!checkAssociatoExists(connection, ass.codAssociato))
+                return Attività;
+                try (
+                    var statement = DAOUtils.prepare(connection, Queries.ATTIVITA, ass.branca);
+                    var resultSet = statement.executeQuery();
+                        ) {
+                    while (resultSet.next()) {
+                        String dataOra = resultSet.getString("Att.data");
+                        String descrizione = resultSet.getString("Att.Descrizione");
+                        Optional<String> dataFine = Optional.of(resultSet.getString("Att.DataFine"));
+                        Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
+                        Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
+                        Attivita att = new Attivita(ass.branca, dataOra, descrizione, dataFine, materiale, quota);
+                        Attività.add(att);
+                    }
+                    }
+                    catch (Exception e) {
+                        throw new DAOException(e.getMessage());
+                    }
+            return Attività;
+        }
+        public static String findSquadriglia(Connection connection, int codAssociato){
+            String NomeSq = "Nulla";
+            Associato ass = getAssociatoFromId(connection, codAssociato);
+    
+                try (
+                var statement = DAOUtils.prepare(connection, Queries.ALL_SQUADRIGLIE);
+                var statement2 = DAOUtils.prepare(connection, Queries.ALL_SQUADRIGLIE);
+                var resultSet = statement.executeQuery();
+                    ) {
+                while (resultSet.next() && NomeSq == "Nulla") {
+                    if(resultSet.getInt("A.CodAssociato") == ass.codAssociato){
+                        NomeSq = resultSet.getString("S.NomeSQ");
+                    }
+                }
+                }
+                catch (Exception e) {
+                    throw new DAOException(e.getMessage());
+                }
+                return NomeSq;
         }
         public static Squadriglia getSquadriglia(Connection connection, int codAssociato) {
             if(!checkAssociatoExists(connection, codAssociato) || !checkRightBranca(connection, codAssociato, "Reparto"))
             return null;
-        String NomeSq = "Nulla";
-        var Sq = new HashSet<Repartaro>();
-        Associato ass = getAssociatoFromId(connection, codAssociato);
+            String NomeSq = findSquadriglia(connection, codAssociato);
+            return null;
+        }
+        public static List<ServizioSq> getServiziSq(Connection connection, Associato ass) {
+            List<ServizioSq> ServiziSq = new ArrayList<>();
+            if(!checkAssociatoExists(connection, ass.codAssociato) || !checkRightBranca(connection, ass.codAssociato, "Reparto"))
+            return ServiziSq;
+            String NomeSq = findSquadriglia(connection, ass.codAssociato);
             try (
-            var statement = DAOUtils.prepare(connection, Queries.ALL_SQUADRIGLIE);
-            var resultSet = statement.executeQuery();
-                ) {
-            while (resultSet.next() && NomeSq == "Nulla") {
-                if(resultSet.getInt("A.CodAssociato") == ass.codAssociato){
-                    NomeSq = resultSet.getString("S.NomeSQ");
+                var statement = DAOUtils.prepare(connection, Queries.SERVIZIO_SETTIMANALE, NomeSq);
+                var resultSet = statement.executeQuery();
+                    ) {
+                while (resultSet.next()) {
+                    var nomeServizio = resultSet.getString("NomeServizio");
+                    var data = resultSet.getString("Data");
+                    ServiziSq.add(new ServizioSq(NomeSq, nomeServizio, data));
                 }
-            }
-            resultSet.first();
-            while (resultSet.next()) {
-                if(resultSet.getString("S.NomeSQ") == NomeSq && 
-                resultSet.getInt("A.CodAssociato") != ass.codAssociato){
-                    Sq.add(new Repartaro(ass.codAssociato, ass.tel, ass.mail, ass.nome, ass.cognome, ass.getCf(), ass.eta, ass.sesso));
                 }
-            }
-           
-            }
                 catch (Exception e) {
                     throw new DAOException(e.getMessage());
                 }
-        return new Squadriglia(Sq);
-        }
-        public static List<ServizioSq> getServiziSq(Connection connection, Associato ass) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getServiziSq'");
+            return ServiziSq;
         }
         public static Associato getResponsabileServizio(Connection connection, Associato ass) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getResponsabileServizio'");
+            if(!checkAssociatoExists(connection, ass.codAssociato) || !checkRightBranca(connection, ass.codAssociato, "Clan"))
+            return null;
+            try (
+                var statement = DAOUtils.prepare(connection, Queries.SERVIZIO_CLAN, ass.codAssociato);
+                var resultSet = statement.executeQuery();
+            ) {
+                if (resultSet.first()) {
+                    var codAssociato = resultSet.getInt("Capo.codAssociato");
+                    var nome = resultSet.getString("Capo.nome");
+                    var cognome = resultSet.getString("Capo.cognome");
+                    var eta = resultSet.getInt("Capo.età");
+                    var sesso = resultSet.getString("Capo.sesso").charAt(0);
+                    var tel = resultSet.getString("Capo.Recapito_tel");
+                    var mail = resultSet.getString("Capo.Mail");
+                    var CF = resultSet.getString("Capo.Codice_fiscale");
+                    return new Associato(codAssociato, tel, mail, nome, cognome, CF, eta, sesso);
+                }
+                else
+                    return null;
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
         }
     }
 

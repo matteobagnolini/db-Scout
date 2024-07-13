@@ -204,7 +204,7 @@ public class Queries {
     //query singola
     public static final String SERVIZIO_CLAN = 
     """
-    select S.Nome AS Nome_Servizio, S.Tipologia As Tipologia_servizio, Clan.Nome AS Nome, Clan.Cognome AS Cognome, Capo.Nome AS Nome_Capo_Rif, Capo.Cognome AS Cognome_Capo_Rif
+    select S.Nome AS Nome_Servizio, S.Tipologia As Tipologia_servizio, Clan.Nome AS Nome, Clan.Cognome AS Cognome, Capo.*
     from servizio S, Associato Clan, Associato Capo
     where Clan.CodAssociato = S.AssociatoClan and Capo.CodAssociato = S.Capo_Referente and Clan.CodAssociato = ?
     """;

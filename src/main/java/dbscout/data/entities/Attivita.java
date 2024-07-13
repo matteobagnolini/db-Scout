@@ -3,7 +3,7 @@ package dbscout.data.entities;
 import java.util.Optional;
 
 public record Attivita(
-    Branca branca, 
+    String branca, 
     String dataOra, 
     String descrizione, 
     Optional<String> dataFine, 
@@ -11,7 +11,7 @@ public record Attivita(
     Optional<Integer> quota) { 
 
     // Getter personalizzato per 'branca'
-    public Branca getBranca(){
+    public String getBranca(){
         return this.branca;
     }
 
