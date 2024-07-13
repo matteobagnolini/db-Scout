@@ -46,16 +46,17 @@ public class LupettiController implements FXController {
 
     @FXML
     void showAttivita(MouseEvent event) {
-        List<Attivita> attivitas = Associato.DAO.getAttivita(controller.getConnection(), controller.getModel().getAssociato());
-        boxAtt1.setText(boxAtt1.getText() + "\n" + attivitas.get(0).getDescrizione());
-        boxAtt2.setText(boxAtt2.getText() + "\n" + attivitas.get(1).getDescrizione());
-        boxAtt3.setText(boxAtt3.getText() + "\n" + attivitas.get(2).getDescrizione());
+        List<Attivita> attivitas = controller.getModel().getAttivita();
+        System.out.println("NUMERO DI ATTIVITA: " + attivitas.size());
+        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
+        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
+        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
 
     }
 
     @FXML
     void showCapiBranca(MouseEvent event) {
-        List<Associato> capi = Associato.DAO.getCapiBranca(controller.getConnection(), controller.getModel().getAssociato());
+        List<Associato> capi = controller.getModel().getCapiBranca();
         for (Associato capo : capi) {
             boxCapi.setText(boxCapi.getText() + "\n" + capo.getNome() + " " + capo.getCognome());
         }

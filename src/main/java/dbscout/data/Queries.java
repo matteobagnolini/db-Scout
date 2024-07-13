@@ -4,7 +4,7 @@ public class Queries {
     //Visualizzare tutti i membri di ogni rispettiva branca
     public static final String ALL_MEMBRI_BRANCA = 
     """
-    select A.Nome, A.Cognome, A.Età, A.Sesso, A.NomeBranca
+    select A.Nome, A.Cognome, A.Eta, A.Sesso, A.NomeBranca
     from associato A
     order by A.NomeBranca asc
     """;
@@ -13,10 +13,10 @@ public class Queries {
     //query singola, visualizzare i membri di una rispettiva branca 
     public static final String MEMBRI_BRANCA =
     """
-    select A.Nome, A.Cognome, A.Età, A.Sesso, A.NomeBranca
+    select A.Nome, A.Cognome, A.Eta, A.Sesso, A.NomeBranca
     from associato A
     where A.NomeBranca = ?
-    order by A.Età desc      
+    order by A.Eta desc      
     """;
 
 
@@ -24,7 +24,7 @@ public class Queries {
     //Visualizzare i capi di ogni rispettiva branca
     public static final String  ALL_CAPI_BRANCA=
     """
-    select A.Nome, A.Cognome, A.Età, A.Sesso, A.Recapito_tel, A.Mail, C.NomeBranca
+    select A.Nome, A.Cognome, A.Eta, A.Sesso, A.Recapito_tel, A.Mail, C.NomeBranca
     from associato A, capo C
     where A.CodAssociato = C.Associato
     order by C.NomeBranca asc
@@ -33,10 +33,10 @@ public class Queries {
     //Visualizzare i capi di ogni rispettiva branca
     public static final String  CAPI_BRANCA=
     """
-    select A.Nome, A.Cognome, A.Età, A.Sesso, A.Recapito_tel, A.Mail, C.NomeBranca
+    select A.*, C.NomeBranca
     from associato A, capo C
     where A.CodAssociato = C.Associato and C.NomeBranca = ?
-    order by A.Età
+    order by A.Eta
     """;
 
 
@@ -104,47 +104,47 @@ public class Queries {
     //Visualizzare squadriglie e sestiglie (reparto e lupetti)
     public static final String ALL_SESTIGLIE =
     """
-    select distinct A.CodAssociato, A.Nome, A.Cognome, A.Età, A.Sesso, S.Nome As NomeSestiglia
+    select distinct A.CodAssociato, A.Nome, A.Cognome, A.Eta, A.Sesso, S.Nome As NomeSestiglia
     from associato A, sestiglia S, sestiglia_membro Membro
     where S.Capo_Ses = A.CodAssociato OR S.Vice_Ses = A.CodAssociato OR (A.CodAssociato = Membro.CodMembro and Nome_Sestiglia = S.Nome)
     order by S.Nome,
 		S.Capo_ses desc,
         S.Vice_Ses desc,
-        A.Età desc 
+        A.Eta desc 
     """;
 
         
     //query singola 
     public static final String SESTIGLIA =
     """
-    select distinct A.CodAssociato, A.Nome, A.Cognome, A.Età, A.Sesso, S.Nome As NomeSestiglia
+    select distinct A.CodAssociato, A.Nome, A.Cognome, A.Eta, A.Sesso, S.Nome As NomeSestiglia
     from associato A, sestiglia S, sestiglia_membro Membro
     where (S.Capo_Ses = A.CodAssociato OR S.Vice_Ses = A.CodAssociato OR (A.CodAssociato = Membro.CodMembro and Nome_Sestiglia = S.Nome)) and S.Nome = ?
     order by S.Capo_ses desc,
          S.Vice_Ses desc,
-         A.Età desc
+         A.Eta desc
     """;
 
     public static final String ALL_SQUADRIGLIE =
     """
-    select distinct A.CodAssociato, A.Nome, A.Cognome, A.Età, A.Sesso, S.Nome AS NomeSQ
+    select distinct A.CodAssociato, A.Nome, A.Cognome, A.Eta, A.Sesso, S.Nome AS NomeSQ
     from associato A, squadriglia S, squadriglia_membro Membro
     where S.Capo_Sq = A.CodAssociato OR S.Vice_Sq = A.CodAssociato OR (A.CodAssociato = Membro.CodMembro and Nome_Squadriglia = S.Nome)
     order by S.Nome,
 		S.Capo_Sq desc,
         S.Vice_Sq desc,
-        A.Età desc
+        A.Eta desc
     """;
     
     //query singola
     public static final String SQUADRIGLIA =
     """
-    select distinct A.CodAssociato, A.Nome, A.Cognome, A.Età, A.Sesso, S.Nome AS NomeSQ
+    select distinct A.CodAssociato, A.Nome, A.Cognome, A.Eta, A.Sesso, S.Nome AS NomeSQ
     from associato A, squadriglia S, squadriglia_membro Membro
     where (S.Capo_Sq = A.CodAssociato OR S.Vice_Sq = A.CodAssociato OR (A.CodAssociato = Membro.CodMembro and Nome_Squadriglia = S.Nome)) and S.Nome = ?
     order by S.Capo_Sq desc,
         S.Vice_Sq desc,
-        A.Età desc 
+        A.Eta desc 
     """;
 
 
@@ -237,7 +237,7 @@ public class Queries {
 
     public static final String ADD_ASSOCIATO =
     """
-    insert into associato(CodAssociato,NomeBranca,Recapito_tel,Mail,Nome,Cognome,Codice_fiscale,Età,Sesso)
+    insert into associato(CodAssociato,NomeBranca,Recapito_tel,Mail,Nome,Cognome,Codice_fiscale,Eta,Sesso)
     values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """;
     public static final String UPDATE_BRANCA_MEMBRI =

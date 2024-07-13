@@ -9,7 +9,6 @@ import java.util.Optional;
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
 import dbscout.data.Queries;
-import java.util.HashSet;
 
 public class Associato {
     private int codAssociato;
@@ -172,7 +171,7 @@ public class Associato {
         public static List<Associato> getCapiBranca(Connection connection, Associato ass) {
         List<Associato> Capi = new ArrayList<>();
         try(
-        var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.CAPI_BRANCA, ass.branca);
+        var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.CAPI_BRANCA, ass.getBranca());
         var resultSet = statement.executeQuery();
         ) {
 
