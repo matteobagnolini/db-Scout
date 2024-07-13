@@ -372,6 +372,11 @@ public class Associato {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getMembriSest'");
         }
+        public static void putRecensione(Connection connection, Attivita attivita, Associato associato,
+                String recensione, int voto) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'putRecensione'");
+        }
     }
 
 }
