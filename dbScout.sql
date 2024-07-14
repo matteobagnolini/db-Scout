@@ -552,7 +552,11 @@ INSERT INTO svolgimento_servizio(NomeSquadriglia, NomeServizio, `Data`)
 	values ("Cervi", "Quaderno di bordo", "2024-06-23"),
 			("Cervi", "Pulizia sede", "2024-06-10"),
             ("Aquile", "Pulizia sede", "2024-06-23"),
-            ("Aquile", "Pulizia Bagni", "2024-06-10");
+            ("Aquile", "Pulizia Bagni", "2024-06-10"),
+            ("Cervi", "Quaderno di bordo", "2024-07-14"),
+            ("Cervi", "Pulizia sede", "2024-07-14"),
+            ("Aquile", "Pulizia sede", "2024-07-14"),
+            ("Aquile", "Pulizia Bagni", "2024-07-14");
 INSERT INTO ATTIVITA (NomeBranca, `Data`, Ora, Descrizione, DataFine, Luogo, Materiale, Quota) VALUES
 		('Lupetti', '2024-05-15 10:00:00', '2024-05-15 11:00:00', 'Caccia al tesoro nel parco', '2024-05-15 12:00:00', 'Parco Comunale', 'Mappa del tesoro, Borse', 0.00),
 		('Lupetti', '2024-04-10 14:00:00', '2024-04-10 16:00:00', 'Laboratorio di disegno', '2024-04-10 17:00:00', 'Sala Ricreativa', 'Colori, Carta', 0.00),
