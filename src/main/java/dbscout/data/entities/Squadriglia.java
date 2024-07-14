@@ -1,42 +1,33 @@
 package dbscout.data.entities;
 
 import java.sql.Connection;
-import java.util.Set;
 
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
 import dbscout.data.Queries;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Squadriglia {
 
     private final String nome;
-    private ServizioSq servizio;
-    private List<Repartaro> membri;
+    private List<ServizioSq> servizi;
 
-    public Squadriglia(final String nome, final ServizioSq servizio) {
+    public Squadriglia(final String nome, final List<ServizioSq> servizio) {
         this.nome = nome;
-        this.servizio = servizio;
-    }
-
-    public Squadriglia(List<Repartaro> membri) {
-        this.membri = membri;
-        nome = null;
-        servizio = null;
+        this.servizi = servizio;
     }
 
     public String getNome() {
         return nome;
     }
-    public ServizioSq getServizio() {
-        return servizio;
+    public List<ServizioSq> getServizi() {
+        return servizi;
     }
 
-    public void setServizio(final ServizioSq servizio) {
-        this.servizio = servizio;
+    public void setServizio(final List<ServizioSq> servizio) {
+        this.servizi = servizio;
     }
 
     public final class DAO {

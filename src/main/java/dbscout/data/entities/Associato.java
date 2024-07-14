@@ -310,27 +310,30 @@ public class Associato {
             String NomeSq = "Nulla";
             Associato ass = getAssociatoFromId(connection, codAssociato);
     
-                try (
-                var statement = DAOUtils.prepare(connection, Queries.ALL_SQUADRIGLIE);
-                var statement2 = DAOUtils.prepare(connection, Queries.ALL_SQUADRIGLIE);
-                var resultSet = statement.executeQuery();
-                    ) {
-                while (resultSet.next() && NomeSq == "Nulla") {
-                    if(resultSet.getInt("A.CodAssociato") == ass.codAssociato){
-                        NomeSq = resultSet.getString("S.NomeSQ");
-                    }
+            try (
+            var statement = DAOUtils.prepare(connection, Queries.ALL_SQUADRIGLIE);
+            var resultSet = statement.executeQuery();
+                ) {
+            while (resultSet.next() && NomeSq == "Nulla") {
+                if(resultSet.getInt("A.CodAssociato") == ass.codAssociato){
+                    NomeSq = resultSet.getString("S.NomeSQ");
+                    System.out.println("Nome sq dato in DAO: " + NomeSq);
                 }
-                }
-                catch (Exception e) {
-                    throw new DAOException(e.getMessage());
-                }
-                return NomeSq;
+            }
+            }
+            catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            return NomeSq;
         }
+
         public static Squadriglia getSquadriglia(Connection connection, int codAssociato) {
-            if(!checkAssociatoExists(connection, codAssociato) || !checkRightBranca(connection, codAssociato, "Reparto"))
-            return null;
+            if(!checkAssociatoExists(connection, codAssociato)) {
+                return null;
+            }
             String NomeSq = findSquadriglia(connection, codAssociato);
-            return null;
+            List<ServizioSq> servizi = getServiziSq(connection, getAssociatoFromId(connection, codAssociato));
+            return new Squadriglia(NomeSq, servizi);
         }
         public static List<ServizioSq> getServiziSq(Connection connection, Associato ass) {
             List<ServizioSq> ServiziSq = new ArrayList<>();
