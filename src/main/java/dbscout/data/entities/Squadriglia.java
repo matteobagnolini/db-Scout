@@ -39,11 +39,11 @@ public class Squadriglia {
                 var resultSet = statement.executeQuery();
             ) {
                 while (resultSet.next()) {
-                    var codAssociato = resultSet.getInt("A.codAssociato");
-                    var nome = resultSet.getString("A.nome");
-                    var cognome = resultSet.getString("A.cognome");
-                    var eta = resultSet.getInt("A.età");
-                    var sesso = resultSet.getString("A.sesso").charAt(0);
+                    var codAssociato = resultSet.getInt("A.CodAssociato");
+                    var nome = resultSet.getString("A.Nome");
+                    var cognome = resultSet.getString("A.Cognome");
+                    var eta = resultSet.getInt("A.Eta");
+                    var sesso = resultSet.getString("A.Sesso").charAt(0);
 
                     
                     // here create a new associato;

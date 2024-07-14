@@ -96,11 +96,8 @@ public class RepartoController implements FXController {
     @FXML
     void showMembriSq(MouseEvent event) {
         var membri = Squadriglia.DAO.membri(controller.getConnection(), sq.getNome());
-        System.out.println("Nome sq: " + sq.getNome());
-        System.out.println("Numero membri sq: " + membri.size());   
         for (Repartaro membro : membri) {
             boxMembriSq.setText(boxMembriSq.getText() + "\n" + membro.getNome() + " " + membro.getCognome());
-            System.out.println("add membro in sq");
         }
     }
 

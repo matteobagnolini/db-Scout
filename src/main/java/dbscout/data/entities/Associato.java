@@ -315,9 +315,8 @@ public class Associato {
             var resultSet = statement.executeQuery();
                 ) {
             while (resultSet.next() && NomeSq == "Nulla") {
-                if(resultSet.getInt("A.CodAssociato") == ass.codAssociato){
+                if(resultSet.getInt("A.CodAssociato") == ass.getCodAssociato()){
                     NomeSq = resultSet.getString("S.NomeSQ");
-                    System.out.println("Nome sq dato in DAO: " + NomeSq);
                 }
             }
             }
@@ -337,9 +336,7 @@ public class Associato {
         }
         public static List<ServizioSq> getServiziSq(Connection connection, Associato ass) {
             List<ServizioSq> ServiziSq = new ArrayList<>();
-            if(!checkAssociatoExists(connection, ass.codAssociato) || !checkRightBranca(connection, ass.codAssociato, "Reparto"))
-            return ServiziSq;
-            String NomeSq = findSquadriglia(connection, ass.codAssociato);
+            String NomeSq = findSquadriglia(connection, ass.getCodAssociato());
             try (
                 var statement = DAOUtils.prepare(connection, Queries.SERVIZIO_SETTIMANALE, NomeSq);
                 var resultSet = statement.executeQuery();
