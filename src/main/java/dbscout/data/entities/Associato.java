@@ -376,14 +376,15 @@ public class Associato {
                 throw new DAOException(e.getMessage());
             }
         }
-        public static List<Associato> getMembriSest(Connection connection, Associato associato) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getMembriSest'");
-        }
+
         public static void putRecensione(Connection connection, Attivita attivita, Associato associato,
                 String recensione, int voto) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'putRecensione'");
+            try {
+                var statement = DAOUtils.prepare(connection, Queries.ADD_RECENSIONE, recensione, voto, associato.getCodAssociato(), attivita.getBranca());
+                statement.executeQuery();
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
         }
         public static List<Associato> getMembriNoviziato(Connection connection, Associato associato) {
             // TODO Auto-generated method stub

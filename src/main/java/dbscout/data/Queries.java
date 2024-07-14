@@ -317,7 +317,7 @@ public static final String ADD_RECENSIONE =
 """
 update partecipazione
 set Descrizione = ? and Numero_Stelle = ?
-where Associato = ? and NomeBranca = ? and `Data` = ?
+where Associato = ? and NomeBranca = ? and `Data` = (NOW())
 """;
 
 //Aggiungere un servizio
