@@ -380,6 +380,14 @@ public class Associato {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'putRecensione'");
         }
+        public static List<Associato> getMembriNoviziato(Connection connection, Associato associato) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getMembriNoviziato'");
+        }
+        public static Servizio getServizio(Connection connection, int codAssociato) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getServizio'");
+        }
     }
 
 }

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbscout.controller.RepartoController">
    <children>
-      <Label fx:id="nomeAssociato" layoutX="68.0" layoutY="57.0" text="DEFAULT NAME">
+      <Label fx:id="nomeAssociato" layoutX="14.0" layoutY="22.0" text="DEFAULT NAME">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Label>
-      <TextArea fx:id="membriSquadriglia" editable="false" layoutX="356.0" layoutY="46.0" prefHeight="131.0" prefWidth="200.0" />
-      <Label layoutX="356.0" layoutY="27.0" text="Membri Squadriglia" />
-      <Label layoutX="356.0" layoutY="182.0" text="Capi Branca" />
-      <TextArea fx:id="capiBranca" editable="false" layoutX="356.0" layoutY="200.0" prefHeight="77.0" prefWidth="200.0" />
-      <Label layoutX="68.0" layoutY="112.0" text="Attività:">
+      <Label fx:id="membriSq" layoutX="356.0" layoutY="27.0" onMouseClicked="#showMembriSq" text="Membri Squadriglia" />
+      <Label fx:id="capiBranca" layoutX="356.0" layoutY="182.0" onMouseClicked="#showCapi" text="Capi Branca" />
+      <Label fx:id="attivita" layoutX="68.0" layoutY="112.0" onMouseClicked="#showAttivita" text="Attività:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <MediaView fitHeight="200.0" fitWidth="200.0" layoutX="61.0" layoutY="151.0" />
-      <Label layoutX="352.0" layoutY="285.0" text="Servizi Settimanali" />
-      <TextArea fx:id="ServiziSettimanali" editable="false" layoutX="356.0" layoutY="310.0" prefHeight="78.0" prefWidth="200.0" />
+      <Label fx:id="Servizi" layoutX="352.0" layoutY="285.0" onMouseClicked="#showServizi" text="Servizi Settimanali" />
+      <Label fx:id="boxAtt1" layoutX="68.0" layoutY="169.0" onMouseClicked="#addRecensioneAtt1" prefHeight="45.0" prefWidth="168.0" />
+      <Label fx:id="boxAtt2" layoutX="68.0" layoutY="245.0" onMouseClicked="#addRecensioneAtt2" prefHeight="45.0" prefWidth="168.0" />
+      <Label fx:id="boxAtt3" layoutX="68.0" layoutY="323.0" onMouseClicked="#addRecensioneAtt3" prefHeight="45.0" prefWidth="168.0" />
+      <Label fx:id="boxMembriSq" layoutX="352.0" layoutY="77.0" prefHeight="78.0" prefWidth="186.0" />
+      <Label fx:id="boxCapi" layoutX="352.0" layoutY="214.0" prefHeight="51.0" prefWidth="186.0" />
+      <Label fx:id="boxServizi" layoutX="356.0" layoutY="315.0" prefHeight="69.0" prefWidth="186.0" />
    </children>
 </AnchorPane>

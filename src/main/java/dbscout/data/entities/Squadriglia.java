@@ -8,15 +8,24 @@ import dbscout.data.DAOUtils;
 import dbscout.data.Queries;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Squadriglia {
 
     private final String nome;
     private ServizioSq servizio;
+    private List<Repartaro> membri;
 
     public Squadriglia(final String nome, final ServizioSq servizio) {
         this.nome = nome;
         this.servizio = servizio;
+    }
+
+    public Squadriglia(List<Repartaro> membri) {
+        this.membri = membri;
+        nome = null;
+        servizio = null;
     }
 
     public String getNome() {
@@ -32,8 +41,8 @@ public class Squadriglia {
 
     public final class DAO {
 
-        public static Set<Repartaro> membri(Connection connection, String nomeSquadriglia) {
-            var membri = new HashSet<Repartaro>();
+        public static List<Repartaro> membri(Connection connection, String nomeSquadriglia) {
+            var membri = new LinkedList<Repartaro>();
             try (
                 var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.SQUADRIGLIA, nomeSquadriglia);
                 var resultSet = statement.executeQuery();

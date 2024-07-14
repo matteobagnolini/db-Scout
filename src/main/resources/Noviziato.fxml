@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbscout.controller.NoviziatoController">
    <children>
-      <Label fx:id="nomeAssociato" layoutX="68.0" layoutY="57.0" text="DEFAULT NAME">
+      <Label fx:id="nomeAssociato" layoutX="14.0" layoutY="20.0" text="DEFAULT NAME">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Label>
-      <TextArea fx:id="membriNoviziato" editable="false" layoutX="356.0" layoutY="76.0" prefHeight="131.0" prefWidth="200.0" />
-      <Label layoutX="356.0" layoutY="48.0" text="Membri Noviziato" />
-      <Label layoutX="356.0" layoutY="215.0" text="Capi Branca" />
-      <TextArea fx:id="capiBranca" editable="false" layoutX="356.0" layoutY="241.0" prefHeight="77.0" prefWidth="200.0" />
-      <Label layoutX="68.0" layoutY="112.0" text="Attività:">
+      <Label fx:id="membriNoviziato" layoutX="356.0" layoutY="48.0" onMouseClicked="#showMembri" text="Membri Noviziato" />
+      <Label fx:id="capiBranca" layoutX="352.0" layoutY="251.0" onMouseClicked="#showCapi" text="Capi Branca" />
+      <Label fx:id="attivita" layoutX="68.0" layoutY="112.0" onMouseClicked="#showAttivita" text="Attività:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <MediaView fitHeight="200.0" fitWidth="200.0" layoutX="61.0" layoutY="151.0" />
+      <Label fx:id="boxAtt1" layoutX="68.0" layoutY="163.0" onMouseClicked="#addRecensioneAtt1" prefHeight="54.0" prefWidth="186.0" />
+      <Label fx:id="boxAtt2" layoutX="68.0" layoutY="233.0" onMouseClicked="#addRecensioneAtt2" prefHeight="54.0" prefWidth="186.0" />
+      <Label fx:id="boxAtt3" layoutX="68.0" layoutY="305.0" onMouseClicked="#addRecensioneAtt3" prefHeight="54.0" prefWidth="186.0" />
+      <Label fx:id="boxCapi" layoutX="352.0" layoutY="276.0" prefHeight="91.0" prefWidth="186.0" />
+      <Label fx:id="boxMembri" layoutX="350.0" layoutY="67.0" prefHeight="168.0" prefWidth="222.0" />
    </children>
 </AnchorPane>
