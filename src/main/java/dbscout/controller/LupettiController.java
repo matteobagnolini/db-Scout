@@ -76,8 +76,8 @@ public class LupettiController implements FXController {
 
     @FXML
     void showMembriSestiglia(MouseEvent event) {
-        List<Lupetto> membriSest = controller.getModel().getSestiglia().getMembri();
-        for (Lupetto membro : membriSest) {
+        List<Associato> membriSest = controller.getModel().getSestiglia().getMembri();
+        for (Associato membro : membriSest) {
             boxMembri.setText(boxMembri.getText() + "\n" + membro.getNome() + " " + membro.getCognome());
         }
     }

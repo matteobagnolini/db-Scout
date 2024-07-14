@@ -1,5 +1,7 @@
 package dbscout.data;
 
+import org.apache.http.cookie.SM;
+
 public class Queries {
     //Visualizzare tutti i membri di ogni rispettiva branca
     public static final String ALL_MEMBRI_BRANCA = 
@@ -476,6 +478,24 @@ select A.*
 from associato A, rover_scolta C
 where C.Associato = A.CodAssociato and A.CodAssociato = ?
 """;
+
+//restituisce i membri di una determinate ses(nota: inserire il campo due volte)
+public static final String GET_SES = 
+"""
+select distinct A.*
+from associato A, sestiglia S, sestiglia_membro SM
+where ((A.codAssociato = S.Capo_Ses OR A.CodAssociato = S.Vice_Ses) AND S.Nome = ?) OR 
+		(SM.Nome_Sestiglia = ? AND A.CodAssociato = SM.CodMembro)
+""";
+//restituisce i membri di una determinate sq(nota: inserire il campo due volte)
+public static final String GET_SQ = 
+"""
+select distinct A.*
+from associato A, squadriglia S, squadriglia_membro SM
+where ((A.codAssociato = S.Capo_Sq OR A.CodAssociato = S.Vice_Sq) AND S.Nome = ?) OR 
+		(SM.Nome_Squadriglia = ? AND A.CodAssociato = SM.CodMembo)        
+""";        
+
 }
 
 

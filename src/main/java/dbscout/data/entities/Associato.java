@@ -200,14 +200,14 @@ public class Associato {
                 // qua si fanno le varie inizializzazioni in base al tipo di branca (es per lupetti carichiamo la squadriglia)
                 case "Lupetti" -> {
                     try (
-                var statement = DAOUtils.prepare(connection, /*Query tutti di membri di una data sq*/ Queries.CHECK_LUPETTO, id);
+                var statement = DAOUtils.prepare(connection,  Queries.CHECK_LUPETTO, id);
                 var resultSet = statement.executeQuery();
-            ) {
+                    ) {
                 if(ass.branca == NomeBranca && resultSet.next()){
                     return true; 
-                } else {
+                    } else {
                     return false;
-                }
+                    }
                 }
              catch (Exception e) {
                 throw new DAOException(e.getMessage());
@@ -246,12 +246,12 @@ public class Associato {
  
         }
         public static Sestiglia getSestiglia(Connection connection, int codAssociato) {
-            if(!checkAssociatoExists(connection, codAssociato) || !checkRightBranca(connection, codAssociato, "Lupetti")) {
+            if(!checkAssociatoExists(connection, codAssociato)) {
                 System.out.println("PROBLEMI IN SESTIGLI");
                 return null;
             }
             String NomeSestiglia = "Nulla";
-            List<Lupetto> Sestiglia = new ArrayList<>();
+            List<Associato> Sestiglia = new ArrayList<>();
             System.out.println("NOOO PROBLEMI IN SESTIGLIA");
 
             Associato ass = getAssociatoFromId(connection, codAssociato);
@@ -264,13 +264,18 @@ public class Associato {
                         NomeSestiglia = resultSet.getString("S.NomeSestiglia");
                     }
                 }
-                resultSet.first();
-                while (resultSet.next()) {
-                    if(resultSet.getString("S.NomeSestiglia") == NomeSestiglia && 
-                    resultSet.getInt("A.CodAssociato") != ass.codAssociato){
-                        Sestiglia.add(new Lupetto(ass.codAssociato, ass.tel, ass.mail, ass.nome, ass.cognome, ass.getCf(), ass.eta, ass.sesso));
+                    try (
+                        var statement2 = DAOUtils.prepare(connection, Queries.GET_SES, NomeSestiglia, NomeSestiglia);
+                        var resultSet2 = statement2.executeQuery();
+                        ) {
+                            while (resultSet2.next()) 
+                                    Sestiglia.add(getAssociatoFromId(connection,resultSet2.getInt("A.CodAssociato")));
+                            }
+                            
+
+                    catch (Exception e) {
+                        throw new DAOException(e.getMessage());
                     }
-                }
                
                 }
                     catch (Exception e) {

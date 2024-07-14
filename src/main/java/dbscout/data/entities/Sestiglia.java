@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Sestiglia {
 
-    private final List<Lupetto> membri;
+    private final List<Associato> membri;
 
-    public Sestiglia(final List<Lupetto> membri) {
+    public Sestiglia(final List<Associato> membri) {
         this.membri = membri;
     }
 
-    public List<Lupetto> getMembri() {
+    public List<Associato> getMembri() {
         return membri;
     }
 
