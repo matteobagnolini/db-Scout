@@ -394,6 +394,22 @@ public class Associato {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getServizio'");
         }
+		public static List<Attivita> getTop3Attivita(Connection connection) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException("Unimplemented method 'getTop3Attivita'");
+		}
+        public static void addAssociato(Connection connection, Associato associato) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addAssociato'");
+        }
+        public static void addAttivita(Connection connection, Attivita attivita) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addAttivita'");
+        }
+        public static void addAutofinanziamento(Connection connection, Autofinanziamento windowAddAutofinanziamento) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addAutofinanziamento'");
+        }
     }
 
 }

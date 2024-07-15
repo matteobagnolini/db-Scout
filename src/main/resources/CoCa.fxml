@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbscout.controller.CoCaController"/>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbscout.controller.CoCaController">
+   <children>
+      <Label fx:id="nomeAssociato" layoutX="14.0" layoutY="14.0" text="DEFAULT NAME">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="attivita" layoutX="31.0" layoutY="82.0" onMouseClicked="#showAttivita" text="Top 3 Attività:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="boxAtt1" layoutX="31.0" layoutY="127.0" prefHeight="56.0" prefWidth="178.0" />
+      <Label fx:id="boxAtt2" layoutX="31.0" layoutY="211.0" prefHeight="56.0" prefWidth="178.0" />
+      <Label fx:id="boxAtt3" layoutX="31.0" layoutY="314.0" prefHeight="56.0" prefWidth="178.0" />
+      <Label fx:id="finanza" layoutX="344.0" layoutY="34.0" onMouseClicked="#showFinanza" prefHeight="30.0" prefWidth="243.0" text="Situazione finanziaria branche">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="boxFinanza" layoutX="344.0" layoutY="74.0" prefHeight="102.0" prefWidth="211.0" />
+      <Button fx:id="buttonAddAssociato" layoutX="344.0" layoutY="211.0" mnemonicParsing="false" onAction="#addAssociato" prefHeight="28.0" prefWidth="211.0" text="Aggiungi Associato" />
+      <Button fx:id="buttonAddAttivita" layoutX="344.0" layoutY="279.0" mnemonicParsing="false" onAction="#addAttivita" prefHeight="25.0" prefWidth="211.0" text="Aggiungi Attività" />
+      <Button fx:id="buttonAddAutofinanziamento" layoutX="344.0" layoutY="342.0" mnemonicParsing="false" onAction="#addAutofinanziamento" prefHeight="25.0" prefWidth="211.0" text="Aggiungi Autofinanziamento" />
+   </children>
+</AnchorPane>

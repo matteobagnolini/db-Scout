@@ -4,8 +4,6 @@ import java.util.List;
 
 import dbscout.data.entities.Associato;
 import dbscout.data.entities.Attivita;
-import dbscout.data.entities.Noviziato;
-import dbscout.data.entities.Squadriglia;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

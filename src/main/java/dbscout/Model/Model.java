@@ -57,7 +57,7 @@ public class Model {
                 responsabileServizioClan = Associato.DAO.getResponsabileServizio(connection, ass);
             }
             case "CoCa" -> {
-                
+                //attivita = Associato.DAO.getTop3Attivita(connection);
             }
         }
     }
