@@ -15,7 +15,6 @@ import java.util.List;
 
 import dbscout.data.entities.Associato;
 import dbscout.data.entities.Attivita;
-import dbscout.data.entities.Lupetto;
 
 public class LupettiController implements FXController {
 

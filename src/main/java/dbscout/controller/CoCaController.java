@@ -61,6 +61,18 @@ public class CoCaController implements FXController {
     private Label nomeAssociato;
 
     @FXML
+    private Button buttonClan;
+
+    @FXML
+    private Button buttonLupetti;
+
+    @FXML
+    private Button buttonNoviziato;
+
+    @FXML
+    private Button buttonReparto;
+
+    @FXML
     void addAssociato(ActionEvent event) {
         windowAddAssociato();
     }
@@ -76,18 +88,47 @@ public class CoCaController implements FXController {
     }
 
     @FXML
-    void showAttivita(MouseEvent event) {
-        List<Attivita> attivitas = controller.getModel().getAttivita();
-        System.out.println(attivitas);
+    void showAttClan(ActionEvent event) {
+        List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Clan");
         boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
         boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
         boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
+    }
 
+    @FXML
+    void showAttLupetti(ActionEvent event) {
+        List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Lupetti");
+        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
+        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
+        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
+    }
+
+    @FXML
+    void showAttNoviziato(ActionEvent event) {
+        List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Noviziato");
+        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
+        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
+        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
+    }
+
+    @FXML
+    void showAttReparto(ActionEvent event) {
+        List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Reparto");
+        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
+        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
+        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
     }
 
     @FXML
     void showFinanza(MouseEvent event) {
-        // TODO:
+        float conto = Associato.DAO.getFinanza(controller.getConnection(), "Lupetti");
+        boxFinanza.setText("Lupetti: " + conto + " euro");
+        conto = Associato.DAO.getFinanza(controller.getConnection(), "Reparto");
+        boxFinanza.setText(boxFinanza.getText() + "\nReparto: " + conto + " euro");
+        conto = Associato.DAO.getFinanza(controller.getConnection(), "Noviziato");
+        boxFinanza.setText(boxFinanza.getText() + "\nNoviziato: " + conto + " euro");
+        conto = Associato.DAO.getFinanza(controller.getConnection(), "Clan");
+        boxFinanza.setText(boxFinanza.getText() + "\nClan: " + conto + " euro");
     }
 
     private void windowAddAssociato() {
