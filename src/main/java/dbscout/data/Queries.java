@@ -1,6 +1,6 @@
 package dbscout.data;
 
-import org.apache.http.cookie.SM;
+
 
 public class Queries {
     //Visualizzare tutti i membri di ogni rispettiva branca
@@ -206,7 +206,7 @@ public class Queries {
     //query singola
     public static final String SERVIZIO_CLAN = 
     """
-    select S.Nome AS Nome_Servizio, S.Tipologia As Tipologia_servizio, Clan.Nome AS Nome, Clan.Cognome AS Cognome, Capo.*
+    select S.*
     from servizio S, Associato Clan, Associato Capo
     where Clan.CodAssociato = S.AssociatoClan and Capo.CodAssociato = S.Capo_Referente and Clan.CodAssociato = ?
     """;
@@ -495,7 +495,19 @@ from associato A, squadriglia S, squadriglia_membro SM
 where ((A.codAssociato = S.Capo_Sq OR A.CodAssociato = S.Vice_Sq) AND S.Nome = ?) OR 
 		(SM.Nome_Squadriglia = ? AND A.CodAssociato = SM.CodMembo)        
 """;        
+public static final String GET_Noviziato = 
+"""
+select A.CodAssociato
+from associato A, novizio N
+where A.NomeBranca = "Noviziato" and N.Associato = A.CodAssociato;        
+""";
 
+public static final String GET_Clan = 
+"""
+select A.CodAssociato
+from associato A, rover_scolta C
+where A.NomeBranca = "Clan" and C.Associato = A.CodAssociato;        
+""";
 }
 
 

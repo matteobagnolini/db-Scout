@@ -6,7 +6,6 @@ public class Servizio {
     String nome;
     String dataInizio;
     String dataFine;
-    String periodo;
     String descrizione;
     String tipologia;
     Associato capoReferente;
@@ -15,7 +14,21 @@ public class Servizio {
     Optional<String> nomeEnteEsterno;
     Optional<String> cognomeEsterno;
     Optional<String> resoconto;
-
+    public Servizio(String nome, String dataInizio, String dataFine, String descrizione, 
+                    String tipologia, Associato capoReferente, Optional<String> branca, Optional<String> Luogo, 
+                    Optional<String> nomeEnteEsterno, Optional<String> cognomeEsterno, Optional<String> resoconto) {
+        this.nome = nome;
+        this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
+        this.descrizione = descrizione;
+        this.tipologia = tipologia;
+        this.capoReferente = capoReferente;
+        this.branca = branca;
+        this.Luogo = Luogo;
+        this.nomeEnteEsterno = nomeEnteEsterno;
+        this.cognomeEsterno = cognomeEsterno;
+        this.resoconto = resoconto;
+    }
     // Getter per 'nome'
     public String getNome() {
         return this.nome;
@@ -31,10 +44,6 @@ public class Servizio {
         return this.dataFine;
     }
 
-    // Getter per 'periodo'
-    public String getPeriodo() {
-        return this.periodo;
-    }
 
     // Getter per 'descrizione'
     public String getDescrizione() {
@@ -87,7 +96,6 @@ public class Servizio {
         return nome.equals(servizio.nome) &&
                 dataInizio.equals(servizio.dataInizio) &&
                 dataFine.equals(servizio.dataFine) &&
-                periodo.equals(servizio.periodo) &&
                 descrizione.equals(servizio.descrizione) &&
                 tipologia.equals(servizio.tipologia) &&
                 capoReferente.equals(servizio.capoReferente) &&

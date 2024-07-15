@@ -360,15 +360,7 @@ public class Associato {
                 var resultSet = statement.executeQuery();
             ) {
                 if (resultSet.first()) {
-                    var codAssociato = resultSet.getInt("Capo.codAssociato");
-                    var nome = resultSet.getString("Capo.nome");
-                    var cognome = resultSet.getString("Capo.cognome");
-                    var eta = resultSet.getInt("Capo.età");
-                    var sesso = resultSet.getString("Capo.sesso").charAt(0);
-                    var tel = resultSet.getString("Capo.Recapito_tel");
-                    var mail = resultSet.getString("Capo.Mail");
-                    var CF = resultSet.getString("Capo.Codice_fiscale");
-                    return new Associato(codAssociato, tel, mail, nome, cognome, CF, eta, sesso);
+                    return getAssociatoFromId(connection, resultSet.getInt("S.Capo_Referente"));
                 }
                 else
                     return null;
@@ -387,12 +379,54 @@ public class Associato {
             }
         }
         public static List<Associato> getMembriNoviziato(Connection connection, Associato associato) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getMembriNoviziato'");
+            List<Associato> Noviziato = new ArrayList<>();
+            if(!checkAssociatoExists(connection, associato.codAssociato))
+            return Noviziato;
+            try (
+                var statement = DAOUtils.prepare(connection, Queries.GET_Noviziato);
+                var resultSet = statement.executeQuery();
+            ) {
+                while (resultSet.next()) {
+                    Noviziato.add(getAssociatoFromId(connection, resultSet.getInt("A.CodAssociato")));
+                }
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            return Noviziato;
         }
         public static Servizio getServizio(Connection connection, int codAssociato) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getServizio'");
+            Associato ass = getAssociatoFromId(connection, codAssociato);
+            if(!checkRightBranca(connection, ass.codAssociato, "Clan"))
+            return null;
+            try (
+                var statement = DAOUtils.prepare(connection, Queries.SERVIZIO_CLAN, ass.codAssociato);
+                var resultSet = statement.executeQuery();
+            ) {
+                if (resultSet.first()) {                    
+                    var Nome = resultSet.getString("S.Nome");
+                    var DataInizio = resultSet.getString("S.DataInizio");
+                    
+                    var DataFine = resultSet.getString("S.DataFine");
+                   // var Giorno = resultSet.getString("S.Giorno");
+                   // var Ora = resultSet.getString("S.Ora");
+                    var Descrizione = resultSet.getString("S.Descrizione");
+                    var Branca = resultSet.getString("S.Branca");
+                    var Luogo = resultSet.getString("S.Luogo");
+                    var Tipologia = resultSet.getString("S.Tipologia");
+                    var NomeEnte = resultSet.getString("S.NomeEnte");
+                    var Cognome = resultSet.getString("S.Cognome");
+                    var Resoconto = resultSet.getString("S.Resoconto");
+                    var Capo_Referente =getAssociatoFromId(connection, resultSet.getInt("S.Capo_Referente")) ;
+                    return new Servizio(Nome, DataInizio, DataFine, Descrizione, Tipologia, Capo_Referente, Optional.of(Branca), 
+                    Optional.of(Luogo),  Optional.of(NomeEnte),  Optional.of(Cognome),  Optional.of(Resoconto));
+                }
+                else
+                    return null;
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            
+                
         }
 		public static List<Attivita> getTop3Attivita(Connection connection) {
 			// TODO Auto-generated method stub
