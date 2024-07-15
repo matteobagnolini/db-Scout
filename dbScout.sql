@@ -555,10 +555,10 @@ INSERT INTO svolgimento_servizio(NomeSquadriglia, NomeServizio, `Data`)
             ("Aquile", "Pulizia Bagni", "2024-06-10"),
             ("Cervi", "Quaderno di bordo", "2024-07-14"),
 <<<<<<< HEAD
+			("Cervi", "Pulizia sede", "2024-07-14"),
 =======
             ("Cervi", "Pulizia sede", "2024-07-14"),
 >>>>>>> 78cb05c5fef192ea1a5e4de21a302e076a3ec352
-			("Cervi", "Pulizia sede", "2024-07-14"),
             ("Aquile", "Pulizia sede", "2024-07-14"),
             ("Aquile", "Pulizia Bagni", "2024-07-14");
 INSERT INTO ATTIVITA (NomeBranca, `Data`, Ora, Descrizione, DataFine, Luogo, Materiale, Quota) VALUES
