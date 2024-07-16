@@ -2,14 +2,17 @@ package dbscout.data.entities;
 
 import java.util.Optional;
 
-public record Attivita(
+public record Partecipazione(
     String branca, 
     String dataOra, 
     String descrizione, 
     Optional<String> dataFine, 
-    Optional<String> luogo,
     Optional<String> materiale, 
-    Optional<Integer> quota) { 
+    Optional<Integer> quota,
+    Optional<String> luogo,
+    Optional<String> recensione, 
+    Optional<Integer> voto 
+) { 
 
     // Getter personalizzato per 'branca'
     public String getBranca(){
@@ -35,14 +38,24 @@ public record Attivita(
     public Optional<String> getMateriale() {
         return this.materiale;
     }
-    public Optional<String> getLuogo() {
-        return this.luogo;
-    }
 
     // Getter per 'quota'
     public Optional<Integer> getQuota() {
         return this.quota;
     }
-}
 
+    // Getter per 'recensione'
+    public Optional<String> getRecensione() {
+        return this.recensione;
+    }
+
+    // Getter per 'voto'
+    public Optional<Integer> getVoto() {
+        return this.voto;
+    }
+        // Getter per 'luogo'
+    public Optional<String> getLuogo() {
+        return this.luogo;
+    }
+}
 

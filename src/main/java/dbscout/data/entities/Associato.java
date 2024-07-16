@@ -6,9 +6,12 @@ import java.util.List;
 
 import java.util.Optional;
 
+import javax.annotation.concurrent.GuardedBy;
+
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
 import dbscout.data.Queries;
+import javafx.scene.input.SwipeEvent;
 
 public class Associato {
     private int codAssociato;
@@ -297,7 +300,8 @@ public class Associato {
                         Optional<String> dataFine = Optional.of(resultSet.getString("Att.DataFine"));
                         Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
                         Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
-                        Attivita att = new Attivita(ass.branca, dataOra, descrizione, dataFine, materiale, quota);
+                        Optional<String> luogo = Optional.of(resultSet.getString("Att.Luogo"));
+                        Attivita att = new Attivita(ass.branca, dataOra, descrizione, dataFine, luogo, materiale, quota);
                         Attivita.add(att);
                     }
                     }
@@ -428,21 +432,168 @@ public class Associato {
             
                 
         }
-		public static List<Attivita> getTop3Attivita(Connection connection) {
-			// TODO Auto-generated method stub
-			throw new UnsupportedOperationException("Unimplemented method 'getTop3Attivita'");
+		public static List<Partecipazione> getTop3Attivita(Connection connection) {
+            List<Partecipazione> Top3 = new ArrayList<>();
+            try (
+                var statement = DAOUtils.prepare(connection, Queries.ALL_BEST_3_USCITE);
+                var resultSet = statement.executeQuery();
+            ) {
+                while (resultSet.next()) { 
+                    String branca = resultSet.getString("M.NomeBranca");
+                    String dataOra =resultSet.getString(" M.`Data`");
+                    String descrizione = resultSet.getString("M.Descrizione");
+                    Optional<String> dataFine = Optional.of(resultSet.getString("M.DataFine"));
+                    Optional<String> materiale = Optional.of(resultSet.getString("M.Materiale"));
+                    Optional<Integer> quota = Optional.of(resultSet.getInt("M.Quota"));
+                    Optional<String> luogo = Optional.of(resultSet.getString("M.Luogo"));
+                    Optional<Integer> Numero_Stelle = Optional.of(resultSet.getInt("M.Numero_Stelle"));
+                    Optional<String> Recensione = Optional.of(resultSet.getString("M.Recensione"));
+                    Top3.add(new Partecipazione(branca, dataOra, descrizione, dataFine, materiale, quota, luogo, Recensione, Numero_Stelle));
+                    
+                }
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            return Top3;
 		}
         public static void addAssociato(Connection connection, Associato associato) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addAssociato'");
+            if(checkAssociatoExists(connection, associato.codAssociato)){
+                return;
+            }
+
+            var codAssociato = associato.codAssociato;
+            var nome = associato.nome;
+            var cognome = associato.cognome;
+            var eta = associato.eta;
+            var sesso = associato.sesso;
+            var tel = associato.tel;
+            var mail = associato.mail;
+            var CF = associato.cf;
+            var branca = associato.branca;
+
+            try (var addAssociato = DAOUtils.prepare(connection, Queries.ADD_ASSOCIATO, 
+                    codAssociato, branca, tel, mail, nome, cognome, CF, eta, sesso)) {
+                addAssociato.executeUpdate();
+                switch (associato.branca) {
+                    // qua si fanno le varie inizializzazioni in base al tipo di branca (es per lupetti carichiamo la squadriglia)
+                    case "Lupetti" -> {
+                        try (
+                    var addLupetto = DAOUtils.prepare(connection,  Queries.ADD_LUPETTO, associato.codAssociato);
+                    var addMembriLupetti = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Lupetti");
+                        ) {
+                            addLupetto.executeQuery();
+                            addMembriLupetti.executeQuery();
+                    }
+                 catch (Exception e) {
+                    throw new DAOException(e.getMessage());
+                }
+                        
+    
+                    }
+                    case "Reparto" -> {
+                        try (
+                    var addRepartaro = DAOUtils.prepare(connection,  Queries.ADD_REPARTARO, associato.codAssociato);
+                    var addMembriReparto = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Reparto");
+                        ) {
+                            addRepartaro.executeQuery();
+                            addMembriReparto.executeQuery();
+                    }
+                 catch (Exception e) {
+                    throw new DAOException(e.getMessage());
+                }
+                    }
+                        case "Noviziato" -> {
+                            try (
+                                var addNovizio = DAOUtils.prepare(connection,  Queries.ADD_NOVIZIO, associato.codAssociato);
+                                var addMembriNovizio  = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Noviziato");
+                                    ) {
+                                        addNovizio.executeQuery();
+                                        addMembriNovizio.executeQuery();
+                                }
+                             catch (Exception e) {
+                                throw new DAOException(e.getMessage());
+                            }
+                    }
+                        case "Clan" -> {
+                            try (
+                                var addClan = DAOUtils.prepare(connection,  Queries.ADD_ROVER_SCOLTA, associato.codAssociato);
+                                var addMembriClan  = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Clan");
+                                    ) {
+                                        addClan.executeQuery();
+                                        addMembriClan.executeQuery();
+                                }
+                            catch (Exception e) {
+                                throw new DAOException(e.getMessage());
+                            }
+                    }
+                        case "Coca" -> {
+                            try (
+                                var add = DAOUtils.prepare(connection,  Queries.ADD_CAPO, associato.codAssociato, "Nessuna");
+                                var addMembri  = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "CoCa");
+                                    ) {
+                                        add.executeQuery();
+                                        addMembri.executeQuery();
+                                }
+                            catch (Exception e) {
+                                throw new DAOException(e.getMessage());
+                            }
+                    }
+                }
+
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+
         }
         public static void addAttivita(Connection connection, Attivita attivita) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addAttivita'");
+            String branca = attivita.branca(); 
+            String dataOra = attivita.dataOra();
+            String descrizione = attivita.descrizione();
+            Optional<String> dataFine = attivita.dataFine();
+            Optional<String> luogo = attivita.luogo();
+            Optional<String> materiale = attivita.materiale();
+            Optional<Integer> quota = attivita.quota();
+            try(
+                //NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota
+                var addAttivita = DAOUtils.prepare(connection, Queries.ADD_ATTIVITA, 
+                    branca, dataOra, dataOra, descrizione, dataFine, luogo, materiale, quota)) {
+                addAttivita.executeUpdate();
+                
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            if(quota.isPresent()){
+                try(
+                    //NomeBranca,Data,Luogo,Guadagno,Tipo
+                    var updateSaldo = DAOUtils.prepare(connection, Queries.UPDATE_NEGATIVE_BRANCA_FONDOCASSA, 
+                        quota, branca)
+                        ) {
+                    updateSaldo.executeQuery();
+                    
+                } catch (Exception e) {
+                    throw new DAOException(e.getMessage());
+                }
+            }
         }
-        public static void addAutofinanziamento(Connection connection, Autofinanziamento windowAddAutofinanziamento) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addAutofinanziamento'");
+        public static void addAutofinanziamento(Connection connection, Autofinanziamento Autofin) {
+            String Branca = Autofin.getBranca();
+            String data = Autofin.getData();
+            String luogo = Autofin.getLuogo();
+            float guadagno = Autofin.getGuadagno();
+            String tipo = Autofin.getTipo();
+            try(
+                //NomeBranca,Data,Luogo,Guadagno,Tipo
+                var addAutofinanziamento = DAOUtils.prepare(connection, Queries.ADD_AUTOFINANZIAMENTO, 
+                    Branca, data, luogo, guadagno, tipo);
+                var updateSaldo = DAOUtils.prepare(connection, Queries.UPDATE_BRANCA_FONDOCASSA, 
+                guadagno, Branca)
+                    ) {
+                addAutofinanziamento.executeUpdate();
+                updateSaldo.executeQuery();
+                
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
         }
     }
 

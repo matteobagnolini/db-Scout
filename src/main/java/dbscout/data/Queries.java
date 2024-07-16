@@ -169,16 +169,16 @@ public class Queries {
      WITH MiglioriUscite AS (
     SELECT RankUscite.*, 
     ROW_NUMBER() OVER (PARTITION BY NomeBranca ORDER BY Numero_Stelle DESC) as NumeroRighe
-    FROM (select Att.*, round(avg(P.Numero_Stelle), 1)  AS Numero_Stelle
+    FROM (select Att.*, P.Descrizione AS Recensione, round(avg(P.Numero_Stelle), 1)  AS Numero_Stelle
 		from attivita Att, partecipazione P
 		where P.NomeBranca = Att.NomeBranca and Att.`Data` = P.`Data` and P.Descrizione is not null
 		group by P.`Data`) AS RankUscite 
     
     )
-    SELECT M.NomeBranca, M.`Data`, M.Descrizione, M.DataFine, M.Luogo, M.Luogo, M.Materiale, M.Quota, M.Numero_Stelle
+    SELECT M.NomeBranca, M.`Data`, M.Descrizione, M.DataFine, M.Luogo, M.Materiale, M.Quota, M.Recensione, M.Numero_Stelle
     FROM MiglioriUscite M
     WHERE NumeroRighe <= 3
-    ORDER BY NomeBranca, Numero_Stelle DESC, Data
+    ORDER BY NomeBranca, Numero_Stelle DESC, Data;
     """;
 
 
@@ -240,7 +240,7 @@ public class Queries {
     public static final String ADD_ASSOCIATO =
     """
     insert into associato(CodAssociato,NomeBranca,Recapito_tel,Mail,Nome,Cognome,Codice_fiscale,Eta,Sesso)
-    values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    value(?, ?, ?, ?, ?, ?, ?, ?, ?)
     """;
     public static final String UPDATE_BRANCA_MEMBRI =
     """
@@ -279,7 +279,7 @@ public class Queries {
 public static final String ADD_ATTIVITA =
     """
     insert into attività(NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota)
-    value(?, ?, ?, ?, ?)
+    value(?, ?, ?, ?, ?, ?, ?, ?)
     """;
 
 
@@ -308,6 +308,12 @@ public static final String UPDATE_BRANCA_FONDOCASSA =
 """
 update Branca
 Set FondoCassa = FondoCassa + ?
+where Branca.NomeBranca = ?
+""";
+public static final String UPDATE_NEGATIVE_BRANCA_FONDOCASSA =
+"""
+update Branca
+Set FondoCassa = FondoCassa - ?
 where Branca.NomeBranca = ?
 """;
 
