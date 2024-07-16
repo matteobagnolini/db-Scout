@@ -301,7 +301,7 @@ public class Associato {
                         Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
                         Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
                         Optional<String> luogo = Optional.of(resultSet.getString("Att.Luogo"));
-                        Attivita att = new Attivita(ass.branca, dataOra, descrizione, dataFine, luogo, materiale, quota);
+                        Attivita att = new Attivita(ass.branca, dataOra, descrizione, dataFine, luogo, materiale, quota, Optional.empty());
                         Attivita.add(att);
                     }
                     }
@@ -432,24 +432,23 @@ public class Associato {
             
                 
         }
-		public static List<Partecipazione> getTop3Attivita(Connection connection) {
-            List<Partecipazione> Top3 = new ArrayList<>();
+		public static List<Attivita> getTop3Attivita(Connection connection, String N) {
+            List<Attivita> Top3 = new ArrayList<>();
             try (
-                var statement = DAOUtils.prepare(connection, Queries.ALL_BEST_3_USCITE);
+                var statement = DAOUtils.prepare(connection, Queries.BEST_3_USCITE_BRANCA, N);
                 var resultSet = statement.executeQuery();
             ) {
                 while (resultSet.next()) { 
-                    String branca = resultSet.getString("M.NomeBranca");
-                    String dataOra =resultSet.getString(" M.`Data`");
-                    String descrizione = resultSet.getString("M.Descrizione");
-                    Optional<String> dataFine = Optional.of(resultSet.getString("M.DataFine"));
-                    Optional<String> materiale = Optional.of(resultSet.getString("M.Materiale"));
-                    Optional<Integer> quota = Optional.of(resultSet.getInt("M.Quota"));
-                    Optional<String> luogo = Optional.of(resultSet.getString("M.Luogo"));
-                    Optional<Integer> Numero_Stelle = Optional.of(resultSet.getInt("M.Numero_Stelle"));
-                    Optional<String> Recensione = Optional.of(resultSet.getString("M.Recensione"));
-                    Top3.add(new Partecipazione(branca, dataOra, descrizione, dataFine, materiale, quota, luogo, Recensione, Numero_Stelle));
+                    String branca = resultSet.getString("Att.NomeBranca");
+                    String dataOra =resultSet.getString(" Att.`Data`");
+                    String descrizione = resultSet.getString("Att.Descrizione");
+                    Optional<String> dataFine = Optional.of(resultSet.getString("Att.DataFine"));
+                    Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
+                    Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
+                    Optional<String> luogo = Optional.of(resultSet.getString("Att.Luogo"));
+                    Optional<Integer> Numero_Stelle = Optional.of(resultSet.getInt("Numero_Stelle"));
                     
+                    Top3.add(new Attivita(branca, dataOra, descrizione, dataFine,luogo, materiale, quota, Numero_Stelle));
                 }
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
@@ -594,6 +593,17 @@ public class Associato {
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
             }
+        }
+        public static float getFinanza(Connection connection, String Branca) {
+            try (
+                var statement = DAOUtils.prepare(connection, Queries.SALDO_BRANCA, Branca);
+                var resultSet = statement.executeQuery();
+            ) {
+                return resultSet.getFloat("FondoCassa");
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            
         }
     }
 

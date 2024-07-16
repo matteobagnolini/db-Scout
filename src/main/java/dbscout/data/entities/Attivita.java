@@ -9,7 +9,8 @@ public record Attivita(
     Optional<String> dataFine, 
     Optional<String> luogo,
     Optional<String> materiale, 
-    Optional<Integer> quota) { 
+    Optional<Integer> quota,
+    Optional<Integer> Voto) { 
 
     // Getter personalizzato per 'branca'
     public String getBranca(){
@@ -42,6 +43,9 @@ public record Attivita(
     // Getter per 'quota'
     public Optional<Integer> getQuota() {
         return this.quota;
+    }
+    public Optional<Integer> getVoto() {
+        return this.Voto;
     }
 }
 

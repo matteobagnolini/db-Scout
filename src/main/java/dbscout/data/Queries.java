@@ -175,7 +175,7 @@ public class Queries {
 		group by P.`Data`) AS RankUscite 
     
     )
-    SELECT M.NomeBranca, M.`Data`, M.Descrizione, M.DataFine, M.Luogo, M.Materiale, M.Quota, M.Recensione, M.Numero_Stelle
+    SELECT M.NomeBranca, M.`Data`, M.Descrizione, M.DataFine, M.Luogo, M.Materiale, M.Quota, M.Numero_Stelle
     FROM MiglioriUscite M
     WHERE NumeroRighe <= 3
     ORDER BY NomeBranca, Numero_Stelle DESC, Data;
@@ -187,7 +187,7 @@ public class Queries {
     """
         select Att.*, round(avg(P.Numero_Stelle), 1)  AS Numero_Stelle
 		from attivita Att, partecipazione P
-		where P.NomeBranca = Att.NomeBranca and Att.`Data` = P.`Data` and P.NomeBranca = ? and P.Descrizione is not null 
+		where P.NomeBranca = ? and P.NomeBranca = Att.NomeBranca and Att.`Data` = P.`Data` and P.Descrizione is not null 
 		group by P.`Data`
         order by Numero_Stelle desc,
 		P.`Data` desc

@@ -6,7 +6,6 @@ import java.util.Optional;
 import dbscout.data.entities.Associato;
 import dbscout.data.entities.Attivita;
 import dbscout.data.entities.Autofinanziamento;
-import dbscout.data.entities.Partecipazione;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -90,7 +89,7 @@ public class CoCaController implements FXController {
 
     @FXML
     void showAttClan(ActionEvent event) {
-        List<Partecipazione> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Clan");
+        List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Clan");
         boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
         boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
         boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
@@ -98,7 +97,7 @@ public class CoCaController implements FXController {
 
     @FXML
     void showAttLupetti(ActionEvent event) {
-        List<Partecipazione> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Lupetti");
+        List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Lupetti");
         boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
         boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
         boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
@@ -106,7 +105,7 @@ public class CoCaController implements FXController {
 
     @FXML
     void showAttNoviziato(ActionEvent event) {
-        List<Partecipazione> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Noviziato");
+        List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Noviziato");
         boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
         boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
         boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
@@ -114,7 +113,7 @@ public class CoCaController implements FXController {
 
     @FXML
     void showAttReparto(ActionEvent event) {
-        List<Partecipazione> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Reparto");
+        List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Reparto");
         boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
         boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
         boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
@@ -274,7 +273,8 @@ public class CoCaController implements FXController {
         // Add event handler to the button
         addButton.setOnAction(e -> {
             Attivita att = new Attivita(brancaInput.getText(), dataInput.getText(), descrizioneInput.getText(),
-            Optional.of(dataFineInput.getText()),Optional.of(materialeInput.getText()), Optional.of(Integer.parseInt(quotaInput.getText())));
+            Optional.of(dataFineInput.getText()),Optional.of(luogoInput.getText()),
+            Optional.of(materialeInput.getText()), Optional.of(Integer.parseInt(quotaInput.getText())), Optional.empty());
             Associato.DAO.addAttivita(controller.getConnection(), att);
             window.close();
         });
@@ -301,25 +301,30 @@ public class CoCaController implements FXController {
         grid.setHgap(10);
 
         // Labels and TextFields
+        Label BrancaLabel = new Label("Branca:");
+        GridPane.setConstraints(BrancaLabel, 0, 0);
+        TextField BrancaInput = new TextField();
+        GridPane.setConstraints(BrancaInput, 1, 0);
+
         Label dataLabel = new Label("Data:");
-        GridPane.setConstraints(dataLabel, 0, 0);
+        GridPane.setConstraints(dataLabel, 0, 1);
         TextField dataInput = new TextField();
-        GridPane.setConstraints(dataInput, 1, 0);
+        GridPane.setConstraints(dataInput, 1, 1);
 
         Label luogoLabel = new Label("Luogo:");
-        GridPane.setConstraints(luogoLabel, 0, 1);
+        GridPane.setConstraints(luogoLabel, 0, 2);
         TextField luogoInput = new TextField();
-        GridPane.setConstraints(luogoInput, 1, 1);
+        GridPane.setConstraints(luogoInput, 1, 2);
 
         Label guadagnoStimatoLabel = new Label("Guadagno Stimato:");
-        GridPane.setConstraints(guadagnoStimatoLabel, 0, 2);
+        GridPane.setConstraints(guadagnoStimatoLabel, 0, 3);
         TextField guadagnoStimatoInput = new TextField();
-        GridPane.setConstraints(guadagnoStimatoInput, 1, 2);
+        GridPane.setConstraints(guadagnoStimatoInput, 1, 3);
 
         Label tipoLabel = new Label("Tipo:");
-        GridPane.setConstraints(tipoLabel, 0, 3);
+        GridPane.setConstraints(tipoLabel, 0, 4);
         TextField tipoInput = new TextField();
-        GridPane.setConstraints(tipoInput, 1, 3);
+        GridPane.setConstraints(tipoInput, 1, 4);
 
         // Button to submit the data
         Button addButton = new Button("Aggiungi");
@@ -327,14 +332,14 @@ public class CoCaController implements FXController {
 
         // Add event handler to the button
         addButton.setOnAction(e -> {
-            Autofinanziamento autofin = new Autofinanziamento(dataInput.getText(), luogoInput.getText(),
+            Autofinanziamento autofin = new Autofinanziamento(BrancaInput.getText(), dataInput.getText(), luogoInput.getText(),
             tipoInput.getText(), Integer.parseInt(guadagnoStimatoInput.getText()));
             Associato.DAO.addAutofinanziamento(controller.getConnection(), autofin);
             window.close();
         });
 
         grid.getChildren().addAll(
-            dataLabel, dataInput, luogoLabel, luogoInput,
+            BrancaLabel, BrancaInput, dataLabel, dataInput, luogoLabel, luogoInput,
             guadagnoStimatoLabel, guadagnoStimatoInput, tipoLabel, tipoInput, addButton
         );
 
