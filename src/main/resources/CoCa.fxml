@@ -13,7 +13,7 @@
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="attivita" layoutX="31.0" layoutY="82.0" onMouseClicked="#showAttivita" text="Top 3 Attività:">
+      <Label fx:id="attivita" layoutX="31.0" layoutY="82.0" text="Top 3 Attività:">
          <font>
             <Font size="20.0" />
          </font>

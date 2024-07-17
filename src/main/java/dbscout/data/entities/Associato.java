@@ -6,12 +6,9 @@ import java.util.List;
 
 import java.util.Optional;
 
-import javax.annotation.concurrent.GuardedBy;
-
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
 import dbscout.data.Queries;
-import javafx.scene.input.SwipeEvent;
 
 public class Associato {
     private int codAssociato;
@@ -440,7 +437,7 @@ public class Associato {
             ) {
                 while (resultSet.next()) { 
                     String branca = resultSet.getString("Att.NomeBranca");
-                    String dataOra =resultSet.getString(" Att.`Data`");
+                    String dataOra =resultSet.getString(" Att.Data");
                     String descrizione = resultSet.getString("Att.Descrizione");
                     Optional<String> dataFine = Optional.of(resultSet.getString("Att.DataFine"));
                     Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
@@ -599,7 +596,10 @@ public class Associato {
                 var statement = DAOUtils.prepare(connection, Queries.SALDO_BRANCA, Branca);
                 var resultSet = statement.executeQuery();
             ) {
-                return resultSet.getFloat("FondoCassa");
+                while (resultSet.next()) {
+                    return resultSet.getFloat("FondoCassa");
+                }
+                return -1.f;
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
             }
