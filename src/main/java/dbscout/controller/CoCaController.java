@@ -90,33 +90,33 @@ public class CoCaController implements FXController {
     @FXML
     void showAttClan(ActionEvent event) {
         List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Clan");
-        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
-        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
-        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
+        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra() + "\nNumero Stelle: (" + attivitas.get(0).Voto().get()+")");
+        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra() + "\nNumero Stelle: (" + attivitas.get(1).Voto().get()+")");
+        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra() + "\nNumero Stelle: (" + attivitas.get(2).Voto().get()+")");
     }
 
     @FXML
     void showAttLupetti(ActionEvent event) {
         List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Lupetti");
-        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
-        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
-        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
+        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra() + "\nNumero Stelle: (" + attivitas.get(0).Voto().get()+")");
+        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra() + "\nNumero Stelle: (" + attivitas.get(1).Voto().get()+")");
+        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra() + "\nNumero Stelle: (" + attivitas.get(2).Voto().get()+")");
     }
 
     @FXML
     void showAttNoviziato(ActionEvent event) {
         List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Noviziato");
-        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
-        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
-        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
+        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra() + "\nNumero Stelle: (" + attivitas.get(0).Voto().get()+")");
+        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra() + "\nNumero Stelle: (" + attivitas.get(1).Voto().get()+")");
+        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra() + "\nNumero Stelle: (" + attivitas.get(2).Voto().get()+")");
     }
 
     @FXML
     void showAttReparto(ActionEvent event) {
         List<Attivita> attivitas = Associato.DAO.getTop3Attivita(controller.getConnection(), "Reparto");
-        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
-        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
-        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
+        boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra() + "\nNumero Stelle: (" + attivitas.get(0).Voto().get()+")");
+        boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra() + "\nNumero Stelle: (" + attivitas.get(1).Voto().get()+")");
+        boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra() + "\nNumero Stelle: (" + attivitas.get(2).Voto().get()+")");
     }
 
     @FXML

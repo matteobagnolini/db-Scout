@@ -448,8 +448,7 @@ public class Associato {
                     Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
                     Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
                     Optional<String> luogo = Optional.of(resultSet.getString("Att.Luogo"));
-                    Optional<Integer> Numero_Stelle = Optional.of(resultSet.getInt("Numero_Stelle"));
-                    
+                    Optional<Float> Numero_Stelle = Optional.of(resultSet.getFloat("Numero_Stelle"));
                     
                     Top3.add(new Attivita(branca, dataOra, descrizione, dataFine,luogo, materiale, quota, Numero_Stelle));
                 }
