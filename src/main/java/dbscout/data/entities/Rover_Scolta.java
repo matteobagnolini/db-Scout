@@ -5,7 +5,7 @@ public class Rover_Scolta extends Associato {
     private Servizio servizio;
     
     public Rover_Scolta(int codAssociato, String tel, String mail, String nome, String cognome, String cf, int eta,
-            char sesso) {
+            String sesso) {
         super(codAssociato, tel, mail, nome, cognome, cf, eta, sesso);
     }
 

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -179,9 +180,10 @@ public class CoCaController implements FXController {
         GridPane.setConstraints(etaInput, 1, 6);
 
         Label sessoLabel = new Label("Sesso:");
+        ComboBox<String> sessoComboBox = new ComboBox<>();
+        sessoComboBox.getItems().addAll("M", "F");
         GridPane.setConstraints(sessoLabel, 0, 7);
-        TextField sessoInput = new TextField();
-        GridPane.setConstraints(sessoInput, 1, 7);
+        GridPane.setConstraints(sessoComboBox, 1, 7);
 
         Label brancaLabel = new Label("Branca:");
         GridPane.setConstraints(brancaLabel, 0, 8);
@@ -195,7 +197,7 @@ public class CoCaController implements FXController {
         // Add event handler to the button
         addButton.setOnAction(e -> {
             newAssociato =  new Associato(Integer.parseInt(codAssociatoInput.getText()), numeroTelefonoInput.getText(), emailInput.getText(),
-            nomeInput.getText(), cognomeInput.getText(), codiceFiscaleInput.getText(), Integer.parseInt(etaInput.getText()), sessoInput.getText().charAt(0));
+            nomeInput.getText(), cognomeInput.getText(), codiceFiscaleInput.getText(), Integer.parseInt(etaInput.getText()), sessoComboBox.getValue());
             newAssociato.setBranca(brancaInput.getText());
             Associato.DAO.addAssociato(controller.getConnection(), newAssociato);
             window.close();
@@ -204,7 +206,7 @@ public class CoCaController implements FXController {
         grid.getChildren().addAll(
             codAssociatoLabel, codAssociatoInput, nomeLabel, nomeInput, cognomeLabel, cognomeInput,
             codiceFiscaleLabel, codiceFiscaleInput, numeroTelefonoLabel, numeroTelefonoInput,
-            emailLabel, emailInput, etaLabel, etaInput, sessoLabel, sessoInput, brancaLabel, brancaInput,
+            emailLabel, emailInput, etaLabel, etaInput, sessoLabel, sessoComboBox, brancaLabel, brancaInput,
             addButton
         );
 

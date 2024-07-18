@@ -22,11 +22,11 @@ public class Associato {
     private String cognome;
     private String cf;
     private int eta;
-    private char sesso;
+    private String sesso;
     protected String branca;
 
     public Associato(int codAssociato, String tel, String mail, String nome, 
-                     String cognome, String cf, int eta, char sesso) {
+                     String cognome, String cf, int eta, String sesso) {
         this.codAssociato = codAssociato;
         this.tel = tel;
         this.mail = mail;
@@ -93,11 +93,11 @@ public class Associato {
         this.eta = eta;
     }
 
-    public char getSesso() {
+    public String getSesso() {
         return sesso;
     }
 
-    public void setSesso(char sesso) {
+    public void setSesso(String sesso) {
         this.sesso = sesso;
     }
 
@@ -124,7 +124,7 @@ public class Associato {
                 var nome = resultSet.getString("A.Nome");
                 var cognome = resultSet.getString("A.Cognome");
                 var eta = resultSet.getInt("A.Eta");
-                var sesso = resultSet.getString("A.Sesso").charAt(0);
+                var sesso = resultSet.getString("A.Sesso");
                 var tel = resultSet.getString("A.Recapito_tel");
                 var mail = resultSet.getString("A.Mail");
                 var CF = resultSet.getString("A.Codice_fiscale");
@@ -185,7 +185,7 @@ public class Associato {
                 var nome = resultSet.getString("A.Nome");
                 var cognome = resultSet.getString("A.Cognome");
                 var eta = resultSet.getInt("A.Eta");
-                var sesso = resultSet.getString("A.Sesso").charAt(0);
+                var sesso = resultSet.getString("A.Sesso");
                 var tel = resultSet.getString("A.Recapito_tel");
                 var mail = resultSet.getString("A.Mail");
                 var CF = resultSet.getString("A.Codice_fiscale");
