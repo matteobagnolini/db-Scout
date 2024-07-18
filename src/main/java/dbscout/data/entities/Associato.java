@@ -477,8 +477,8 @@ public class Associato {
                     var addLupetto = DAOUtils.prepare(connection,  Queries.ADD_LUPETTO, associato.codAssociato);
                     var addMembriLupetti = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Lupetti");
                         ) {
-                            addLupetto.executeQuery();
-                            addMembriLupetti.executeQuery();
+                            addLupetto.executeUpdate();
+                            addMembriLupetti.executeUpdate();
                     }
                  catch (Exception e) {
                     throw new DAOException(e.getMessage());
@@ -491,8 +491,8 @@ public class Associato {
                     var addRepartaro = DAOUtils.prepare(connection,  Queries.ADD_REPARTARO, associato.codAssociato);
                     var addMembriReparto = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Reparto");
                         ) {
-                            addRepartaro.executeQuery();
-                            addMembriReparto.executeQuery();
+                            addRepartaro.executeUpdate();
+                            addMembriReparto.executeUpdate();
                     }
                  catch (Exception e) {
                     throw new DAOException(e.getMessage());
@@ -503,7 +503,7 @@ public class Associato {
                                 var addNovizio = DAOUtils.prepare(connection,  Queries.ADD_NOVIZIO, associato.codAssociato);
                                 var addMembriNovizio  = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Noviziato");
                                     ) {
-                                        addNovizio.executeQuery();
+                                        addNovizio.executeUpdate();
                                         addMembriNovizio.executeQuery();
                                 }
                              catch (Exception e) {
@@ -515,7 +515,7 @@ public class Associato {
                                 var addClan = DAOUtils.prepare(connection,  Queries.ADD_ROVER_SCOLTA, associato.codAssociato);
                                 var addMembriClan  = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Clan");
                                     ) {
-                                        addClan.executeQuery();
+                                        addClan.executeUpdate();
                                         addMembriClan.executeQuery();
                                 }
                             catch (Exception e) {
@@ -527,8 +527,8 @@ public class Associato {
                                 var add = DAOUtils.prepare(connection,  Queries.ADD_CAPO, associato.codAssociato, "Nessuna");
                                 var addMembri  = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "CoCa");
                                     ) {
-                                        add.executeQuery();
-                                        addMembri.executeQuery();
+                                        add.executeUpdate();
+                                        addMembri.executeUpdate();
                                 }
                             catch (Exception e) {
                                 throw new DAOException(e.getMessage());
