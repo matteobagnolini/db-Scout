@@ -278,7 +278,7 @@ public class Queries {
 //attività
 public static final String ADD_ATTIVITA =
     """
-    insert into attività(NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota)
+    insert into attivita(NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota)
     value(?, ?, ?, ?, ?, ?, ?, ?)
     """;
 
@@ -286,7 +286,7 @@ public static final String ADD_ATTIVITA =
 //uscita 
 public static final String ADD_USCITA =
     """
-    insert into attività(NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota)
+    insert into attivita(NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota)
     value(?, ?, ?, ?, ?, ?, ?, ?, ?)
     """;
 public static final String UPDATE_BRANCA_SPESE =

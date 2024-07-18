@@ -568,10 +568,12 @@ public class Associato {
             Optional<String> luogo = attivita.luogo();
             Optional<String> materiale = attivita.materiale();
             Optional<Integer> quota = attivita.quota();
+    
             try(
                 //NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota
                 var addAttivita = DAOUtils.prepare(connection, Queries.ADD_ATTIVITA, 
-                    branca, stringToSqlDate(dataOra) , stringToSqlDate(dataOra), descrizione, dataFine, luogo, materiale, quota)) {
+                    branca, stringToSqlDate(dataOra) , stringToSqlDate(dataOra), descrizione, stringToSqlDate(dataFine.orElse(dataOra)), 
+                    luogo.orElse("-"), materiale.orElse("-"), quota.orElse(0))) {
                 addAttivita.executeUpdate();
                 
             } catch (Exception e) {
@@ -581,9 +583,9 @@ public class Associato {
                 try(
                     //NomeBranca,Data,Luogo,Guadagno,Tipo
                     var updateSaldo = DAOUtils.prepare(connection, Queries.UPDATE_NEGATIVE_BRANCA_FONDOCASSA, 
-                        quota, branca)
+                        quota.get(), branca)
                         ) {
-                    updateSaldo.executeQuery();
+                    updateSaldo.executeUpdate();
                     
                 } catch (Exception e) {
                     throw new DAOException(e.getMessage());
