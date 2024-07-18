@@ -96,14 +96,25 @@ public class RepartoController implements FXController {
     @FXML
     void showMembriSq(MouseEvent event) {
         var membri = Squadriglia.DAO.membri(controller.getConnection(), sq.getNome());
-        for (Repartaro membro : membri) {
-            boxMembriSq.setText(boxMembriSq.getText() + "\n" + membro.getNome() + " " + membro.getCognome());
+        if (!membri.isEmpty()) {
+            for (Repartaro membro : membri) {
+                boxMembriSq.setText(boxMembriSq.getText() + "\n" + membro.getNome() + " " + membro.getCognome());
+    
+            }
+        } else {
+            boxMembriSq.setText("Nessuna squadriglia trovata..\nChiedi ai tuoi capi di farti aggiungere..");
         }
+    
     }
 
     @FXML
     void showServizi(MouseEvent event) {
-        boxServizi.setText(sq.getServizi().get(0).data() + " " + sq.getServizi().get(0).nome() + "\n" + sq.getServizi().get(0).descrizione());
+        if (!sq.getServizi().isEmpty()) {
+            boxServizi.setText(sq.getServizi().get(0).data() + " " + sq.getServizi().get(0).nome() + "\n" + sq.getServizi().get(0).descrizione());
+
+        } else {
+            boxServizi.setText("Nessun servizio trovato...");
+        }
     }
 
     @Override

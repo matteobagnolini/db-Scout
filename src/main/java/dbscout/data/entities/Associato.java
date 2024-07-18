@@ -608,7 +608,7 @@ public class Associato {
                 guadagno, Branca)
                     ) {
                 addAutofinanziamento.executeUpdate();
-                updateSaldo.executeQuery();
+                updateSaldo.executeUpdate();
                 
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
