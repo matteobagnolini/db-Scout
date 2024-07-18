@@ -217,7 +217,7 @@ public class CoCaController implements FXController {
     private void windowAddAttivita() {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Aggiungi Nuova Entità");
+        window.setTitle("Aggiungi Nuova Attività");
         window.setMinWidth(400);
 
         GridPane grid = new GridPane();
@@ -292,7 +292,7 @@ public class CoCaController implements FXController {
     private void windowAddAutofinanziamento() {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Aggiungi Nuova Entità");
+        window.setTitle("Aggiungi Nuov0 Autofinanziamento");
         window.setMinWidth(400);
 
         GridPane grid = new GridPane();
@@ -328,7 +328,7 @@ public class CoCaController implements FXController {
 
         // Button to submit the data
         Button addButton = new Button("Aggiungi");
-        GridPane.setConstraints(addButton, 1, 4);
+        GridPane.setConstraints(addButton, 1, 5);
 
         // Add event handler to the button
         addButton.setOnAction(e -> {
