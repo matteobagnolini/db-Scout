@@ -434,15 +434,15 @@ public class Associato {
             
                 
         }
-		public static List<Attivita> getTop3Attivita(Connection connection, String N) {
+		public static List<Attivita> getTop3Attivita(Connection connection, String NomeBranca) {
             List<Attivita> Top3 = new ArrayList<>();
             try (
-                var statement = DAOUtils.prepare(connection, Queries.BEST_3_USCITE_BRANCA, N);
+                var statement = DAOUtils.prepare(connection, Queries.BEST_3_USCITE_BRANCA, NomeBranca);
                 var resultSet = statement.executeQuery();
             ) {
                 while (resultSet.next()) { 
                     String branca = resultSet.getString("Att.NomeBranca");
-                    String dataOra =  resultSet.getString(" Att.Data");
+                    String dataOra =  resultSet.getString("Att.data");
                     String descrizione = resultSet.getString("Att.Descrizione");
                     Optional<String> dataFine = Optional.of(resultSet.getString("Att.DataFine"));
                     Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
