@@ -43,7 +43,7 @@ public class Squadriglia {
                     var nome = resultSet.getString("A.Nome");
                     var cognome = resultSet.getString("A.Cognome");
                     var eta = resultSet.getInt("A.Eta");
-                    var sesso = resultSet.getString("A.Sesso").charAt(0);
+                    var sesso = resultSet.getString("A.Sesso");
 
                     
                     // here create a new associato;
