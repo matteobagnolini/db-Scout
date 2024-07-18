@@ -374,7 +374,7 @@ public class Associato {
                 String recensione, int voto) {
             try {
                 var statement = DAOUtils.prepare(connection, Queries.ADD_RECENSIONE, recensione, voto, associato.getCodAssociato(), attivita.getBranca());
-                statement.executeQuery();
+                statement.executeUpdate();
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
             }
