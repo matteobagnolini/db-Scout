@@ -119,7 +119,8 @@ private void showRecensioneWindow(int num) {
             System.out.println("Recensione: " + recensione);
             System.out.println("Voto: " + voto);
 
-            Associato.DAO.putRecensione(controller.getConnection(), controller.getModel().getAttivita().get(num-1), controller.getModel().getAssociato(), recensione, voto);
+            Associato.DAO.putRecensione(controller.getConnection(), controller.getModel().getAttivita().get(num-1),
+                         controller.getModel().getAssociato(), recensione, voto);
             System.out.println("Recensione inviata correttamente.");
         });
 

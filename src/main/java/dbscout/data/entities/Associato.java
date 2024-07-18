@@ -3,8 +3,12 @@ package dbscout.data.entities;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.text.SimpleDateFormat;
 import java.util.Optional;
+
+import java.text.ParseException;
+import java.sql.Date;
+
 
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
@@ -126,6 +130,7 @@ public class Associato {
                 var CF = resultSet.getString("A.Codice_fiscale");
                 var branca = resultSet.getString("A.NomeBranca");
                 var ass = new Associato(codAssociato, tel, mail, nome, cognome, CF, eta, sesso);
+            
                 ass.setBranca(branca);
                 return ass;
             } catch (Exception e) {
@@ -437,13 +442,14 @@ public class Associato {
             ) {
                 while (resultSet.next()) { 
                     String branca = resultSet.getString("Att.NomeBranca");
-                    String dataOra =resultSet.getString(" Att.Data");
+                    String dataOra =  resultSet.getString(" Att.Data");
                     String descrizione = resultSet.getString("Att.Descrizione");
                     Optional<String> dataFine = Optional.of(resultSet.getString("Att.DataFine"));
                     Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
                     Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
                     Optional<String> luogo = Optional.of(resultSet.getString("Att.Luogo"));
                     Optional<Integer> Numero_Stelle = Optional.of(resultSet.getInt("Numero_Stelle"));
+                    
                     
                     Top3.add(new Attivita(branca, dataOra, descrizione, dataFine,luogo, materiale, quota, Numero_Stelle));
                 }
@@ -541,6 +547,19 @@ public class Associato {
             }
 
         }
+        public static Date stringToSqlDate(String dateString) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                // Convertire la stringa in oggetto java.util.Date
+                java.util.Date utilDate = dateFormat.parse(dateString);
+    
+                // Convertire java.util.Date in java.sql.Date e restituirlo
+                return new java.sql.Date(utilDate.getTime());
+            } catch (ParseException e) {
+                System.out.println("Errore di parsing della data: " + e.getMessage());
+                return null;
+            }
+            }
         public static void addAttivita(Connection connection, Attivita attivita) {
             String branca = attivita.branca(); 
             String dataOra = attivita.dataOra();
@@ -552,7 +571,7 @@ public class Associato {
             try(
                 //NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota
                 var addAttivita = DAOUtils.prepare(connection, Queries.ADD_ATTIVITA, 
-                    branca, dataOra, dataOra, descrizione, dataFine, luogo, materiale, quota)) {
+                    branca, stringToSqlDate(dataOra) , stringToSqlDate(dataOra), descrizione, dataFine, luogo, materiale, quota)) {
                 addAttivita.executeUpdate();
                 
             } catch (Exception e) {
@@ -571,6 +590,7 @@ public class Associato {
                 }
             }
         }
+
         public static void addAutofinanziamento(Connection connection, Autofinanziamento Autofin) {
             String Branca = Autofin.getBranca();
             String data = Autofin.getData();
@@ -579,8 +599,9 @@ public class Associato {
             String tipo = Autofin.getTipo();
             try(
                 //NomeBranca,Data,Luogo,Guadagno,Tipo
+
                 var addAutofinanziamento = DAOUtils.prepare(connection, Queries.ADD_AUTOFINANZIAMENTO, 
-                    Branca, data, luogo, guadagno, tipo);
+                    Branca, stringToSqlDate(data), luogo, guadagno, tipo);
                 var updateSaldo = DAOUtils.prepare(connection, Queries.UPDATE_BRANCA_FONDOCASSA, 
                 guadagno, Branca)
                     ) {
