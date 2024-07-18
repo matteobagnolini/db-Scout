@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import java.text.ParseException;
 import java.sql.Date;
-
+import java.sql.Time;
 
 import dbscout.data.DAOException;
 import dbscout.data.DAOUtils;
@@ -559,6 +559,20 @@ public class Associato {
                 return null;
             }
             }
+            public static Time stringToSqlTime(String timeString) {
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                try {
+                    // Convertire la stringa in oggetto java.util.Date
+                    java.util.Date utilDate = timeFormat.parse(timeString);
+        
+                    // Convertire java.util.Date in java.sql.Time e restituirlo
+                    return new java.sql.Time(utilDate.getTime());
+                } catch (ParseException e) {
+                    System.out.println("Errore di parsing dell'ora: " + e.getMessage());
+                    return null;
+                }
+            }
+        
         public static void addAttivita(Connection connection, Attivita attivita) {
             String branca = attivita.branca(); 
             String dataOra = attivita.dataOra();
@@ -571,7 +585,7 @@ public class Associato {
             try(
                 //NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota
                 var addAttivita = DAOUtils.prepare(connection, Queries.ADD_ATTIVITA, 
-                    branca, stringToSqlDate(dataOra) , stringToSqlDate(dataOra), descrizione, stringToSqlDate(dataFine.orElse(dataOra)), 
+                    branca, stringToSqlDate(dataOra) , stringToSqlTime(dataOra), descrizione, stringToSqlDate(dataFine.orElse(dataOra)), 
                     luogo.orElse("-"), materiale.orElse("-"), quota.orElse(0))) {
                 addAttivita.executeUpdate();
                 

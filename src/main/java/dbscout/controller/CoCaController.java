@@ -134,7 +134,7 @@ public class CoCaController implements FXController {
     private void windowAddAssociato() {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Aggiungi Nuova Entità");
+        window.setTitle("Aggiungi Nuovo Associato");
         window.setMinWidth(400);
 
         GridPane grid = new GridPane();
@@ -173,7 +173,7 @@ public class CoCaController implements FXController {
         TextField emailInput = new TextField();
         GridPane.setConstraints(emailInput, 1, 5);
 
-        Label etaLabel = new Label("Età:");
+        Label etaLabel = new Label("Eta':");
         GridPane.setConstraints(etaLabel, 0, 6);
         TextField etaInput = new TextField();
         GridPane.setConstraints(etaInput, 1, 6);
@@ -229,16 +229,19 @@ public class CoCaController implements FXController {
         Label dataLabel = new Label("Data:");
         GridPane.setConstraints(dataLabel, 0, 0);
         TextField dataInput = new TextField();
+        dataInput.setPromptText("yyyy-mm-dd");
         GridPane.setConstraints(dataInput, 1, 0);
 
         Label dataFineLabel = new Label("Data Fine:");
         GridPane.setConstraints(dataFineLabel, 0, 1);
         TextField dataFineInput = new TextField();
+        dataFineInput.setPromptText("yyyy-mm-dd");
         GridPane.setConstraints(dataFineInput, 1, 1);
 
         Label oraLabel = new Label("Ora:");
         GridPane.setConstraints(oraLabel, 0, 2);
         TextField oraInput = new TextField();
+        oraInput.setPromptText("oo-mm");
         GridPane.setConstraints(oraInput, 1, 2);
 
         Label descrizioneLabel = new Label("Descrizione:");
@@ -292,7 +295,7 @@ public class CoCaController implements FXController {
     private void windowAddAutofinanziamento() {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Aggiungi Nuova Entità");
+        window.setTitle("Aggiungi Nuovo AutoFinanziamento");
         window.setMinWidth(400);
 
         GridPane grid = new GridPane();
@@ -309,6 +312,7 @@ public class CoCaController implements FXController {
         Label dataLabel = new Label("Data:");
         GridPane.setConstraints(dataLabel, 0, 1);
         TextField dataInput = new TextField();
+        dataInput.setPromptText("yyyy-mm-dd");
         GridPane.setConstraints(dataInput, 1, 1);
 
         Label luogoLabel = new Label("Luogo:");
