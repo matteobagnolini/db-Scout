@@ -187,8 +187,9 @@ public class CoCaController implements FXController {
 
         Label brancaLabel = new Label("Branca:");
         GridPane.setConstraints(brancaLabel, 0, 8);
-        TextField brancaInput = new TextField();
-        GridPane.setConstraints(brancaInput, 1, 8);
+        ComboBox<String> BrancaComboBox = new ComboBox<>();
+        BrancaComboBox.getItems().addAll("Lupetti", "Reparto","Noviziato", "Clan", "CoCa");
+        GridPane.setConstraints(BrancaComboBox, 1, 8);
 
         // Button to submit the data
         Button addButton = new Button("Aggiungi");
@@ -198,7 +199,7 @@ public class CoCaController implements FXController {
         addButton.setOnAction(e -> {
             newAssociato =  new Associato(Integer.parseInt(codAssociatoInput.getText()), numeroTelefonoInput.getText(), emailInput.getText(),
             nomeInput.getText(), cognomeInput.getText(), codiceFiscaleInput.getText(), Integer.parseInt(etaInput.getText()), sessoComboBox.getValue());
-            newAssociato.setBranca(brancaInput.getText());
+            newAssociato.setBranca(BrancaComboBox.getValue());
             Associato.DAO.addAssociato(controller.getConnection(), newAssociato);
             window.close();
         });
@@ -206,7 +207,7 @@ public class CoCaController implements FXController {
         grid.getChildren().addAll(
             codAssociatoLabel, codAssociatoInput, nomeLabel, nomeInput, cognomeLabel, cognomeInput,
             codiceFiscaleLabel, codiceFiscaleInput, numeroTelefonoLabel, numeroTelefonoInput,
-            emailLabel, emailInput, etaLabel, etaInput, sessoLabel, sessoComboBox, brancaLabel, brancaInput,
+            emailLabel, emailInput, etaLabel, etaInput, sessoLabel, sessoComboBox, brancaLabel, BrancaComboBox,
             addButton
         );
 
