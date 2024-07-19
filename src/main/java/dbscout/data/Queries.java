@@ -206,9 +206,9 @@ public class Queries {
     //query singola
     public static final String SERVIZIO_CLAN = 
     """
-    select S.*
-    from servizio S, Associato Clan, Associato Capo
-    where Clan.CodAssociato = S.AssociatoClan and Capo.CodAssociato = S.Capo_Referente and Clan.CodAssociato = ?
+    SELECT *
+    FROM servizio
+    WHERE Associato_clan = ?
     """;
 
 
