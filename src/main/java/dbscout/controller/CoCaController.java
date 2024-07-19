@@ -72,7 +72,12 @@ public class CoCaController implements FXController {
 
     @FXML
     private Button buttonReparto;
-
+    @FXML
+    private Button BackButton;
+    @FXML
+    void backToLogin(MouseEvent event) {
+        controller.changeScene("Login.fxml");
+    }
     @FXML
     void addAssociato(ActionEvent event) {
         windowAddAssociato();

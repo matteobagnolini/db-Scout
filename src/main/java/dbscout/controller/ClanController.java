@@ -92,11 +92,19 @@ public class ClanController implements FXController {
             boxCapi.setText(boxCapi.getText() + "\n" + capo.getNome() + " " + capo.getCognome());
         }
     }
-
+    
+    @FXML
+    private Label errorServizio;
     @FXML
     void showServizio(MouseEvent event) {
-        Servizio serv = Associato.DAO.getServizio(controller.getConnection(), controller.getModel().getAssociato().getCodAssociato());
-        boxServizio.setText(serv.getNome() + " " + serv.getDataInizio() + " - " + serv.getDataFine()+"\n" + serv.getDescrizione() + "\n" + "Referente: " + serv.getCapoReferente().getCognome());
+        if(Associato.DAO.checkServizio(controller.getConnection(), controller.getModel().getAssociato().getCodAssociato())){
+            Servizio serv = Associato.DAO.getServizio(controller.getConnection(), controller.getModel().getAssociato().getCodAssociato());
+            boxServizio.setText(serv.getNome() + " " + serv.getDataInizio() + " - " + serv.getDataFine()+"\n" + serv.getDescrizione() + "\n" + "Referente: " + serv.getCapoReferente().getCognome());
+            errorServizio.setVisible(false);
+        }
+        else {
+            errorServizio.setVisible(true);
+        }
     }
 
 private void showRecensioneWindow(int num) {

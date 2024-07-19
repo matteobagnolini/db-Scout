@@ -20,12 +20,12 @@
       <Label fx:id="boxAtt1" layoutX="31.0" layoutY="183.0" prefHeight="56.0" prefWidth="178.0" />
       <Label fx:id="boxAtt2" layoutX="31.0" layoutY="251.0" prefHeight="56.0" prefWidth="178.0" />
       <Label fx:id="boxAtt3" layoutX="31.0" layoutY="320.0" prefHeight="56.0" prefWidth="178.0" />
-      <Label fx:id="finanza" layoutX="344.0" layoutY="34.0" onMouseClicked="#showFinanza" prefHeight="30.0" prefWidth="243.0" text="Situazione finanziaria branche">
+      <Label fx:id="finanza" layoutX="344.0" layoutY="51.0" onMouseClicked="#showFinanza" prefHeight="30.0" prefWidth="243.0" text="Situazione finanziaria branche">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="boxFinanza" layoutX="344.0" layoutY="74.0" prefHeight="102.0" prefWidth="211.0" />
+      <Label fx:id="boxFinanza" layoutX="344.0" layoutY="99.0" prefHeight="102.0" prefWidth="211.0" />
       <Button fx:id="buttonAddAssociato" layoutX="344.0" layoutY="211.0" mnemonicParsing="false" onAction="#addAssociato" prefHeight="28.0" prefWidth="211.0" text="Aggiungi Associato" />
       <Button fx:id="buttonAddAttivita" layoutX="344.0" layoutY="279.0" mnemonicParsing="false" onAction="#addAttivita" prefHeight="25.0" prefWidth="211.0" text="Aggiungi Attività" />
       <Button fx:id="buttonAddAutofinanziamento" layoutX="344.0" layoutY="342.0" mnemonicParsing="false" onAction="#addAutofinanziamento" prefHeight="25.0" prefWidth="211.0" text="Aggiungi Autofinanziamento" />
@@ -33,5 +33,6 @@
       <Button fx:id="buttonReparto" layoutX="64.0" layoutY="125.0" mnemonicParsing="false" onAction="#showAttReparto" text="Reparto" />
       <Button fx:id="buttonNoviziato" layoutX="133.0" layoutY="125.0" mnemonicParsing="false" onAction="#showAttNoviziato" text="Noviziato" />
       <Button fx:id="buttonClan" layoutX="209.0" layoutY="125.0" mnemonicParsing="false" onAction="#showAttClan" text="Clan" />
+      <Button fx:id="BackButton" layoutX="499.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#backToLogin" text="Back to Login" />
    </children>
 </AnchorPane>
