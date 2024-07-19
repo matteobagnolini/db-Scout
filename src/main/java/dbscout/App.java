@@ -1,7 +1,8 @@
 package dbscout;
 
 import dbscout.controller.Controller;
-import dbscout.controller.Login;
+import dbscout.controller.LoginController;
+import dbscout.controller.LoginController;
 import dbscout.data.DAOUtils;
 
 import java.sql.Connection;
@@ -23,7 +24,7 @@ public class App extends Application{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         Parent root = loader.load();
-        Login loginController = loader.getController();
+        LoginController loginController = loader.getController();
         primaryStage.setTitle("DBSCOUT");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

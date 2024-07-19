@@ -408,7 +408,8 @@ public class Associato {
                 var statement = DAOUtils.prepare(connection, Queries.SERVIZIO_CLAN, ass.codAssociato);
                 var resultSet = statement.executeQuery();
             ) {
-                if (resultSet.first()) {                    
+                while (resultSet.next()) {
+                    System.out.println("DEntro while del result set");                  
                     var Nome = resultSet.getString("S.Nome");
                     var DataInizio = resultSet.getString("S.DataInizio");
                     
@@ -426,8 +427,7 @@ public class Associato {
                     return new Servizio(Nome, DataInizio, DataFine, Descrizione, Tipologia, Capo_Referente, Optional.of(Branca), 
                     Optional.of(Luogo),  Optional.of(NomeEnte),  Optional.of(Cognome),  Optional.of(Resoconto));
                 }
-                else
-                    return null;
+                return null;
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
             }
