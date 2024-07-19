@@ -28,7 +28,8 @@ public class ClanController implements FXController {
         this.controller = controller;
         nomeAssociato.setText(controller.getModel().getAssociato().getNome() + " " + controller.getModel().getAssociato().getCognome());
     }
-
+    @FXML
+    private Button BackButton;
     @FXML
     private Label attivita;
 
@@ -56,6 +57,10 @@ public class ClanController implements FXController {
     @FXML
     private Label nomeAssociato;
 
+    @FXML
+    void backToLogin(MouseEvent event) {
+        controller.changeScene("Login.fxml");
+    }
     @FXML
     void addRecensioneAtt1(MouseEvent event) {
         showRecensioneWindow(1);
