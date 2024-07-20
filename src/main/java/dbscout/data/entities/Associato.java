@@ -402,37 +402,42 @@ public class Associato {
         }
         public static Servizio getServizio(Connection connection, int codAssociato) {
             Associato ass = getAssociatoFromId(connection, codAssociato);
-            if(!checkRightBranca(connection, ass.codAssociato, "Clan"))
-            return null;
             try (
                 var statement = DAOUtils.prepare(connection, Queries.SERVIZIO_CLAN, ass.codAssociato);
                 var resultSet = statement.executeQuery();
             ) {
                 while (resultSet.next()) {
                     System.out.println("DEntro while del result set");                  
-                    var Nome = resultSet.getString("S.Nome");
-                    var DataInizio = resultSet.getString("S.DataInizio");
-                    
-                    var DataFine = resultSet.getString("S.DataFine");
-                   // var Giorno = resultSet.getString("S.Giorno");
-                   // var Ora = resultSet.getString("S.Ora");
-                    var Descrizione = resultSet.getString("S.Descrizione");
-                    var Branca = resultSet.getString("S.Branca");
-                    var Luogo = resultSet.getString("S.Luogo");
-                    var Tipologia = resultSet.getString("S.Tipologia");
-                    var NomeEnte = resultSet.getString("S.NomeEnte");
-                    var Cognome = resultSet.getString("S.Cognome");
-                    var Resoconto = resultSet.getString("S.Resoconto");
-                    var Capo_Referente =getAssociatoFromId(connection, resultSet.getInt("S.Capo_Referente")) ;
+                    var Nome = resultSet.getString("Nome");
+                    var DataInizio = resultSet.getString("DataInizio");
+                    System.out.println(DataInizio);
+                    var DataFine = resultSet.getString("DataFine");
+                    System.out.println(DataFine);
+                    var Giorno = resultSet.getString("Giorno");
+                    var Ora = resultSet.getString("Ora");
+                    var Descrizione = resultSet.getString("Descrizione");
+                    System.out.println(Descrizione);
+                    var Branca = resultSet.getString("Branca");
+                    System.out.println(Branca);
+                    var Luogo = resultSet.getString("Luogo");
+                    System.out.println(Luogo);
+                    var Tipologia = resultSet.getString("Tipologia");
+                    System.out.println(Tipologia);
+                    var NomeEnte = resultSet.getString("NomeEnte");
+                    System.out.println(NomeEnte);
+                    var Cognome = resultSet.getString("Cognome");
+                    System.out.println(Cognome);
+                    var Resoconto = resultSet.getString("Resoconto");
+                    System.out.println(Resoconto);
+                    var Capo_Referente = getAssociatoFromId(connection, resultSet.getInt("Capo_Referente")) ;
+                    System.out.println(Capo_Referente);
                     return new Servizio(Nome, DataInizio, DataFine, Descrizione, Tipologia, Capo_Referente, Optional.of(Branca), 
                     Optional.of(Luogo),  Optional.of(NomeEnte),  Optional.of(Cognome),  Optional.of(Resoconto));
                 }
-                return null;
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
             }
-            
-                
+            return null;
         }
 		public static List<Attivita> getTop3Attivita(Connection connection, String NomeBranca) {
             List<Attivita> Top3 = new ArrayList<>();

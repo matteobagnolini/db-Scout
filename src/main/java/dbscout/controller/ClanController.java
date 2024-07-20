@@ -96,7 +96,7 @@ public class ClanController implements FXController {
     @FXML
     void showServizio(MouseEvent event) {
         Servizio serv = Associato.DAO.getServizio(controller.getConnection(), controller.getModel().getAssociato().getCodAssociato());
-        boxServizio.setText(serv.getNome() + " " + serv.getDataInizio() + " - " + serv.getDataFine()+"\n" + serv.getDescrizione() + "\n" + "Referente: " + serv.getCapoReferente().getCognome());
+        boxServizio.setText(serv.getNome() + "\n" + serv.getDataInizio() + " - " + serv.getDataFine()+"\n" + serv.getDescrizione() + "\n" + "Referente: " + serv.getCapoReferente().getCognome());
     }
 
 private void showRecensioneWindow(int num) {

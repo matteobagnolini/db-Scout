@@ -647,9 +647,9 @@ INSERT INTO PARTECIPAZIONE (Associato, NomeBranca, `Data`, Descrizione, Numero_S
 (25, 'Clan', '2023-12-15 15:00:00', 'Partecipazione alla giornata di pulizia del parco', 3),
 (26, 'Clan', '2023-11-10 08:00:00', 'Partecipazione all\'escursione in montagna', 4);
 
-INSERT INTO servizio (Nome, DataInizio, Associato_clan, DataFine, Giorno, Ora, Descrizione, Branca, Luogo, Tipologia, NomeEnte, Cognome, Resoconto, Capo_Referente)
+INSERT INTO servizio (Nome, DataInizio, Associato_Clan, DataFine, Giorno, Ora, Descrizione, Branca, Luogo, Tipologia, NomeEnte, Cognome, Resoconto, Capo_Referente)
 VALUES
-('Servizio Lupetti', 2024-9-19, 21, '2024-12-19', 'Mercoledi', '16:00:00', 'Servizio come capo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', null, null, null, 3);
+('Servizio Lupetti', '2024-9-19', 21, '2024-12-19', 'Mercoledi', '16:00:00', 'Servizio come capo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', '', '', '', 3);
 
 /*
 INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
