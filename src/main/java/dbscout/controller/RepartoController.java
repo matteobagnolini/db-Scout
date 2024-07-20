@@ -59,7 +59,12 @@ public class RepartoController implements FXController {
 
     @FXML
     private Label nomeAssociato;
-
+    @FXML
+    private Button BackButton;
+    @FXML
+    void backToLogin(MouseEvent event) {
+        controller.changeScene("Login.fxml");
+    }
     @FXML
     void addRecensioneAtt1(MouseEvent event) {
         showRecensioneWindow(1);

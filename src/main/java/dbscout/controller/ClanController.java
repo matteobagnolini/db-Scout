@@ -92,7 +92,9 @@ public class ClanController implements FXController {
             boxCapi.setText(boxCapi.getText() + "\n" + capo.getNome() + " " + capo.getCognome());
         }
     }
-
+    
+    @FXML
+    private Label errorServizio;
     @FXML
     void showServizio(MouseEvent event) {
         Servizio serv = Associato.DAO.getServizio(controller.getConnection(), controller.getModel().getAssociato().getCodAssociato());

@@ -400,6 +400,21 @@ public class Associato {
             }
             return Noviziato;
         }
+        public static boolean checkServizio(Connection connection, int codAssociato) {
+            Associato ass = getAssociatoFromId(connection, codAssociato);
+            if(!checkRightBranca(connection, ass.codAssociato, "Clan"))
+            return false;
+            try (
+                var statement = DAOUtils.prepare(connection, Queries.SERVIZIO_CLAN, ass.codAssociato);
+                var resultSet = statement.executeQuery();
+            ) {
+                return resultSet.first();
+            } catch (Exception e) {
+                throw new DAOException(e.getMessage());
+            }
+            
+                
+        }
         public static Servizio getServizio(Connection connection, int codAssociato) {
             Associato ass = getAssociatoFromId(connection, codAssociato);
             try (

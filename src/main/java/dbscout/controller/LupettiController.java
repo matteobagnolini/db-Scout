@@ -54,7 +54,12 @@ public class LupettiController implements FXController {
         this.controller = controller;
         nomeAssociato.setText(controller.getModel().getAssociato().getNome() + " " + controller.getModel().getAssociato().getCognome());
     }
-
+    @FXML
+    private Button BackButton;
+    @FXML
+    void backToLogin(MouseEvent event) {
+        controller.changeScene("Login.fxml");
+    }
     @FXML
     void showAttivita(MouseEvent event) {
         List<Attivita> attivitas = controller.getModel().getAttivita();
