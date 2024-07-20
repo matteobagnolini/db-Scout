@@ -284,8 +284,9 @@ public class CoCaController implements FXController {
         // Add event handler to the button
         addButton.setOnAction(e -> {
             Attivita att = new Attivita(brancaInput.getText(), dataInput.getText(), descrizioneInput.getText(),
-            Optional.of(dataFineInput.getText()),Optional.of(luogoInput.getText()),
+            oraInput.getText(), Optional.of(dataFineInput.getText()),Optional.of(luogoInput.getText()),
             Optional.of(materialeInput.getText()), Optional.of(Integer.parseInt(quotaInput.getText())), Optional.empty());
+            System.out.println(att.dataOra());
             Associato.DAO.addAttivita(controller.getConnection(), att);
             window.close();
         });

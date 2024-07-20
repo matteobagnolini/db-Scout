@@ -63,7 +63,6 @@ public class LupettiController implements FXController {
     @FXML
     void showAttivita(MouseEvent event) {
         List<Attivita> attivitas = controller.getModel().getAttivita();
-        System.out.println(attivitas);
         boxAtt1.setText(attivitas.get(0).getDescrizione() + "\n" + attivitas.get(0).dataOra());
         boxAtt2.setText(attivitas.get(1).getDescrizione() + "\n" + attivitas.get(1).dataOra());
         boxAtt3.setText(attivitas.get(2).getDescrizione() + "\n" + attivitas.get(2).dataOra());
@@ -81,8 +80,12 @@ public class LupettiController implements FXController {
     @FXML
     void showMembriSestiglia(MouseEvent event) {
         List<Associato> membriSest = controller.getModel().getSestiglia().getMembri();
-        for (Associato membro : membriSest) {
-            boxMembri.setText(boxMembri.getText() + "\n" + membro.getNome() + " " + membro.getCognome());
+        if (!membriSest.isEmpty()) {
+            for (Associato membro : membriSest) {
+                boxMembri.setText(boxMembri.getText() + "\n" + membro.getNome() + " " + membro.getCognome());
+            }
+        } else {
+            boxMembri.setText("Nessuna sestiglia trovata...");
         }
     }
 

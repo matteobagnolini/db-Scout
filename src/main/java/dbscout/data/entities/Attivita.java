@@ -6,6 +6,7 @@ public record Attivita(
     String branca, 
     String dataOra, 
     String descrizione, 
+    String ora,
     Optional<String> dataFine, 
     Optional<String> luogo,
     Optional<String> materiale, 

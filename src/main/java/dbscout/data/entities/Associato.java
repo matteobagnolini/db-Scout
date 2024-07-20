@@ -299,11 +299,12 @@ public class Associato {
                     while (resultSet.next()) {
                         String dataOra = resultSet.getString("Att.data");
                         String descrizione = resultSet.getString("Att.Descrizione");
+                        String ora = resultSet.getString("Att.Ora");
                         Optional<String> dataFine = Optional.of(resultSet.getString("Att.DataFine"));
                         Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
                         Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
                         Optional<String> luogo = Optional.of(resultSet.getString("Att.Luogo"));
-                        Attivita att = new Attivita(ass.branca, dataOra, descrizione, dataFine, luogo, materiale, quota, Optional.empty());
+                        Attivita att = new Attivita(ass.branca, dataOra, descrizione, ora, dataFine, luogo, materiale, quota, Optional.empty());
                         Attivita.add(att);
                     }
                     }
@@ -464,13 +465,14 @@ public class Associato {
                     String branca = resultSet.getString("Att.NomeBranca");
                     String dataOra =  resultSet.getString("Att.data");
                     String descrizione = resultSet.getString("Att.Descrizione");
+                    String ora = resultSet.getString("Att.Ora");
                     Optional<String> dataFine = Optional.of(resultSet.getString("Att.DataFine"));
                     Optional<String> materiale = Optional.of(resultSet.getString("Att.Materiale"));
                     Optional<Integer> quota = Optional.of(resultSet.getInt("Att.Quota"));
                     Optional<String> luogo = Optional.of(resultSet.getString("Att.Luogo"));
                     Optional<Float> Numero_Stelle = Optional.of(resultSet.getFloat("Numero_Stelle"));
                     
-                    Top3.add(new Attivita(branca, dataOra, descrizione, dataFine,luogo, materiale, quota, Numero_Stelle));
+                    Top3.add(new Attivita(branca, dataOra, descrizione, ora, dataFine,luogo, materiale, quota, Numero_Stelle));
                 }
             } catch (Exception e) {
                 throw new DAOException(e.getMessage());
@@ -529,7 +531,7 @@ public class Associato {
                                 var addMembriNovizio  = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Noviziato");
                                     ) {
                                         addNovizio.executeUpdate();
-                                        addMembriNovizio.executeQuery();
+                                        addMembriNovizio.executeUpdate();
                                 }
                              catch (Exception e) {
                                 throw new DAOException(e.getMessage());
@@ -541,7 +543,7 @@ public class Associato {
                                 var addMembriClan  = DAOUtils.prepare(connection,  Queries.UPDATE_BRANCA_MEMBRI, "Clan");
                                     ) {
                                         addClan.executeUpdate();
-                                        addMembriClan.executeQuery();
+                                        addMembriClan.executeUpdate();
                                 }
                             catch (Exception e) {
                                 throw new DAOException(e.getMessage());
@@ -597,6 +599,7 @@ public class Associato {
             String branca = attivita.branca(); 
             String dataOra = attivita.dataOra();
             String descrizione = attivita.descrizione();
+            String ora = attivita.ora();
             Optional<String> dataFine = attivita.dataFine();
             Optional<String> luogo = attivita.luogo();
             Optional<String> materiale = attivita.materiale();
@@ -605,7 +608,7 @@ public class Associato {
             try(
                 //NomeBranca,Data,Ora,Descrizione,DataFine,Luogo,Materiale,Quota
                 var addAttivita = DAOUtils.prepare(connection, Queries.ADD_ATTIVITA, 
-                    branca, stringToSqlDate(dataOra) , stringToSqlTime(dataOra), descrizione, stringToSqlDate(dataFine.orElse(dataOra)), 
+                    branca, stringToSqlDate(dataOra) , stringToSqlTime(ora), descrizione, stringToSqlDate(dataFine.orElse(dataOra)), 
                     luogo.orElse("-"), materiale.orElse("-"), quota.orElse(0))) {
                 addAttivita.executeUpdate();
                 

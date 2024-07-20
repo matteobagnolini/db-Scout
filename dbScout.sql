@@ -37,7 +37,7 @@ create table ASSOCIATO (
 create table ATTIVITA (
      NomeBranca VARCHAR(13) not null,
      `Data` datetime not null,
-     Ora datetime not null,
+     Ora time not null,
      Descrizione mediumtext not null,
      DataFine datetime,
      Luogo VARCHAR(20),
