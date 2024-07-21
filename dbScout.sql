@@ -393,13 +393,13 @@ VALUES
 -- Lupetti (50 record)
 INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
-(101, 'Lupetti', '5234567890', 'lupetto1@mail.com', 'LupettoNome1', 'LupettoCognome1', 'RSSMRA04E01H501U', 8, 'M'),
-(102, 'Lupetti', '5234567891', 'lupetto2@mail.com', 'LupettoNome2', 'LupettoCognome2', 'RSSMRA04E02H501U', 9, 'F'),
-(103, 'Lupetti', '5234567892', 'lupetto3@mail.com', 'LupettoNome3', 'LupettoCognome3', 'RSSMRA04E03H501U', 10, 'M'),
-(104, 'Lupetti', '5234567893', 'lupetto4@mail.com', 'LupettoNome4', 'LupettoCognome4', 'RSSMRA04E04H501U', 7, 'F'),
+(101, 'Lupetti', '5234567890', 'lupetto1@mail.com', 'Marco', 'Rossi', 'RSSMRA04E01H501U', 8, 'M'),
+(102, 'Lupetti', '5234567891', 'lupetto2@mail.com', 'Pietro', 'Bianchi', 'RSSMRA04E02H501U', 9, 'F'),
+(103, 'Lupetti', '5234567892', 'lupetto3@mail.com', 'Giacomo', 'Rasi', 'RSSMRA04E03H501U', 10, 'M'),
+(104, 'Lupetti', '5234567893', 'lupetto4@mail.com', 'Lucia', 'Fantini', 'RSSMRA04E04H501U', 7, 'F'),
 (105, 'Lupetti', '5234567894', 'lupetto5@mail.com', 'LupettoNome5', 'LupettoCognome5', 'RSSMRA04E05H501U', 8, 'M'),
 (106, 'Lupetti', '5234567895', 'lupetto6@mail.com', 'LupettoNome6', 'LupettoCognome6', 'RSSMRA04E06H501U', 9, 'F'),
-(107, 'Lupetti', '5234567896', 'lupetto7@mail.com', 'LupettoNome7', 'LupettoCognome7', 'RSSMRA04E07H501U', 10, 'M'),
+(107, 'Lupetti', '5234567896', 'lupetto7@mail.com', 'Alice', 'Biondi', 'RSSMRA04E07H501U', 10, 'M'),
 (108, 'Lupetti', '5234567897', 'lupetto8@mail.com', 'LupettoNome8', 'LupettoCognome8', 'RSSMRA04E08H501U', 7, 'F'),
 (109, 'Lupetti', '5234567898', 'lupetto9@mail.com', 'LupettoNome9', 'LupettoCognome9', 'RSSMRA04E09H501U', 8, 'M'),
 (110, 'Lupetti', '5234567899', 'lupetto10@mail.com', 'LupettoNome10', 'LupettoCognome10', 'RSSMRA04E10H501U', 9, 'F'),
@@ -541,6 +541,10 @@ INSERT INTO ESTERNO (Ente, Nome, Cognome, Recapito_Tel, Sesso) VALUES
 ('ActionAid', 'Roberto', 'Osvaldi', '1234567900', 'M'),
 ('Fondazione Telethon', 'Marco', 'Vannati', '1234567901', 'M');
 
+INSERT INTO servizio (Nome, DataInizio, Associato_Clan, DataFine, Giorno, Ora, Descrizione, Branca, Luogo, Tipologia, NomeEnte, Cognome, Resoconto, Capo_Referente)
+VALUES
+('Servizio Croce Rossa', '2024-9-19', 21, '2024-12-19', 'Mercoledi', '16:00:00', 'Servizio nella croce rossa', 'Clan', 'Parrocchia SStefano', 'Extra-Associativo', 'Caritas', 'Belletti', 'NULL', 3);
+
 Insert into servizi_a_giro(Nome, Descrizione)
 values ("Quaderno di bordo", "Descrizione a tema o in modo particolare della precedente attività"),
 		("Pulizia sede", "Tenere puliti gli spazi comuni"),
@@ -646,6 +650,7 @@ INSERT INTO PARTECIPAZIONE (Associato, NomeBranca, `Data`, Descrizione, Numero_S
 (24, 'Clan', '2024-01-20 09:00:00', 'Partecipazione al corso di cucina internazionale', 5),
 (25, 'Clan', '2023-12-15 15:00:00', 'Partecipazione alla giornata di pulizia del parco', 3),
 (26, 'Clan', '2023-11-10 08:00:00', 'Partecipazione all\'escursione in montagna', 4);
+<<<<<<< HEAD
 /*
 ('Croce Rossa', 'Mario', 'Cappelleti', '1234567890', 'M'),
 ('Medici Senza Frontiere', 'Luigi', 'Verdi', '1234567891', 'M'),
@@ -657,15 +662,10 @@ VALUES
 ('Servizio Lupetti', '2024-9-19', 23, '2024-12-19', 'Venerdi', '18:00:00', 'Servizio come capo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', null, null, '', 3),
 ('Servizio in Croce Rossa', '2024-8-19', 24, '2025-1-19', 'Giovedì', '10:00:00', 'Assistenza ai malati alla croce rossa', null, 'Bufalini', 'ExtraAssociativo', 'Croce Rossa', 'Cappelleti', '', 4),
 ('Servizio in Medici senza Frontiere', '2024-3-19', 25, '2024-9-19', 'Venerdi', '17:00:00', 'Assistenza ai malati bisognosi che non possono permettersi cure', null, 'Bufalini', 'Associativo', 'Medici Senza Frontiere', 'Verdi', '', 1);
-INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
-VALUES 
-(1, 'Lupetti', '1234567890', 'example1@mail.com', 'Mario', 'Rossi', 'RSSMRA80A01H501U', 10, 'M');
 
 
-INSERT INTO CAPO (Associato, NomeBranca)
-VALUES 
-(1, 'Lupetti'),
-(2, 'Esploratori');
+
+
 
 INSERT INTO ATTIVITA (NomeBranca, `Data`, Ora, Descrizione, DataFine, Luogo, Materiale, Quota)
 VALUES 
