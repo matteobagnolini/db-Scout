@@ -23,15 +23,15 @@ use dbscout;
 
 create table ASSOCIATO (
      CodAssociato integer not null default 0,
-     NomeBranca VARCHAR(13) not null default "Lupetti",
-     Recapito_tel VARCHAR(10) not null,
-     Mail VARCHAR(25),
+     NomeBranca VARCHAR(20) not null default "Lupetti",
+     Recapito_tel VARCHAR(15) not null,
+     Mail VARCHAR(45),
      Nome VARCHAR(20) not null,
      Cognome  VARCHAR(20) not null,
      Codice_fiscale VARCHAR(16) not null,
      Eta integer not null default 8,
      Sesso char(1) not null,
-     constraint IDASSOCIATO primary key (CodAssociato),
+     primary key (CodAssociato),
      constraint IDASSOCIATO_1 unique (NomeBranca, CodAssociato));
 
 create table ATTIVITA (
@@ -43,48 +43,48 @@ create table ATTIVITA (
      Luogo VARCHAR(20),
      Materiale mediumtext,
      Quota decimal(7,2) default 0,
-     constraint IDATTIVITA primary key (NomeBranca, Data));
+     primary key (NomeBranca, Data));
 
 create table AUTO_FINANZIAMENTO (
      NomeBranca VARCHAR(13) not null,
      `Data` datetime not null,
      Luogo VARCHAR(20) not null,
      Guadagno decimal(7,2) not null,
-     Tipo VARCHAR(20) not null,
-     constraint IDAUTO_FINANZIAMENTO primary key (NomeBranca, Data, Luogo));
+     Tipo VARCHAR(50) not null,
+     primary key (NomeBranca, Data, Luogo));
 
 create table BRANCA (
      NomeBranca VARCHAR(13) not null,
      Numero_membri smallint not null default 0,
      FondoCassa decimal(8,2) not null default 0,
-     constraint IDBRANCA primary key (NomeBranca));
+     primary key (NomeBranca));
 
 create table CAPO (
      Associato integer not null default 0,
      NomeBranca VARCHAR(13) not null,
-     constraint FKAssociato_Capo_ID primary key (Associato));
+     primary key (Associato));
 
 create table ESTERNO (
-     Ente VARCHAR(20) not null,
-     Nome VARCHAR(20) not null,
+     Ente VARCHAR(30) not null,
+     Nome VARCHAR(30) not null,
      Cognome VARCHAR(20) not null,
      Recapito_Tel VARCHAR(20) not null,
      Sesso char(1) not null,
-     constraint IDESTERNO primary key (Ente, Cognome));
+     primary key (Ente, Cognome));
 
 create table LUPETTO (
      Associato integer not null default 0,
-     constraint FKAssociato_Lupetto_ID primary key (Associato));
+     primary key (Associato));
 
 create table SVOLGIMENTO_SERVIZIO (
      NomeSquadriglia VARCHAR(20) not null,
-     NomeServizio VARCHAR(20) not null,
+     NomeServizio VARCHAR(30) not null,
      `Data` datetime not null,
-     constraint IDSVOLGIMENTO_SERVIZIO primary key (NomeSquadriglia, NomeServizio, Data));
+     primary key (NomeSquadriglia, NomeServizio, Data));
 
 create table NOVIZIO (
      Associato integer not null default 0,
-     constraint FKAssociato_Novizio_ID primary key (Associato));
+     primary key (Associato));
 
 create table PARTECIPAZIONE (
      Associato integer not null default 0,
@@ -92,46 +92,46 @@ create table PARTECIPAZIONE (
      `Data` datetime not null,
      Descrizione  mediumtext,
      Numero_Stelle decimal(3,2),
-     constraint IDPARTECIPAZIONE primary key (Associato, NomeBranca, Data),
+     primary key (Associato, NomeBranca, Data),
 	 CONSTRAINT CK_Numero_Stelle CHECK (Numero_Stelle BETWEEN 1 AND 5));
     
 create table REPARTARO (
      Associato integer not null default 0,
-     constraint FKAssociato_Repartaro_ID primary key (Associato));
+     primary key (Associato));
 
 create table ROVER_SCOLTA (
      Associato integer not null default 0,
-     constraint FKAssociato_Clan_ID primary key (Associato));
+	primary key (Associato));
 
 create table SERVIZI_A_GIRO (
-     Nome varchar(22) not null,
+     Nome varchar(30) not null,
      Descrizione mediumtext not null,
-     constraint IDSERVIZIO_REP primary key (Nome));
+     primary key (Nome));
 
 create table SERVIZIO (
-     Nome varchar(20) not null,
+     Nome varchar(50) not null,
      DataInizio datetime not null,
      Associato_Clan integer not null,
      DataFine datetime not null,
      Giorno varchar(9) not null,
      Ora time not null,
      Descrizione mediumtext not null,
-     Branca varchar(7),
-     Luogo varchar(20),
-     Tipologia varchar(15) not null,
-     NomeEnte varchar(20),
+     Branca varchar(10),
+     Luogo varchar(30),
+     Tipologia varchar(30) not null,
+     NomeEnte varchar(30),
      Cognome varchar(20),
      Resoconto longtext,
      Capo_Referente integer not null,
-     constraint IDSERVIZIO primary key (Nome, DataInizio),
+     primary key (Nome, DataInizio),
      constraint FKOffre_ID unique (Associato_Clan));
 
 create table SESTIGLIA (
      Nome varchar(20) not null,
      Capo_Ses integer not null,
      Vice_Ses integer not null,
-     Motto varchar(40) not null,
-     constraint IDSESTIGLIA primary key (Nome),
+     Motto varchar(60) not null,
+     primary key (Nome),
      constraint FKCapo_Sestiglia_ID unique (Capo_Ses),
      constraint FKVicecapo_Sestiglia_ID unique (Vice_Ses)
 );
@@ -140,9 +140,9 @@ create table SQUADRIGLIA (
      Nome varchar(20) not null,
      Capo_Sq integer not null,
      Vice_Sq integer not null,
-     Motto varchar(40) not null,
+     Motto varchar(60) not null,
      Sesso char(1) not null,
-     constraint IDSQUADRIGLIA primary key (Nome),
+     primary key (Nome),
      constraint FKCapo_SQ_ID unique (Capo_Sq),
      constraint FKVicecapo_SQ_ID unique (Vice_Sq));
 
@@ -654,15 +654,9 @@ INSERT INTO PARTECIPAZIONE (Associato, NomeBranca, `Data`, Descrizione, Numero_S
 (25, 'Clan', '2023-12-15 15:00:00', 'Partecipazione alla giornata di pulizia del parco', 3),
 (26, 'Clan', '2023-11-10 08:00:00', 'Partecipazione all\'escursione in montagna', 4);
 
-/*
-('Croce Rossa', 'Mario', 'Cappelleti', '1234567890', 'M'),
-('Medici Senza Frontiere', 'Luigi', 'Verdi', '1234567891', 'M'),
-*/
 INSERT INTO servizio (Nome, DataInizio, Associato_Clan, DataFine, Giorno, Ora, Descrizione, Branca, Luogo, Tipologia, NomeEnte, Cognome, Resoconto, Capo_Referente)
 VALUES
 ('Servizio Lupetti', '2024-9-19', 21, '2024-12-19', 'Mercoledi', '16:00:00', 'Servizio come capo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', null, null, '', 3),
-('Servizio Lupetti', '2024-9-19', 22, '2024-12-19', 'Giovedì', '10:00:00', 'Servizio come aiutocapo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', null, null, '', 3),
-('Servizio Lupetti', '2024-9-19', 23, '2024-12-19', 'Venerdi', '18:00:00', 'Servizio come capo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', null, null, '', 3),
 ('Servizio in Croce Rossa', '2024-8-19', 24, '2025-1-19', 'Giovedì', '10:00:00', 'Assistenza ai malati alla croce rossa', null, 'Bufalini', 'ExtraAssociativo', 'Croce Rossa', 'Cappelleti', '', 4),
 ('Servizio in Medici senza Frontiere', '2024-3-19', 25, '2024-9-19', 'Venerdi', '17:00:00', 'Assistenza ai malati bisognosi che non possono permettersi cure', null, 'Bufalini', 'Associativo', 'Medici Senza Frontiere', 'Verdi', '', 1);
 
