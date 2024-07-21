@@ -646,12 +646,17 @@ INSERT INTO PARTECIPAZIONE (Associato, NomeBranca, `Data`, Descrizione, Numero_S
 (24, 'Clan', '2024-01-20 09:00:00', 'Partecipazione al corso di cucina internazionale', 5),
 (25, 'Clan', '2023-12-15 15:00:00', 'Partecipazione alla giornata di pulizia del parco', 3),
 (26, 'Clan', '2023-11-10 08:00:00', 'Partecipazione all\'escursione in montagna', 4);
-
+/*
+('Croce Rossa', 'Mario', 'Cappelleti', '1234567890', 'M'),
+('Medici Senza Frontiere', 'Luigi', 'Verdi', '1234567891', 'M'),
+*/
 INSERT INTO servizio (Nome, DataInizio, Associato_Clan, DataFine, Giorno, Ora, Descrizione, Branca, Luogo, Tipologia, NomeEnte, Cognome, Resoconto, Capo_Referente)
 VALUES
-('Servizio Lupetti', '2024-9-19', 21, '2024-12-19', 'Mercoledi', '16:00:00', 'Servizio come capo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', '', '', '', 3);
-
-/*
+('Servizio Lupetti', '2024-9-19', 21, '2024-12-19', 'Mercoledi', '16:00:00', 'Servizio come capo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', null, null, '', 3),
+('Servizio Lupetti', '2024-9-19', 22, '2024-12-19', 'Giovedì', '10:00:00', 'Servizio come aiutocapo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', null, null, '', 3),
+('Servizio Lupetti', '2024-9-19', 23, '2024-12-19', 'Venerdi', '18:00:00', 'Servizio come capo nella branca lupetti', 'Lupetti', 'Parrocchia SStefano', 'Associativo', null, null, '', 3),
+('Servizio in Croce Rossa', '2024-8-19', 24, '2025-1-19', 'Giovedì', '10:00:00', 'Assistenza ai malati alla croce rossa', null, 'Bufalini', 'ExtraAssociativo', 'Croce Rossa', 'Cappelleti', '', 4),
+('Servizio in Medici senza Frontiere', '2024-3-19', 25, '2024-9-19', 'Venerdi', '17:00:00', 'Assistenza ai malati bisognosi che non possono permettersi cure', null, 'Bufalini', 'Associativo', 'Medici Senza Frontiere', 'Verdi', '', 1);
 INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
 (1, 'Lupetti', '1234567890', 'example1@mail.com', 'Mario', 'Rossi', 'RSSMRA80A01H501U', 10, 'M');
