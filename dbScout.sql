@@ -650,7 +650,7 @@ INSERT INTO PARTECIPAZIONE (Associato, NomeBranca, `Data`, Descrizione, Numero_S
 (24, 'Clan', '2024-01-20 09:00:00', 'Partecipazione al corso di cucina internazionale', 5),
 (25, 'Clan', '2023-12-15 15:00:00', 'Partecipazione alla giornata di pulizia del parco', 3),
 (26, 'Clan', '2023-11-10 08:00:00', 'Partecipazione all\'escursione in montagna', 4);
-<<<<<<< HEAD
+
 /*
 ('Croce Rossa', 'Mario', 'Cappelleti', '1234567890', 'M'),
 ('Medici Senza Frontiere', 'Luigi', 'Verdi', '1234567891', 'M'),
