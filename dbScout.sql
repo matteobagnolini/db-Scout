@@ -173,16 +173,16 @@ values("Lupetti", 0, 100),
 -- Capi (10 record)
 INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
-(1, 'CoCa', '1234567890', 'capo1@mail.com', 'CapoNome1', 'CapoCognome1', 'RSSMRA80A01H501U', 30, 'M'),
-(2, 'CoCa', '1234567891', 'capo2@mail.com', 'CapoNome2', 'CapoCognome2', 'RSSMRA80A02H501U', 28, 'F'),
-(3, 'CoCa', '1234567892', 'capo3@mail.com', 'CapoNome3', 'CapoCognome3', 'RSSMRA80A03H501U', 35, 'M'),
-(4, 'CoCa', '1234567893', 'capo4@mail.com', 'CapoNome4', 'CapoCognome4', 'RSSMRA80A04H501U', 40, 'F'),
-(5, 'CoCa', '1234567894', 'capo5@mail.com', 'CapoNome5', 'CapoCognome5', 'RSSMRA80A05H501U', 45, 'M'),
-(6, 'CoCa', '1234567895', 'capo6@mail.com', 'CapoNome6', 'CapoCognome6', 'RSSMRA80A06H501U', 50, 'F'),
-(7, 'CoCa', '1234567896', 'capo7@mail.com', 'CapoNome7', 'CapoCognome7', 'RSSMRA80A07H501U', 27, 'M'),
-(8, 'CoCa', '1234567897', 'capo8@mail.com', 'CapoNome8', 'CapoCognome8', 'RSSMRA80A08H501U', 32, 'F'),
-(9, 'CoCa', '1234567898', 'capo9@mail.com', 'CapoNome9', 'CapoCognome9', 'RSSMRA80A09H501U', 37, 'M'),
-(10, 'CoCa', '1234567899', 'capo10@mail.com', 'CapoNome10', 'CapoCognome10', 'RSSMRA80A10H501U', 42, 'F');
+(1, 'CoCa', '1234567890', 'leonardo.verdi@example.com', 'Leonardo', 'Verdi', 'VRDLRD80A01H501U', 30, 'M'),
+(2, 'CoCa', '1234567891', 'francesca.bianchi@example.com', 'Francesca', 'Bianchi', 'BNCHFNC80A02H501U', 28, 'F'),
+(3, 'CoCa', '1234567892', 'tommaso.neri@example.com', 'Tommaso', 'Neri', 'NRITMS80A03H501U', 35, 'M'),
+(4, 'CoCa', '1234567893', 'edvige.monti@example.com', 'Edvige', 'Monti', 'MNTEDV80A04H501U', 40, 'F'),
+(5, 'CoCa', '1234567894', 'alessandro.rossi@example.com', 'Alessandro', 'Rossi', 'RSSALS80A05H501U', 45, 'M'),
+(6, 'CoCa', '1234567895', 'laura.ferrari@example.com', 'Laura', 'Ferrari', 'FRRLRA80A06H501U', 50, 'F'),
+(7, 'CoCa', '1234567896', 'mattia.galli@example.com', 'Mattia', 'Galli', 'GLLMTT80A07H501U', 27, 'M'),
+(8, 'CoCa', '1234567897', 'gabriela.vitali@example.com', 'Gabriela', 'Vitali', 'VTLGLL80A08H501U', 32, 'F'),
+(9, 'CoCa', '1234567898', 'riccardo.testa@example.com', 'Riccardo', 'Testa', 'TSTRCC80A09H501U', 37, 'M'),
+(10, 'CoCa', '1234567899', 'andrea.lombardi@example.com', 'Andrea', 'Lombardi', 'LMBNDR80A10H501U', 42, 'F');
 insert into capo(Associato, NomeBranca)
 Values (1, "Lupetti"),
 (2, "Lupetti"),
@@ -198,36 +198,36 @@ Values (1, "Lupetti"),
 -- Clan (30 record)
 INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
-(11, 'Clan', '2234567890', 'clan1@mail.com', 'ClanNome1', 'ClanCognome1', 'RSSMRA01B01H501U', 18, 'M'),
-(12, 'Clan', '2234567891', 'clan2@mail.com', 'ClanNome2', 'ClanCognome2', 'RSSMRA01B02H501U', 19, 'F'),
-(13, 'Clan', '2234567892', 'clan3@mail.com', 'ClanNome3', 'ClanCognome3', 'RSSMRA01B03H501U', 20, 'M'),
-(14, 'Clan', '2234567893', 'clan4@mail.com', 'ClanNome4', 'ClanCognome4', 'RSSMRA01B04H501U', 17, 'F'),
-(15, 'Clan', '2234567894', 'clan5@mail.com', 'ClanNome5', 'ClanCognome5', 'RSSMRA01B05H501U', 18, 'M'),
-(16, 'Clan', '2234567895', 'clan6@mail.com', 'ClanNome6', 'ClanCognome6', 'RSSMRA01B06H501U', 19, 'F'),
-(17, 'Clan', '2234567896', 'clan7@mail.com', 'ClanNome7', 'ClanCognome7', 'RSSMRA01B07H501U', 20, 'M'),
-(18, 'Clan', '2234567897', 'clan8@mail.com', 'ClanNome8', 'ClanCognome8', 'RSSMRA01B08H501U', 17, 'F'),
-(19, 'Clan', '2234567898', 'clan9@mail.com', 'ClanNome9', 'ClanCognome9', 'RSSMRA01B09H501U', 18, 'M'),
-(20, 'Clan', '2234567899', 'clan10@mail.com', 'ClanNome10', 'ClanCognome10', 'RSSMRA01B10H501U', 19, 'F'),
-(21, 'Clan', '2234567900', 'clan11@mail.com', 'ClanNome11', 'ClanCognome11', 'RSSMRA01B11H501U', 20, 'M'),
-(22, 'Clan', '2234567901', 'clan12@mail.com', 'ClanNome12', 'ClanCognome12', 'RSSMRA01B12H501U', 17, 'F'),
-(23, 'Clan', '2234567902', 'clan13@mail.com', 'ClanNome13', 'ClanCognome13', 'RSSMRA01B13H501U', 18, 'M'),
-(24, 'Clan', '2234567903', 'clan14@mail.com', 'ClanNome14', 'ClanCognome14', 'RSSMRA01B14H501U', 19, 'F'),
-(25, 'Clan', '2234567904', 'clan15@mail.com', 'ClanNome15', 'ClanCognome15', 'RSSMRA01B15H501U', 20, 'M'),
-(26, 'Clan', '2234567905', 'clan16@mail.com', 'ClanNome16', 'ClanCognome16', 'RSSMRA01B16H501U', 17, 'F'),
-(27, 'Clan', '2234567906', 'clan17@mail.com', 'ClanNome17', 'ClanCognome17', 'RSSMRA01B17H501U', 18, 'M'),
-(28, 'Clan', '2234567907', 'clan18@mail.com', 'ClanNome18', 'ClanCognome18', 'RSSMRA01B18H501U', 19, 'F'),
-(29, 'Clan', '2234567908', 'clan19@mail.com', 'ClanNome19', 'ClanCognome19', 'RSSMRA01B19H501U', 20, 'M'),
-(30, 'Clan', '2234567909', 'clan20@mail.com', 'ClanNome20', 'ClanCognome20', 'RSSMRA01B20H501U', 17, 'F'),
-(31, 'Clan', '2234567910', 'clan21@mail.com', 'ClanNome21', 'ClanCognome21', 'RSSMRA01B21H501U', 18, 'M'),
-(32, 'Clan', '2234567911', 'clan22@mail.com', 'ClanNome22', 'ClanCognome22', 'RSSMRA01B22H501U', 19, 'F'),
-(33, 'Clan', '2234567912', 'clan23@mail.com', 'ClanNome23', 'ClanCognome23', 'RSSMRA01B23H501U', 20, 'M'),
-(34, 'Clan', '2234567913', 'clan24@mail.com', 'ClanNome24', 'ClanCognome24', 'RSSMRA01B24H501U', 17, 'F'),
-(35, 'Clan', '2234567914', 'clan25@mail.com', 'ClanNome25', 'ClanCognome25', 'RSSMRA01B25H501U', 18, 'M'),
-(36, 'Clan', '2234567915', 'clan26@mail.com', 'ClanNome26', 'ClanCognome26', 'RSSMRA01B26H501U', 19, 'F'),
-(37, 'Clan', '2234567916', 'clan27@mail.com', 'ClanNome27', 'ClanCognome27', 'RSSMRA01B27H501U', 20, 'M'),
-(38, 'Clan', '2234567917', 'clan28@mail.com', 'ClanNome28', 'ClanCognome28', 'RSSMRA01B28H501U', 17, 'F'),
-(39, 'Clan', '2234567918', 'clan29@mail.com', 'ClanNome29', 'ClanCognome29', 'RSSMRA01B29H501U', 18, 'M'),
-(40, 'Clan', '2234567919', 'clan30@mail.com', 'ClanNome30', 'ClanCognome30', 'RSSMRA01B30H501U', 19, 'F');
+(11, 'Clan', '2234567890', 'leo.rossi@example.com', 'Leo', 'Rossi', 'RSSMRA01B01H501U', 18, 'M'),
+(12, 'Clan', '2234567891', 'mario.lucca@example.com', 'Mario', 'Lucca', 'LCCMRA01B02H501U', 19, 'M'),
+(13, 'Clan', '2234567892', 'andrea.garofalo@example.com', 'Andrea', 'Garofalo', 'GRFMRA01B03H501U', 20, 'M'),
+(14, 'Clan', '2234567893', 'elena.mazza@example.com', 'Elena', 'Mazza', 'MZELRA01B04H501U', 17, 'F'),
+(15, 'Clan', '2234567894', 'matteo.rossi@example.com', 'Matteo', 'Rossi', 'RSSTMA01B05H501U', 18, 'M'),
+(16, 'Clan', '2234567895', 'chiara.corsi@example.com', 'Chiara', 'Corsi', 'CRSMRA01B06H501U', 19, 'F'),
+(17, 'Clan', '2234567896', 'lucrezia.ferretti@example.com', 'Lucrezia', 'Ferretti', 'FRRMRA01B07H501U', 20, 'F'),
+(18, 'Clan', '2234567897', 'giulia.bianchi@example.com', 'Giulia', 'Bianchi', 'BNCGLA01B08H501U', 17, 'F'),
+(19, 'Clan', '2234567898', 'francesco.martini@example.com', 'Francesco', 'Martini', 'MRTFRA01B09H501U', 18, 'M'),
+(20, 'Clan', '2234567899', 'alice.ferrari@example.com', 'Alice', 'Ferrari', 'FRRLCE01B10H501U', 19, 'F'),
+(21, 'Clan', '2234567900', 'michele.sorrenti@example.com', 'Michele', 'Sorrenti', 'SRRMCH01B11H501U', 20, 'M'),
+(22, 'Clan', '2234567901', 'sofia.benedetti@example.com', 'Sofia', 'Benedetti', 'BNDFRA01B12H501U', 17, 'F'),
+(23, 'Clan', '2234567902', 'francesca.galassi@example.com', 'Francesca', 'Galassi', 'GLSFR01B13H501U', 18, 'F'),
+(24, 'Clan', '2234567903', 'marta.muratori@example.com', 'Marta', 'Muratori', 'MRTMRA01B14H501U', 19, 'F'),
+(25, 'Clan', '2234567904', 'alessandro.cattaneo@example.com', 'Alessandro', 'Cattaneo', 'CTNMRA01B15H501U', 20, 'M'),
+(26, 'Clan', '2234567905', 'francesca.ferri@example.com', 'Francesca', 'Ferri', 'FRRMRA01B16H501U', 17, 'F'),
+(27, 'Clan', '2234567906', 'giuseppe.campagnolo@example.com', 'Giuseppe', 'Campagnolo', 'CMPMRA01B17H501U', 18, 'M'),
+(28, 'Clan', '2234567907', 'giorgia.miranda@example.com', 'Giorgia', 'Miranda', 'MRDMRA01B18H501U', 19, 'F'),
+(29, 'Clan', '2234567908', 'luca.donati@example.com', 'Luca', 'Donati', 'DNTMRA01B19H501U', 20, 'M'),
+(30, 'Clan', '2234567909', 'silvia.copetti@example.com', 'Silvia', 'Copetti', 'CPPMRA01B20H501U', 17, 'F'),
+(31, 'Clan', '2234567910', 'carlo.giovanni@example.com', 'Carlo', 'Giovanni', 'GVNMRA01B21H501U', 18, 'M'),
+(32, 'Clan', '2234567911', 'elisa.cavallini@example.com', 'Elisa', 'Cavallini', 'CAVMRA01B22H501U', 19, 'F'),
+(33, 'Clan', '2234567912', 'enrico.ravasi@example.com', 'Enrico', 'Ravasi', 'RVSMRA01B23H501U', 20, 'M'),
+(34, 'Clan', '2234567913', 'sara.tamburini@example.com', 'Sara', 'Tamburini', 'TMBMRA01B24H501U', 17, 'F'),
+(35, 'Clan', '2234567914', 'alessia.rossetti@example.com', 'Alessia', 'Rossetti', 'RSSMRA01B25H501U', 18, 'F'),
+(36, 'Clan', '2234567915', 'martina.papini@example.com', 'Martina', 'Papini', 'PPNMRA01B26H501U', 19, 'F'),
+(37, 'Clan', '2234567916', 'dario.martella@example.com', 'Dario', 'Martella', 'MRTMRA01B27H501U', 20, 'M'),
+(38, 'Clan', '2234567917', 'anna.pellegrini@example.com', 'Anna', 'Pellegrini', 'PLLMRA01B28H501U', 17, 'F'),
+(39, 'Clan', '2234567918', 'giorgio.riva@example.com', 'Giorgio', 'Riva', 'RIVMRA01B29H501U', 18, 'M'),
+(40, 'Clan', '2234567919', 'paola.bianchi@example.com', 'Paola', 'Bianchi', 'BNCPLA01B30H501U', 19, 'F');
 insert into rover_scolta(Associato)
 values (11),
 (12),
@@ -263,16 +263,16 @@ values (11),
 -- Noviziato (10 record)
 INSERT INTO ASSOCIATO (CodAssociato, NomeBranca, Recapito_tel, Mail, Nome, Cognome, Codice_fiscale, Eta, Sesso)
 VALUES 
-(41, 'Noviziato', '3234567890', 'novizio1@mail.com', 'NovizioNome1', 'NovizioCognome1', 'RSSMRA02C01H501U', 16, 'M'),
-(42, 'Noviziato', '3234567891', 'novizio2@mail.com', 'NovizioNome2', 'NovizioCognome2', 'RSSMRA02C02H501U', 16, 'F'),
-(43, 'Noviziato', '3234567892', 'novizio3@mail.com', 'NovizioNome3', 'NovizioCognome3', 'RSSMRA02C03H501U', 16, 'M'),
-(44, 'Noviziato', '3234567893', 'novizio4@mail.com', 'NovizioNome4', 'NovizioCognome4', 'RSSMRA02C04H501U', 16, 'F'),
-(45, 'Noviziato', '3234567894', 'novizio5@mail.com', 'NovizioNome5', 'NovizioCognome5', 'RSSMRA02C05H501U', 16, 'M'),
-(46, 'Noviziato', '3234567895', 'novizio6@mail.com', 'NovizioNome6', 'NovizioCognome6', 'RSSMRA02C06H501U', 16, 'F'),
-(47, 'Noviziato', '3234567896', 'novizio7@mail.com', 'NovizioNome7', 'NovizioCognome7', 'RSSMRA02C07H501U', 16, 'M'),
-(48, 'Noviziato', '3234567897', 'novizio8@mail.com', 'NovizioNome8', 'NovizioCognome8', 'RSSMRA02C08H501U', 16, 'F'),
-(49, 'Noviziato', '3234567898', 'novizio9@mail.com', 'NovizioNome9', 'NovizioCognome9', 'RSSMRA02C09H501U', 16, 'M'),
-(50, 'Noviziato', '3234567899', 'novizio10@mail.com', 'NovizioNome10', 'NovizioCognome10', 'RSSMRA02C10H501U', 16, 'F');
+(41, 'Noviziato', '3234567890', 'giacomo.serra@example.com', 'Giacomo', 'Serra', 'SRRGCM80A01H501N', 16, 'M'),
+(42, 'Noviziato', '3234567891', 'jacopo.dangelo@example.com', 'Jacopo', 'D\'Angelo', 'DNGJCP80A01H501O', 16, 'M'),
+(43, 'Noviziato', '3234567892', 'giorgio.dalla@example.com', 'Giorgio', 'Dalla', 'DLLGRG80A01H501P', 16, 'M'),
+(44, 'Noviziato', '3234567893', 'simona.marchetti@example.com', 'Simona', 'Marchetti', 'MCHSMN80A01H501Q', 16, 'F'),
+(45, 'Noviziato', '3234567894', 'ettore.marini@example.com', 'Ettore', 'Marini', 'MRNTTR80A01H501R', 16, 'M'),
+(46, 'Noviziato', '3234567895', 'luigi.fabbri@example.com', 'Luigi', 'Fabbri', 'FBBLG80A01H501S', 16, 'F'),
+(47, 'Noviziato', '3234567896', 'manuele.fiore@example.com', 'Manuele', 'Fiore', 'FRMN80A01H501T', 16, 'F'),
+(48, 'Noviziato', '3234567897', 'damiano.ferri@example.com', 'Damiano', 'Ferri', 'FRRDMN80A01H501U', 16, 'M'),
+(49, 'Noviziato', '3234567898', 'daniele.gentile@example.com', 'Daniele', 'Gentile', 'GNTDNL80A01H501V', 16, 'M'),
+(50, 'Noviziato', '3234567899', 'domenica.gatti@example.com', 'Domenica', 'Gatti', 'GTTDMN80A01H501W', 16, 'F');
 insert into novizio(Associato)
 values (41),
 (42),
@@ -685,11 +685,6 @@ VALUES
 ('Lupetti', 25, 500.00),
 ('Esploratori', 20, 800.00),
 ('Rover', 15, 300.00);
-
-*/
-
-
->>>>>>> edd4345e5dda13623b0f108c7e5db854f6168e32
 
 -- Constraints Section
 -- ___________________ 
